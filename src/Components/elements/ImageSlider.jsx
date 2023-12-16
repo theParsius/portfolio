@@ -1,16 +1,7 @@
-/*
-   Copyright (C), 2023-2024, Sara Echeverria (bl33h)
-   Author: Sara Echeverria
-   FileName: ImageSlider.jsx
-   Version: I
-   Creation: 02/06/2023
-   Last modification: 02/06/2023
-*/
+import { useEffect, useState, useRef } from 'react';
+import { m, LazyMotion, domAnimation } from 'framer-motion';
 
-import { useEffect, useState, useRef } from "react";
-import { m, LazyMotion, domAnimation } from "framer-motion";
-
-const ImageSlider = ({ images }) => {
+function ImageSlider({ images }) {
   const [index, setIndex] = useState(0);
   const [isInViewport, setIsInViewport] = useState(false);
   const imageRef = useRef(null);
@@ -28,7 +19,7 @@ const ImageSlider = ({ images }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsInViewport(entry.isIntersecting),
-      { threshold: 0 }
+      { threshold: 0 },
     );
 
     if (imageRef.current) {
@@ -46,15 +37,15 @@ const ImageSlider = ({ images }) => {
         whileInView={{ x: 0, opacity: 1 }}
         transition={{
           duration: 0.5,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           damping: 20,
         }}
         className="w-full h-full blob drop-shadow-div"
         style={{ backgroundImage: `url(${images[index]})` }}
-      ></m.div>
+      />
     </LazyMotion>
   );
-};
+}
 
 export default ImageSlider;

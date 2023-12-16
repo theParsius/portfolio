@@ -1,16 +1,7 @@
-/*
-   Copyright (C), 2023-2024, Sara Echeverria (bl33h)
-   Author: Sara Echeverria
-   FileName: PreloadMedia.jsx
-   Version: I
-   Creation: 02/06/2023
-   Last modification: 03/06/2023
-*/
-
-import {useState} from 'react'
+import { useState } from 'react'
 import Loader from './Loader';
 
-const PreloadMedia = ({images, children}) => {
+function PreloadMedia({ images, children }) {
   const [loaded, setLoaded] = useState(false);
 
   const onLoad = () => {
