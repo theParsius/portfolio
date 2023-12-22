@@ -34,7 +34,7 @@ function Contact() {
           <span>
             Made by
             {' '}
-            <em>Sara Echeverría (bl33h)</em>
+            <em>Parsa Tashakkori (theParsius)</em>
           </span>
         </div>
       </div>
