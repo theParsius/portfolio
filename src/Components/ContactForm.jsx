@@ -2,7 +2,7 @@ import emailJs from '@emailjs/browser';
 import { useRef, useState } from 'react';
 import { Typewriter } from 'react-simple-typewriter';
 
-const ContactForm = () => {
+function ContactForm() {
   const [isSent, setIsSent] = useState(false);
   const form = useRef();
 
@@ -10,18 +10,18 @@ const ContactForm = () => {
     e.preventDefault();
 
     emailJs
-      .sendForm('whoisbl33h', 'template1', e.target, 'JjC_Nnt4rUsjIsRtz')
+      .sendForm('theparsius', 'portfolioTemplate', e.target, 'ut58R0tevrN1DI72O')
       .then(
-        (result) => {
+        () => {
           document.getElementById('contact_form')
             .reset();
           setIsSent(true);
-          alert('Thank you I will get back to you as soon as possible ! (:');
+          alert('Thank you I will get back to you as soon as possible!');
         },
         (error) => {
           console.error(error);
           setIsSent(false);
-        }
+        },
       );
   };
 
@@ -40,7 +40,7 @@ const ContactForm = () => {
           style={{ fontFamily: 'Morganite Bold, sans-serif' }}
           className="message text-7xl bg-primary-600 p-2 rounded-xl text-grayscale-200 text-center rounded-br-[0%] relative shadow-2xl"
         >
-          <Typewriter words={['Let\'s get in touch!']} loop={true}/>
+          <Typewriter words={['Let\'s get in touch!']} loop />
           &nbsp;
         </h2>
       </div>
@@ -94,7 +94,7 @@ const ContactForm = () => {
               placeholder="Enter your message..."
               name="message"
               required
-            ></textarea>
+            />
           </div>
           <div className="w-full flex justify-center">
             <input
@@ -107,6 +107,6 @@ const ContactForm = () => {
       </div>
     </div>
   );
-};
+}
 
 export default ContactForm;
