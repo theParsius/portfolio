@@ -1,10 +1,9 @@
-import { m, LazyMotion, domAnimation } from "framer-motion";
-import SectionTitle from "../Components/SectionTitle";
-import { memoji } from "../Constants/constants";
-import { introduction } from "../Constants/constants";
-import ImageSlider from "../Components/elements/ImageSlider";
+import { m, LazyMotion, domAnimation } from 'framer-motion';
+import SectionTitle from '../Components/SectionTitle';
+import { memoji, introduction } from '../Constants/constants';
+import ImageSlider from '../Components/elements/ImageSlider';
 
-const About = () => {
+function About() {
   return (
     <div id="about" className="w-full flex justify-center overflow-hidden-web">
       <div className="w-full xl:w-[70%] flex flex-col pb-16">
@@ -19,17 +18,18 @@ const About = () => {
                 whileInView={{ opacity: 1 }}
                 transition={{
                   duration: 0.5,
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 100,
                   damping: 20,
                 }}
-                style={{ fontFamily: "Poppins, sans-serif" }}
+                style={{ fontFamily: 'Poppins, sans-serif' }}
                 className="text-grayscale-50 p-6 text-center flex flex-col gap-6"
               >
                 <span className="text-primary-400">{introduction.text[0]}</span>
                 <span>{introduction.text[1]}</span>
                 <span>{introduction.text[2]}</span>
                 <span>{introduction.text[3]}</span>
+                <span>{introduction.text[4]}</span>
               </m.p>
             </LazyMotion>
           </div>
@@ -42,6 +42,6 @@ const About = () => {
       </div>
     </div>
   );
-};
+}
 
 export default About;
