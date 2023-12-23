@@ -16,7 +16,7 @@
 
 body {
 	background: url("https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png");
-	background-color: #5c546b;
+	background-color: #1F2E44;
 	position: relative;
 	overflow-x: hidden;
 	-webkit-overflow-x: hidden;
@@ -104,7 +104,7 @@ polyline {
 .bounce:hover {
 	display: inline-block;
 	animation: rubberband 0.8s ease-out;
-	color: #cbbde5;
+	color: #49A3F7;
 }
 
 @keyframes rubberband {
@@ -135,8 +135,8 @@ polyline {
 	.drop-shadow-div {
 		-webkit-appearance: none;
 		appearance: none;
-		-webkit-filter: drop-shadow(0 0 1.5rem #cbbde5);
-		filter: drop-shadow(0 0 1.5rem #cbbde5);
+		-webkit-filter: drop-shadow(0 0 1.5rem #49A3F7);
+		filter: drop-shadow(0 0 1.5rem #49A3F7);
 	}
 }
 
@@ -159,7 +159,7 @@ polyline {
 	height: 80px;
 	border-radius: 50%;
 	border: 5px solid;
-	border-color: #cbbde5 transparent;
+	border-color: #49A3F7 transparent;
 }
 
 @keyframes rotation {
