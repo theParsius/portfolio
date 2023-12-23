@@ -1,7 +1,7 @@
 import { m, LazyMotion, domAnimation } from 'framer-motion';
 
 function HeroText() {
-  const name = 'theParsius ?';
+  const name = 'theParsius?';
 
   return (
     <div
@@ -14,7 +14,7 @@ function HeroText() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, type: 'spring' }}
           className="text-center flex justify-center items-center flex-col opacity-100 text-7xl sm:text-9xl cursor-default"
-          style={{ fontFamily: 'SuperMario' }}
+          style={{ fontFamily: 'Permanent Marker' }}
         >
           <m.span
             initial={{ x: -100 }}

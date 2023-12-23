@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: "SuperMario";
-	src: url(/Fonts/Mario/SuperMario256.ttf);
+	font-family: 'Permanent Marker', cursive;
 }
 
 * {
