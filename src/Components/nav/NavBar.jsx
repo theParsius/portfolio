@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { navLinks } from '../../Constants/constants';
-import { bl33hIcon, close, menu } from '../../assets';
+import { theParsiusIcon, close, menu } from '../../assets';
 import { styles } from '../../styles.js';
 
 function Navbar() {
@@ -38,8 +38,8 @@ function Navbar() {
           }}
         >
           <img
-            src={bl33hIcon}
-            alt={bl33hIcon}
+            src={theParsiusIcon}
+            alt={theParsiusIcon}
             className="w-18 h-9 object-contain"
           />
           <p className="text-white text-[18px] font-bold cursor-pointer flex" />

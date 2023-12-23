@@ -1,7 +1,7 @@
 // Logo
-import bl33hIcon from './logo/bl33hIcon.png';
+import theParsiusIcon from './logo/theParsiusLogo.png';
 
-// Technologies
+// Skills
 import unityIcon from './tech/unity.png';
 import csharpIcon from './tech/csharp.png';
 import golangIcon from './tech/golang.png';
@@ -46,5 +46,5 @@ export {
   calculator,
   memoryGame,
   avatar,
-  bl33hIcon,
+  theParsiusIcon,
 };
