@@ -99,31 +99,62 @@ export const navLinks = [
 ];
 
 const projects = [
-
   {
     name: 'Arasartara\'s Gallery',
     description:
       'A memory game with an art theme implemented with React. Test your memory skills and enjoy beautiful artwork as you match pairs of cards in this engaging game.',
-    image: memoryGame,
-    source_code_link: 'https://github.com/bl33h/artMemoryGame',
-    demo_link: 'https://arasarmemory.netlify.app/',
+    icon: memoryGame,
+    images: [memoryGame, pawsitivePrototype, calculator],
+    store_data: [
+      {
+        name: 'App Store',
+        link: 'https://apple.com',
+        icon: githubIcon,
+      },
+      {
+        name: 'Google Play',
+        link: 'https://google.com',
+        icon: githubIcon,
+      },
+    ],
   },
   {
     name: 'Pawsitive',
     description:
       'Explore a user-friendly Figma prototype for an adoption and sterilization awareness website. Experience the sleek design and contribute to a noble cause.',
-    image: pawsitivePrototype,
-    source_code_link: 'https://github.com/bl33h/pawsitive',
-    demo_link:
-      'https://www.figma.com/proto/zhK8DMa7uPyQIcHxkemIcx/Pawsitive?type=design&node-id=40-2&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=40%3A2',
+    icon: pawsitivePrototype,
+    images: [pawsitivePrototype, calculator, memoryGame],
+    store_data: [
+      {
+        name: 'App Store',
+        link: 'https://apple.com',
+        icon: githubIcon,
+      },
+      {
+        name: 'Google Play',
+        link: 'https://google.com',
+        icon: githubIcon,
+      },
+    ],
   },
   {
     name: 'Basic Calculator',
     description:
       'A completely functional basic calculator website created with React. It allows you to perform mathematical calculations effortlessly. With testing implemented, the results are accurate.',
-    image: calculator,
-    source_code_link: 'https://github.com/bl33h/calculator',
-    demo_link: 'https://bl33hscalculator.netlify.app/',
+    icon: calculator,
+    images: [calculator, memoryGame, pawsitivePrototype],
+    store_data: [
+      {
+        name: 'App Store',
+        link: 'https://apple.com',
+        icon: githubIcon,
+      },
+      {
+        name: 'Google Play',
+        link: 'https://google.com',
+        icon: githubIcon,
+      },
+    ],
   },
 ];
 

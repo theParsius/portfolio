@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { Tilt } from 'react-tilt';
 import { projects } from '../Constants/constants';
-import { githubIcon } from '../assets';
-import { styles } from '../styles';
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const staggerContainer = (staggerChildren, delayChildren) => ({
   hidden: {},
@@ -89,13 +90,16 @@ const SectionWrapper = (Component, idName) => function HOC() {
       variants={staggerContainer()}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{
+        once: true,
+        amount: 0.25
+      }}
       className=""
     >
       <span className="hash-span" id={idName}>
-					&nbsp;
+        &nbsp;
       </span>
-      <Component />
+      <Component/>
     </motion.section>
   );
 };
@@ -104,67 +108,71 @@ function ProjectCard({
   index,
   name,
   description,
-  image,
-  source_code_link,
-  demo_link,
+  images, // Array of image URLs for the slider
+  icon, // URL for the game icon
+  store_data, // Array of objects with store link and icon
 }) {
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    className: "slider-container",
+  };
+
   return (
     <motion.div
       variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
-      className="p-5 rounded-lg sm:w-[280px] w-[80%] "
+      className="p-5 rounded-lg w-full bg-dark-backdrop"
     >
-      <Tilt
-        options={{
-				  max: 40,
-				  scale: 1,
-				  speed: 450,
-        }}
-      >
-        <div className="relative ">
+      <div className="flex flex-row items-start">
+        <div className="flex flex-col items-center mr-4">
           <img
-            src={image}
-            alt={name}
-            className="w-[full] h-[full] md:h-[200px]  object-cover rounded-lg"
+            src={icon}
+            alt={`${name} icon`}
+            className="w-32 h-32 object-cover" // Icon is already square
           />
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
-              onClick={() => window.open(source_code_link, '_blank')}
-              className="w-8 h-8 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img
-                src={githubIcon}
-                alt="github"
-                className="w-full h-full object-contain"
-              />
-            </div>
+          <div className="flex mt-2">
+            {store_data.map((store, idx) => (
+              <a key={idx} href={store.link} target="_blank" rel="noreferrer" className="m-1">
+                <img src={store.icon} alt={store.name} className="w-8 h-8 object-cover"/>
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="mt-3">
-          <h3 className="text-white font-bold text-2xl">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px] leading-snug">
-            {description}
-          </p>
+        <div className="flex-grow">
+          <h3 className="text-xl font-bold"
+              style={{ color: '#YOUR_COLOR' }}>{name}</h3> {/* Ensure visibility */}
+          <p className="mt-2"
+             style={{ color: '#ANOTHER_COLOR' }}>{description}</p> {/* Adjust color as needed */}
         </div>
-        <div className="mt-2 flex flex-wrap gap-1" />
-        <div className="mt-3 flex justify-center items-center">
-          <a
-            className="shadow-md shadow-primary p-2 bg-tertiary rounded-lg flex justify-center"
-            href={demo_link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            See the Demo
-          </a>
-        </div>
-      </Tilt>
+      </div>
+
+      <div className="mt-4 w-full">
+        <Slider {...sliderSettings}>
+          {images.map((img, idx) => (
+            <div key={idx} className="slider-image-container">
+              <img src={img} alt={`Screenshot ${idx + 1}`}
+                   className="object-cover w-full h-auto rounded-md"
+                   style={{
+                     width: '100%',
+                     height: 'auto'
+                   }}/>
+              {/* Width: 100% and height: auto ensures the image dictates the size of the slider */}
+            </div>
+          ))}
+        </Slider>
+      </div>
     </motion.div>
   );
 }
 
 function Works() {
+  // Assuming 'projects' is an array of project data
   return (
-    <div className="mt-5 grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 gap-7 text-grayscale-50 w-full justify-items-center place-content-center">
+    <div className="mt-5 w-full text-grayscale-50">
       {projects.map((project, index) => (
         <ProjectCard key={`project-${index}`} index={index} {...project} />
       ))}
