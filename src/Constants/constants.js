@@ -15,7 +15,6 @@ import {
 
 import {
   avatar,
-  calculator,
   unityIcon,
   csharpIcon,
   golangIcon,
@@ -29,8 +28,36 @@ import {
   restApiIcon,
   socketIoIcon,
   solanaIcon,
-  memoryGame,
-  pawsitivePrototype,
+  appStoreIcon,
+  googlePlayIcon,
+  cafeBazaarIcon,
+  honeylandIcon,
+  honeylandHive,
+  honeylandUniverse,
+  honeylandNpc,
+  honeylandLand,
+  honeylandMarketplace,
+  honeylandUpgrade,
+  lineUpIcon,
+  lineUpLoading,
+  lineUpMenu,
+  lineUpPick,
+  lineUpFormation,
+  lineUpMatch,
+  lineUpMatchGoal,
+  funtomimeIcon,
+  funtomimeMenu,
+  funtomimeAvatars,
+  funtomimeMatchInfo,
+  funtomimePickTopic,
+  funtomimeMatch,
+  aghaKhanIcon,
+  aghaKhanLoading,
+  aghaKhanMenu,
+  aghaKhanGame,
+  aghaKhanConceptCharacter,
+  aghaKhanAshou,
+
 } from '../assets';
 
 library.add(faX, faBars, faWindowRestore, faBagShopping, faDiceD6);
@@ -50,6 +77,35 @@ const media = {
   socketIoIcon,
   solanaIcon,
   avatar,
+  appStoreIcon,
+  googlePlayIcon,
+  cafeBazaarIcon,
+  honeyland_icon: honeylandIcon,
+  honeyland_hive: honeylandHive,
+  honeyland_universe: honeylandUniverse,
+  honeyland_npc: honeylandNpc,
+  honeyland_land: honeylandLand,
+  honeyland_marketplace: honeylandMarketplace,
+  honeyland_upgrade: honeylandUpgrade,
+  lineUp_icon: lineUpIcon,
+  lineUp_loading: lineUpLoading,
+  lineUp_menu: lineUpMenu,
+  lineUp_pick: lineUpPick,
+  lineUp_formation: lineUpFormation,
+  lineUp_match: lineUpMatch,
+  lineUp_match_goal: lineUpMatchGoal,
+  funtomime_icon: funtomimeIcon,
+  funtomime_menu: funtomimeMenu,
+  funtomime_avatars: funtomimeAvatars,
+  funtomime_match_info: funtomimeMatchInfo,
+  funtomime_pick_topic: funtomimePickTopic,
+  funtomime_match: funtomimeMatch,
+  aghaKhan_icon: aghaKhanIcon,
+  aghaKhan_loading: aghaKhanLoading,
+  aghaKhan_menu: aghaKhanMenu,
+  aghaKhan_game: aghaKhanGame,
+  aghaKhan_concept_character: aghaKhanConceptCharacter,
+  aghaKhan_ashou: aghaKhanAshou,
 };
 
 const icons = {
@@ -100,61 +156,61 @@ export const navLinks = [
 
 const projects = [
   {
-    name: 'Arasartara\'s Gallery',
+    name: 'Honeyland',
     description:
-      'A memory game with an art theme implemented with React. Test your memory skills and enjoy beautiful artwork as you match pairs of cards in this engaging game.',
-    icon: memoryGame,
-    images: [memoryGame, pawsitivePrototype, calculator],
+      '"Honeyland" is a pioneering web3 game on the Solana blockchain, where players embark on missions with their NFT bees to collect honey and items. As a Unity developer, my challenge was to build Solana transactions within Unity. The game, crafted with a stack of Unity, C#, Dotnet, Rust, and Js, has achieved global release and is available on multiple platforms, marking a successful foray into the fusion of gaming and blockchain technology.',
+    icon: honeylandIcon,
+    // eslint-disable-next-line max-len
+    images: [honeylandHive, honeylandUniverse, honeylandNpc, honeylandLand, honeylandMarketplace, honeylandUpgrade],
     store_data: [
       {
         name: 'App Store',
-        link: 'https://apple.com',
-        icon: githubIcon,
+        link: 'https://apps.apple.com/ca/app/honeyland/id1639336677',
+        icon: appStoreIcon,
       },
       {
         name: 'Google Play',
-        link: 'https://google.com',
-        icon: githubIcon,
+        link: 'https://play.google.com/store/apps/details?id=honey.land.game',
+        icon: googlePlayIcon,
       },
     ],
   },
   {
-    name: 'Pawsitive',
+    name: 'Line-Up',
     description:
-      'Explore a user-friendly Figma prototype for an adoption and sterilization awareness website. Experience the sleek design and contribute to a noble cause.',
-    icon: pawsitivePrototype,
-    images: [pawsitivePrototype, calculator, memoryGame],
+      '"Line-Up" was a real-time online game I developed, simulating a football match where players drafted real football players to form competing teams. As the game and UI/UX designer and developer, I tackled both client and backend development using Unity and C#. Released in the local market, "Line-Up" offered a unique sports strategy experience, but was eventually discontinued after a year due to below-expected sales and retention.',
+    icon: lineUpIcon,
+    images: [lineUpLoading, lineUpMenu, lineUpPick, lineUpFormation, lineUpMatch, lineUpMatchGoal],
     store_data: [
       {
-        name: 'App Store',
-        link: 'https://apple.com',
-        icon: githubIcon,
-      },
-      {
-        name: 'Google Play',
-        link: 'https://google.com',
-        icon: githubIcon,
+        name: 'Cafe Bazaar',
+        link: 'https://cafebazaar.ir/app/com.LuLuGames.LineUp?l=en',
+        icon: cafeBazaarIcon,
       },
     ],
   },
   {
-    name: 'Basic Calculator',
+    name: 'Funtomime',
     description:
-      'A completely functional basic calculator website created with React. It allows you to perform mathematical calculations effortlessly. With testing implemented, the results are accurate.',
-    icon: calculator,
-    images: [calculator, memoryGame, pawsitivePrototype],
-    store_data: [
+      'In "Funtomime," players engaged in an online game of charades, guessing acts from video clues. My role covered the development of video streaming/downloading mechanics from server to client and managing user-generated content. The game, built with Unity and C# on a Golang server, saw initial market success but was later canceled due to content scarcity.',
+    icon: funtomimeIcon,
+    // eslint-disable-next-line max-len
+    store_data: [funtomimeMenu, funtomimeAvatars, funtomimeMatchInfo, funtomimePickTopic, funtomimeMatch],
+    storeData: [
       {
-        name: 'App Store',
-        link: 'https://apple.com',
-        icon: githubIcon,
-      },
-      {
-        name: 'Google Play',
-        link: 'https://google.com',
-        icon: githubIcon,
+        name: 'Cafe Bazaar',
+        link: 'https://cafebazaar.ir/app/com.RobinGames.Funtomime?l=en',
+        icon: cafeBazaarIcon,
       },
     ],
+  },
+  {
+    name: 'Unnamed (Canceled)',
+    description:
+      'As the sole game and backend developer, I embarked on creating an innovative online multiplayer game reminiscent of "Clash Royale," with a unique twist—each hero had two player-activated spells. Developed using Unity and C#, with a Golang backend, the project presented real-time online game handling challenges. Despite the project\'s cancellation before release, it was a significant venture into complex game mechanics and real-time action.',
+    icon: aghaKhanIcon,
+    images: [aghaKhanLoading, aghaKhanMenu, aghaKhanGame, aghaKhanConceptCharacter, aghaKhanAshou],
+    store_data: [],
   },
 ];
 

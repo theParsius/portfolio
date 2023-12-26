@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
-import { projects } from '../Constants/constants';
 import React from 'react';
 import Slider from 'react-slick';
+import { projects } from '../Constants/constants';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -92,14 +92,14 @@ const SectionWrapper = (Component, idName) => function HOC() {
       whileInView="show"
       viewport={{
         once: true,
-        amount: 0.25
+        amount: 0.25,
       }}
       className=""
     >
       <span className="hash-span" id={idName}>
         &nbsp;
       </span>
-      <Component/>
+      <Component />
     </motion.section>
   );
 };
@@ -108,9 +108,9 @@ function ProjectCard({
   index,
   name,
   description,
-  images, // Array of image URLs for the slider
-  icon, // URL for the game icon
-  store_data, // Array of objects with store link and icon
+  images,
+  icon,
+  store_data,
 }) {
   const sliderSettings = {
     dots: true,
@@ -118,7 +118,7 @@ function ProjectCard({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: "slider-container",
+    className: 'slider-container',
   };
 
   return (
@@ -131,46 +131,55 @@ function ProjectCard({
           <img
             src={icon}
             alt={`${name} icon`}
-            className="w-32 h-32 object-cover" // Icon is already square
+            className="w-32 h-32 object-cover"
           />
-          <div className="flex mt-2">
-            {store_data.map((store, idx) => (
-              <a key={idx} href={store.link} target="_blank" rel="noreferrer" className="m-1">
-                <img src={store.icon} alt={store.name} className="w-8 h-8 object-cover"/>
-              </a>
-            ))}
-          </div>
+          {store_data && store_data.length > 0 && (
+            <div className="flex mt-2">
+              {store_data.map((store, idx) => (
+                <a key={idx} href={store.link} target="_blank" rel="noreferrer" className="m-1">
+                  <img src={store.icon} alt={store.name} className="w-8 h-8 object-cover" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex-grow">
-          <h3 className="text-xl font-bold"
-              style={{ color: '#YOUR_COLOR' }}>{name}</h3> {/* Ensure visibility */}
-          <p className="mt-2"
-             style={{ color: '#ANOTHER_COLOR' }}>{description}</p> {/* Adjust color as needed */}
+          <h3
+            className="text-xl font-bold"
+            style={{ color: '#FFFFFF' }}
+          >
+            {name}
+          </h3>
+          <p
+            className="mt-2"
+            style={{ color: '#FFFFFF' }}
+          >
+            {description}
+          </p>
         </div>
       </div>
 
-      <div className="mt-4 w-full">
-        <Slider {...sliderSettings}>
-          {images.map((img, idx) => (
-            <div key={idx} className="slider-image-container">
-              <img src={img} alt={`Screenshot ${idx + 1}`}
-                   className="object-cover w-full h-auto rounded-md"
-                   style={{
-                     width: '100%',
-                     height: 'auto'
-                   }}/>
-              {/* Width: 100% and height: auto ensures the image dictates the size of the slider */}
-            </div>
-          ))}
-        </Slider>
-      </div>
+      {images && images.length > 0 && (
+        <div className="mt-4 w-full">
+          <Slider {...sliderSettings}>
+            {images.map((img, idx) => (
+              <div key={idx} className="slider-image-container">
+                <img
+                  src={img}
+                  alt={`Screenshot ${idx + 1}`}
+                  className="object-cover w-full h-auto rounded-md"
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
+      )}
     </motion.div>
   );
 }
 
 function Works() {
-  // Assuming 'projects' is an array of project data
   return (
     <div className="mt-5 w-full text-grayscale-50">
       {projects.map((project, index) => (
