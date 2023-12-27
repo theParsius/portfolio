@@ -28,6 +28,7 @@ import {
   restApiIcon,
   socketIoIcon,
   solanaIcon,
+  reactIcon,
   appStoreIcon,
   googlePlayIcon,
   cafeBazaarIcon,
@@ -75,6 +76,7 @@ const media = {
   restApiIcon,
   socketIoIcon,
   solanaIcon,
+  reactIcon,
   avatar,
   appStoreIcon,
   googlePlayIcon,
@@ -136,7 +138,7 @@ const introduction = {
 
 export const navLinks = [
   {
-    id: "a bout",
+    id: "about",
     title: "About",
   },
   {
@@ -325,6 +327,13 @@ const skills = [
     icon: solanaIcon,
     description:
       "My experience with Solana involves building transactions for blockchain communication, particularly within Unity environments. I leverage Solana's fast and secure blockchain platform to integrate advanced decentralized functionalities into my game projects.",
+  },
+  {
+    id: "react",
+    title: "React",
+    icon: reactIcon,
+    description:
+      "Embarking on my journey with React, I have started exploring its potential through small-scale projects. My initial experiences have given me a solid grasp of fundamental React concepts, including JSX, components, and state management. Although at the beginning stages, I am steadily enhancing my skills in building intuitive and functional user interfaces. My focus is on mastering the essentials of React, preparing the groundwork for more advanced and complex development work in the future.",
   },
 ];
 

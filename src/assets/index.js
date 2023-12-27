@@ -15,6 +15,7 @@ import adobeXdIcon from "./tech/adobeXd.png";
 import restApiIcon from "./tech/restApi.png";
 import socketIoIcon from "./tech/socketIO.png";
 import solanaIcon from "./tech/solana.png";
+import reactIcon from "./tech/react.png";
 import close from "./close.svg";
 import menu from "./menu.svg";
 
@@ -77,6 +78,7 @@ export {
   restApiIcon,
   socketIoIcon,
   solanaIcon,
+  reactIcon,
   avatar,
   theParsiusIcon,
   appStoreIcon,
