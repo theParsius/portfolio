@@ -157,7 +157,7 @@ const projects = [
   {
     name: "Honeyland",
     description:
-      '"Honeyland" is an innovative game that explores the exciting possibilities at the intersection of Web2 and Web3 technologies on the Solana blockchain. In this engaging game, players use their NFT bees to embark on missions, collecting HXD and various items along the way. This venture into the world of blockchain gaming is an effort to gently blend familiar gaming elements with the emerging trends of Web3, offering a unique experience to players globally. Available on multiple platforms, "Honeyland" represents a modest step towards the future of interactive gaming, rooted in community and innovation."',
+      '"Honeyland" is an innovative game that explores the exciting possibilities at the intersection of Web2 and Web3 technologies on the Solana blockchain. In this engaging game, players use their NFT bees to embark on missions, collecting HXD and various items along the way. This venture into the world of blockchain gaming is an effort to gently blend familiar gaming elements with the emerging trends of Web3, offering a unique experience to players globally. Available on multiple platforms, "Honeyland" represents a modest step towards the future of interactive gaming, rooted in community and innovation.',
     icon: honeylandIcon,
     images: [
       honeylandHive,
