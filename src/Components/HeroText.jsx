@@ -1,7 +1,7 @@
-import { m, LazyMotion, domAnimation } from 'framer-motion';
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 function HeroText() {
-  const name = 'theParsius?';
+  const name = "theParsius?";
 
   return (
     <div
@@ -12,37 +12,32 @@ function HeroText() {
         <m.h1
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, type: 'spring' }}
-          className="text-center flex justify-center items-center flex-col opacity-100 text-7xl sm:text-9xl cursor-default"
-          style={{ fontFamily: 'Permanent Marker' }}
+          transition={{ duration: 0.6, type: "spring" }}
+          className="text-center flex justify-center items-center flex-col opacity-100
+                     text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl cursor-default"
+          style={{ fontFamily: "Permanent Marker" }}
         >
           <m.span
             initial={{ x: -100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 0.6, type: 'spring' }}
+            transition={{ duration: 0.6, type: "spring" }}
           >
-            Who's
-            {' '}
+            Who's{" "}
           </m.span>
           <m.div
             initial={{ x: 100 }}
             whileInView={{ x: 0 }}
-            transition={{ duration: 0.6, type: 'spring' }}
+            transition={{ duration: 0.6, type: "spring" }}
           >
-            {name.split('').map((char, index) => {
-              if (char === ' ') {
-                return ' ';
-              }
-              return (
-                <span
-                  key={index}
-                  className="text-primary-400 bounce"
-                  style={{ fontSize: '1.2em' }}
-                >
-                  {char}
-                </span>
-              );
-            })}
+            {name.split("").map((char, index) => (
+              <span
+                key={index}
+                className="text-primary-400 bounce"
+                style={{ fontSize: "1.2em" }}
+              >
+                {char}
+              </span>
+            ))}
           </m.div>
         </m.h1>
       </LazyMotion>
