@@ -1,20 +1,10 @@
-/*
-   Copyright (C), 2023-2024, Sara Echeverria (bl33h)
-   Author: Sara Echeverria
-   FileName: SkillCards.jsx
-   Version: I
-   Creation: 02/06/2023
-   Last modification: 03/06/2023
-*/
-
-import { m, LazyMotion, domAnimation } from 'framer-motion';
-import { skills } from '../Constants/constants';
+import { m, LazyMotion, domAnimation } from "framer-motion";
+import { skills } from "../Constants/constants";
 
 function SkillsCards() {
   return (
     <div className="flex">
       <LazyMotion features={domAnimation} strict>
-
         {skills.map((skill, index) => (
           <m.div
             initial={{ scale: 0.8 }}
@@ -24,10 +14,10 @@ function SkillsCards() {
             transition={{
               duration: 1,
               repeat: Infinity,
-              repeatType: 'loop',
-              ease: 'linear',
+              repeatType: "loop",
+              ease: "linear",
             }}
-            style={{ zIndex: `${index + 1}`, transition: 'all 0.6s' }}
+            style={{ zIndex: `${index + 1}`, transition: "all 0.6s" }}
             key={index}
             className="card w-[300px] h-[300px] flex flex-col items-center  bg-primary-400 rounded-xl border-4 border-primary-600 cursor-pointer"
           >
@@ -40,8 +30,8 @@ function SkillsCards() {
               <span
                 className="text-xl"
                 style={{
-                  fontFamily: 'Poppins, sans-serif',
-                  fontWeight: 'bold',
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: "bold",
                 }}
               >
                 {skill.title}
@@ -49,8 +39,8 @@ function SkillsCards() {
               <span
                 className="text-center bg-primary-400 text-grayscale-950 rounded-xl text-sm p-4"
                 style={{
-                  fontFamily: 'Poppins, sans-serif',
-                  fontWeight: '400',
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: "400",
                 }}
               >
                 {skill.description}
