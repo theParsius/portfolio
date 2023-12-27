@@ -157,9 +157,8 @@ const projects = [
   {
     name: "Honeyland",
     description:
-      '"Honeyland" is a pioneering web3 game on the Solana blockchain, where players embark on missions with their NFT bees to collect honey and items. As a Unity developer, my challenge was to build Solana transactions within Unity. The game, crafted with a stack of Unity, C#, Dotnet, Rust, and Js, has achieved global release and is available on multiple platforms, marking a successful foray into the fusion of gaming and blockchain technology.',
+      '"Honeyland" is an innovative game that explores the exciting possibilities at the intersection of Web2 and Web3 technologies on the Solana blockchain. In this engaging game, players use their NFT bees to embark on missions, collecting HXD and various items along the way. This venture into the world of blockchain gaming is an effort to gently blend familiar gaming elements with the emerging trends of Web3, offering a unique experience to players globally. Available on multiple platforms, "Honeyland" represents a modest step towards the future of interactive gaming, rooted in community and innovation."',
     icon: honeylandIcon,
-    // eslint-disable-next-line max-len
     images: [
       honeylandHive,
       honeylandUniverse,
@@ -184,7 +183,7 @@ const projects = [
   {
     name: "Line-Up",
     description:
-      '"Line-Up" was a real-time online game I developed, simulating a football match where players drafted real football players to form competing teams. As the game and UI/UX designer and developer, I tackled both client and backend development using Unity and C#. Released in the local market, "Line-Up" offered a unique sports strategy experience, but was eventually discontinued after a year due to below-expected sales and retention.',
+      '"Line-Up" was a real-time online game that brought the excitement of football strategy to the digital world. Players had the opportunity to draft real football players to form their own teams, which would then compete in virtual football matches. The game aimed to blend the thrill of sports management with interactive gameplay. Despite its initial appeal, "Line-Up" was discontinued after a year, as it struggled to maintain player interest and achieve expected sales figures.',
     icon: lineUpIcon,
     images: [
       lineUpLoading,
@@ -205,9 +204,8 @@ const projects = [
   {
     name: "Funtomime",
     description:
-      'In "Funtomime," players engaged in an online game of charades, guessing acts from video clues. My role covered the development of video streaming/downloading mechanics from server to client and managing user-generated content. The game, built with Unity and C# on a Golang server, saw initial market success but was later canceled due to content scarcity.',
+      '"Funtomime" offers a unique and interactive online gaming experience, where players enjoy a digital version of charades. In this game, players watch and guess actions from video clues, adding an element of fun and engagement. What sets "Funtomime" apart is its community-driven content; players contribute to the game\'s vibrancy by uploading new videos, continually refreshing and expanding the gameplay.',
     icon: funtomimeIcon,
-    // eslint-disable-next-line max-len
     images: [
       funtomimeMenu,
       funtomimeAvatars,
@@ -226,7 +224,7 @@ const projects = [
   {
     name: "Unnamed (Canceled)",
     description:
-      'As the sole game and backend developer, I embarked on creating an innovative online multiplayer game reminiscent of "Clash Royale," with a unique twist—each hero had two player-activated spells. Developed using Unity and C#, with a Golang backend, the project presented real-time online game handling challenges. Despite the project\'s cancellation before release, it was a significant venture into complex game mechanics and real-time action.',
+      'This innovative online multiplayer game was designed to offer a unique spin on the familiar dynamics of games like "Clash Royale." The standout feature of this project was its integration of dual spells for each hero, controlled directly by the players, adding a new layer of strategy and player engagement. Although the game was canceled before its official release, it promised to deliver an exciting, real-time gaming experience.',
     icon: aghaKhanIcon,
     images: [
       aghaKhanLoading,
