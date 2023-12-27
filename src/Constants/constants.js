@@ -333,7 +333,7 @@ const skills = [
     title: "React",
     icon: reactIcon,
     description:
-      "Embarking on my journey with React, I have started exploring its potential through small-scale projects. My initial experiences have given me a solid grasp of fundamental React concepts, including JSX, components, and state management. Although at the beginning stages, I am steadily enhancing my skills in building intuitive and functional user interfaces. My focus is on mastering the essentials of React, preparing the groundwork for more advanced and complex development work in the future.",
+      "Beginning my React journey, I'm delving into its capabilities through small projects. My grasp of core concepts like JSX, components, and state management is solidifying. I'm focused on creating functional, intuitive user interfaces and laying a foundation for more advanced React development.",
   },
 ];
 
