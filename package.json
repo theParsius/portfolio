@@ -1,8 +1,9 @@
 {
   "name": "vs-portfolio",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "\"https://theParsius.github.io/porfolio\"",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -67,6 +68,5 @@
   "main": "postcss.config.js",
   "keywords": [],
   "author": "theParsius",
-  "license": "ISC",
-  "homepage": "\"https://theParsius.github.io/porfolio\"",
+  "license": "ISC"
 }
