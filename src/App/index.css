@@ -194,4 +194,15 @@ polyline {
 
 .slider-image-container {
     padding: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex!important;
+
+}
+.slider-image-container img{
+    max-height: 700px;
+    width: auto;
+    object-fit: scale-down;
+    height: auto;
+
 }

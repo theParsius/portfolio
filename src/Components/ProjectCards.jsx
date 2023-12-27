@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import React from 'react';
-import Slider from 'react-slick';
-import { projects } from '../Constants/constants';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { motion } from "framer-motion";
+import React from "react";
+import Slider from "react-slick";
+import { projects } from "../Constants/constants";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const staggerContainer = (staggerChildren, delayChildren) => ({
   hidden: {},
@@ -24,7 +24,7 @@ export const textVariant = (delay) => ({
     y: 0,
     opacity: 1,
     transition: {
-      type: 'spring',
+      type: "spring",
       duration: 1.25,
       delay,
     },
@@ -33,8 +33,8 @@ export const textVariant = (delay) => ({
 
 export const fadeIn = (direction, type, delay, duration) => ({
   hidden: {
-    x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
-    y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
+    x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
+    y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
     opacity: 0,
   },
   show: {
@@ -45,7 +45,7 @@ export const fadeIn = (direction, type, delay, duration) => ({
       type,
       delay,
       duration,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 });
@@ -59,18 +59,18 @@ export const zoomIn = (delay, duration) => ({
     scale: 1,
     opacity: 1,
     transition: {
-      type: 'tween',
+      type: "tween",
       delay,
       duration,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 });
 
 export const slideIn = (direction, type, delay, duration) => ({
   hidden: {
-    x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
-    y: direction === 'up' ? '100%' : direction === 'down' ? '100%' : 0,
+    x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+    y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
   },
   show: {
     x: 0,
@@ -79,51 +79,45 @@ export const slideIn = (direction, type, delay, duration) => ({
       type,
       delay,
       duration,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 });
 
-const SectionWrapper = (Component, idName) => function HOC() {
-  return (
-    <motion.section
-      variants={staggerContainer()}
-      initial="hidden"
-      whileInView="show"
-      viewport={{
-        once: true,
-        amount: 0.25,
-      }}
-      className=""
-    >
-      <span className="hash-span" id={idName}>
-        &nbsp;
-      </span>
-      <Component />
-    </motion.section>
-  );
-};
+const SectionWrapper = (Component, idName) =>
+  function HOC() {
+    return (
+      <motion.section
+        variants={staggerContainer()}
+        initial="hidden"
+        whileInView="show"
+        viewport={{
+          once: true,
+          amount: 0.05,
+        }}
+        className=""
+      >
+        <span className="hash-span" id={idName}>
+          &nbsp;
+        </span>
+        <Component />
+      </motion.section>
+    );
+  };
 
-function ProjectCard({
-  index,
-  name,
-  description,
-  images,
-  icon,
-  store_data,
-}) {
+function ProjectCard({ index, name, description, images, icon, store_data }) {
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: 'slider-container',
+    className: "slider-container",
   };
 
   return (
     <motion.div
-      variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.3, 0.75)}
       className="p-5 rounded-lg w-full bg-dark-backdrop"
     >
       <div className="flex flex-row items-start">
@@ -131,13 +125,29 @@ function ProjectCard({
           <img
             src={icon}
             alt={`${name} icon`}
-            className="w-32 h-32 object-cover"
+            // className="w-32 h-32 object-cover"
+            style={{
+              width: 100,
+              height: 100,
+              maxWidth: "none",
+              borderRadius: 10,
+            }}
           />
           {store_data && store_data.length > 0 && (
             <div className="flex mt-2">
               {store_data.map((store, idx) => (
-                <a key={idx} href={store.link} target="_blank" rel="noreferrer" className="m-1">
-                  <img src={store.icon} alt={store.name} className="w-8 h-8 object-cover" />
+                <a
+                  key={idx}
+                  href={store.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="m-1"
+                >
+                  <img
+                    src={store.icon}
+                    alt={store.name}
+                    className="w-8 h-8 object-cover"
+                  />
                 </a>
               ))}
             </div>
@@ -145,16 +155,10 @@ function ProjectCard({
         </div>
 
         <div className="flex-grow">
-          <h3
-            className="text-xl font-bold"
-            style={{ color: '#FFFFFF' }}
-          >
+          <h3 className="text-xl font-bold" style={{ color: "#FFFFFF" }}>
             {name}
           </h3>
-          <p
-            className="mt-2"
-            style={{ color: '#FFFFFF' }}
-          >
+          <p className="mt-2" style={{ color: "#FFFFFF" }}>
             {description}
           </p>
         </div>
@@ -165,11 +169,7 @@ function ProjectCard({
           <Slider {...sliderSettings}>
             {images.map((img, idx) => (
               <div key={idx} className="slider-image-container">
-                <img
-                  src={img}
-                  alt={`Screenshot ${idx + 1}`}
-                  className="object-cover w-full h-auto rounded-md"
-                />
+                <img src={img} alt={`Screenshot ${idx + 1}`} />
               </div>
             ))}
           </Slider>
@@ -189,4 +189,4 @@ function Works() {
   );
 }
 
-export default SectionWrapper(Works, '');
+export default SectionWrapper(Works, "");

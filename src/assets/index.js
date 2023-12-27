@@ -27,8 +27,9 @@ import honeylandNpc from './projects/honeyland/npc.png';
 import honeylandLand from './projects/honeyland/land.png';
 import honeylandMarketplace from './projects/honeyland/marketplace.png';
 import honeylandUpgrade from './projects/honeyland/upgrade.png';
+
 // --- Line-Up
-import lineUpIcon from './projects/lineUp/icon.png';
+import lineUpIcon from './projects/lineUp/icon.jpg';
 import lineUpLoading from './projects/lineUp/loading.jpg';
 import lineUpMenu from './projects/lineUp/menu.jpg';
 import lineUpPick from './projects/lineUp/pick.jpg';
@@ -46,9 +47,9 @@ import funtomimeMatch from './projects/funtomime/match.jpg';
 
 // --- Agha Khan
 import aghaKhanIcon from './projects/aghaKhan/icon.png';
-import aghaKhanLoading from './projects/aghaKhan/loading.png';
-import aghaKhanMenu from './projects/aghaKhan/menu.png';
-import aghaKhanGame from './projects/aghaKhan/game.png';
+import aghaKhanLoading from './projects/aghaKhan/loading.jpg';
+import aghaKhanMenu from './projects/aghaKhan/menu.jpg';
+import aghaKhanGame from './projects/aghaKhan/game.jpg';
 import aghaKhanConceptCharacter from './projects/aghaKhan/concept_character.jpg';
 import aghaKhanAshou from './projects/aghaKhan/ashou.jpg';
 
