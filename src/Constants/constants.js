@@ -259,6 +259,13 @@ const skills = [
       "C# is my daily driver in game development with Unity. My proficiency in C# is reflected in the complex game logic and features I've successfully implemented over the years, contributing to my solid grasp of this versatile programming language.",
   },
   {
+    id: "golang",
+    title: "Golang",
+    icon: golangIcon,
+    description:
+      "I utilize Golang's efficiency for developing servers in online and real-time multiplayer games. Its performance and simplicity make it my preferred choice for backend solutions in demanding gaming environments.",
+  },
+  {
     id: "git",
     title: "Git",
     icon: gitIcon,
