@@ -159,7 +159,7 @@ const projects = [
   {
     name: "Honeyland",
     description:
-      '"Honeyland" is an innovative game that explores the exciting possibilities at the intersection of Web2 and Web3 technologies on the Solana blockchain. In this engaging game, players use their NFT bees to embark on missions, collecting HXD and various items along the way. This venture into the world of blockchain gaming is an effort to gently blend familiar gaming elements with the emerging trends of Web3, offering a unique experience to players globally. Available on multiple platforms, "Honeyland" represents a modest step towards the future of interactive gaming, rooted in community and innovation.',
+      "“Honeyland” is a pioneering game at the crossroads of Web2 and Web3 technologies on the Solana blockchain. In this immersive world, players engage with their NFT bees on various missions to collect HXD and items. My role involved leveraging Unity and C# to intricately weave blockchain elements into the gameplay, ensuring a seamless integration of familiar gaming experiences with innovative Web3 concepts. Available on multiple platforms, 'Honeyland' stands as a testament to the harmonious blend of community-focused gaming and cutting-edge technology.",
     icon: honeylandIcon,
     images: [
       honeylandHive,
@@ -185,7 +185,7 @@ const projects = [
   {
     name: "Line-Up",
     description:
-      '"Line-Up" was a real-time online game that brought the excitement of football strategy to the digital world. Players had the opportunity to draft real football players to form their own teams, which would then compete in virtual football matches. The game aimed to blend the thrill of sports management with interactive gameplay. Despite its initial appeal, "Line-Up" was discontinued after a year, as it struggled to maintain player interest and achieve expected sales figures.',
+      "In the creation of “Line-Up” a real-time online football game, players were given the excitement of drafting real football players to form their teams for virtual matches. My role involved utilizing Unity and C# for the game's frontend development and Golang for the backend. I focused on blending sports management strategies with immersive gameplay, ensuring a seamless and engaging experience for players.",
     icon: lineUpIcon,
     images: [
       lineUpLoading,
@@ -206,7 +206,7 @@ const projects = [
   {
     name: "Funtomime",
     description:
-      '"Funtomime" offers a unique and interactive online gaming experience, where players enjoy a digital version of charades. In this game, players watch and guess actions from video clues, adding an element of fun and engagement. What sets "Funtomime" apart is its community-driven content; players contribute to the game\'s vibrancy by uploading new videos, continually refreshing and expanding the gameplay.',
+      "“Funtomime” offers a digital twist on traditional charades, where players interact with video clues to guess actions. We used Unity and C# for the game's frontend, and Golang for server-side functionalities. The game stands out for its user-generated content, allowing players to upload videos, thereby continuously enriching and diversifying the gameplay.",
     icon: funtomimeIcon,
     images: [
       funtomimeMenu,
@@ -226,7 +226,7 @@ const projects = [
   {
     name: "Unnamed (Canceled)",
     description:
-      'This innovative online multiplayer game was designed to offer a unique spin on the familiar dynamics of games like "Clash Royale." The standout feature of this project was its integration of dual spells for each hero, controlled directly by the players, adding a new layer of strategy and player engagement. Although the game was canceled before its official release, it promised to deliver an exciting, real-time gaming experience.',
+      "This innovative online multiplayer project was designed to add a unique spin to the dynamics of familiar strategy games. A standout feature was the integration of dual spells for each hero, controlled by players, which added a new layer of engagement and strategy. My contribution involved using Unity and C#, with Golang for backend development, focusing on crafting these complex game mechanics to enhance real-time player interaction.",
     icon: aghaKhanIcon,
     images: [
       aghaKhanLoading,
@@ -266,11 +266,11 @@ const skills = [
       "Git is an essential part of my daily workflow. I'm adept at using it for team collaboration, managing branches and commits effectively. My experience ensures smooth and efficient version control in all my development projects.",
   },
   {
-    id: "solana",
-    title: "Solana",
-    icon: solanaIcon,
+    id: "adobeXd",
+    title: "Adobe XD",
+    icon: adobeXdIcon,
     description:
-      "My experience with Solana involves building transactions for blockchain communication, particularly within Unity environments. I leverage Solana's fast and secure blockchain platform to integrate advanced decentralized functionalities into my game projects.",
+      "Adobe XD is my go-to tool for UI/UX design and prototyping in game development. With its intuitive interface and robust features, I create engaging and user-friendly game interfaces, ensuring that the player's experience is both visually appealing and seamless.",
   },
 ];
 
