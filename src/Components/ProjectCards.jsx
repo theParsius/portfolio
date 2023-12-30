@@ -158,7 +158,14 @@ function ProjectCard({ index, name, description, images, icon, store_data }) {
           <h3 className="text-xl font-bold" style={{ color: "#FFFFFF" }}>
             {name}
           </h3>
-          <p className="mt-2" style={{ color: "#FFFFFF" }}>
+          <p
+            className="mt-2"
+            style={{
+              color: "#FFFFFF",
+              textAlign: "justify",
+              wordWrap: "break-word",
+            }}
+          >
             {description}
           </p>
         </div>
