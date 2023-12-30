@@ -123,11 +123,11 @@ const icons = {
 
 const introduction = {
   text: [
-    "Hello there fellow traveler, I'm so happy you are here!",
+    "Hello there fellow traveler, I'm thrilled you’ve stopped by!",
 
-    "I'm Parsa Tashakkori, also known as theParsius, a game developer with a technical background and a deep passion for storytelling and design. My journey into game development began with losing track of time while playing games and wondering how to create such experiences, leading me down a thrilling path of creativity and technical challenge.",
+    "I'm Parsa Tashakkori, also known as theParsius, a game developer with a technical background and a deep passion for storytelling and design. My journey into game development began with losing track of time while playing games and wondering how to create such experiences, leading me to a world where creativity and technical skills come together.",
 
-    "My foundation lies in technical development, but I have a growing passion for game design and narrative. Eager to dive deeper into these areas, I am fascinated by the potential to weave compelling stories and create immersive game experiences. My aspiration is to blend my technical skills with narrative and design elements in future projects.",
+    "I started with a focus on the technical side, but I have a growing passion for game design and narrative. Eager to dive deeper into these areas, I am fascinated by the potential to weave compelling stories and create immersive game experiences. I aspire to blend my technical skills with narrative and design elements in future projects.",
     "On a personal note, I enjoy taking on new adventures and experiences, which not only provide a refreshing break from the digital world but also inspire and influence my game development approach in surprising ways.",
 
     "As I look forward, I am excited about the opportunities to push boundaries in game development. My aim is to create games that are not only technically impressive but also emotionally resonant and thought-provoking, leveraging both my technical prowess and my creative aspirations.",
@@ -266,74 +266,11 @@ const skills = [
       "Git is an essential part of my daily workflow. I'm adept at using it for team collaboration, managing branches and commits effectively. My experience ensures smooth and efficient version control in all my development projects.",
   },
   {
-    id: "golang",
-    title: "Golang",
-    icon: golangIcon,
-    description:
-      "I utilize Golang's efficiency for developing servers in online and real-time multiplayer games. Its performance and simplicity make it my preferred choice for backend solutions in demanding gaming environments.",
-  },
-  {
-    id: "psql",
-    title: "Postgresql",
-    icon: psqlIcon,
-    description:
-      "Postgres SQL is my go-to database platform for managing user and game data. With this powerful database system, I efficiently handle complex data structures and queries, ensuring optimal data integrity and performance.",
-  },
-  {
-    id: "java",
-    title: "Java",
-    icon: javaIcon,
-    description:
-      "My experience with Java spans creating offline games and applications. I value Java for its versatility and reliability, applying it in scenarios where cross-platform compatibility and robust performance are key.",
-  },
-  {
-    id: "py",
-    title: "Python",
-    icon: pyIcon,
-    description:
-      "Python is my go-to for quickly developing lightweight and simple projects. Its readability and versatility make it ideal for scripting, automation, and prototyping in my development process.",
-  },
-  {
-    id: "c",
-    title: "C++",
-    icon: cIcon,
-    description:
-      "C++ is my language of choice for programming contests, prized for its speed and efficiency. My experience with C++ has sharpened my problem-solving skills and understanding of system-level programming.",
-  },
-  {
-    id: "restApi",
-    title: "Rest API",
-    icon: restApiIcon,
-    description:
-      "I frequently employ REST APIs for client-server communication in games. My skill in REST API design and integration ensures seamless data exchange and enhances the overall gaming experience.",
-  },
-  {
-    id: "socketIO",
-    title: "Socket IO",
-    icon: socketIoIcon,
-    description:
-      "I use Socket IO for creating real-time, multiplayer game experiences. My proficiency in this technology enables me to build responsive and dynamic games where real-time interaction is pivotal.",
-  },
-  {
-    id: "adobeXd",
-    title: "Adobe XD",
-    icon: adobeXdIcon,
-    description:
-      "Adobe XD is my go-to tool for UI/UX design and prototyping in game development. With its intuitive interface and robust features, I create engaging and user-friendly game interfaces, ensuring that the player's experience is both visually appealing and seamless.",
-  },
-  {
     id: "solana",
     title: "Solana",
     icon: solanaIcon,
     description:
       "My experience with Solana involves building transactions for blockchain communication, particularly within Unity environments. I leverage Solana's fast and secure blockchain platform to integrate advanced decentralized functionalities into my game projects.",
-  },
-  {
-    id: "react",
-    title: "React",
-    icon: reactIcon,
-    description:
-      "Beginning my React journey, I'm delving into its capabilities through small projects. My grasp of core concepts like JSX, components, and state management is solidifying. I'm focused on creating functional, intuitive user interfaces and laying a foundation for more advanced React development.",
   },
 ];
 
