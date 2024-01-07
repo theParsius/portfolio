@@ -159,7 +159,7 @@ const projects = [
   {
     name: "Honeyland",
     description:
-      "“Honeyland” is a pioneering game at the crossroads of Web2 and Web3 technologies on the Solana blockchain. In this immersive world, players engage with their NFT bees on various missions to collect HXD and items. My role involved leveraging Unity and C# to intricately weave blockchain elements into the gameplay, ensuring a seamless integration of familiar gaming experiences with innovative Web3 concepts. Available on multiple platforms, 'Honeyland' stands as a testament to the harmonious blend of community-focused gaming and cutting-edge technology.",
+      "In 'Honeyland,' a game merging Web2 and Web3 technologies on the Solana blockchain, players embark on missions with their NFT bees to collect items and HXD. My role included not only technical development using Unity and C# but also active involvement in design discussions, ensuring a smooth integration of blockchain elements. This project is a notable step in blending traditional gaming with innovative blockchain technology, offering players a unique global experience.",
     icon: honeylandIcon,
     images: [
       honeylandHive,
