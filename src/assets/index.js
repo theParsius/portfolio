@@ -16,6 +16,8 @@ import restApiIcon from "./tech/restApi.png";
 import socketIoIcon from "./tech/socketIO.png";
 import solanaIcon from "./tech/solana.png";
 import reactIcon from "./tech/react.png";
+
+// UI
 import close from "./close.svg";
 import menu from "./menu.svg";
 
@@ -46,6 +48,13 @@ import funtomimeMatchInfo from "./projects/funtomime/match_info.png";
 import funtomimePickTopic from "./projects/funtomime/pick_topic.png";
 import funtomimeMatch from "./projects/funtomime/match.jpg";
 
+// --- Saving Private Teddy
+import savingPrivateTeddyIcon from "./projects/savingPrivateTeddy/icon.png";
+import savingPrivateTeddyMenu from "./projects/savingPrivateTeddy/menu.png";
+import savingPrivateTeddyLevel1 from "./projects/savingPrivateTeddy/level1.png";
+import savingPrivateTeddyLevel2 from "./projects/savingPrivateTeddy/level2.png";
+import savingPrivateTeddyLevel6 from "./projects/savingPrivateTeddy/level6.png";
+
 // --- Agha Khan
 import aghaKhanIcon from "./projects/aghaKhan/icon.png";
 import aghaKhanLoading from "./projects/aghaKhan/loading.jpg";
@@ -58,13 +67,16 @@ import aghaKhanAshou from "./projects/aghaKhan/ashou.jpg";
 import appStoreIcon from "./stores/appStore.png";
 import googlePlayIcon from "./stores/googlePlay.png";
 import cafeBazaarIcon from "./stores/cafeBazaar.png";
+import itchIoIcon from "./stores/itch-io.png";
 
 // Avatar
 import avatar from "./avatar/avatar.png";
 
 export {
+  // UI
   menu,
   close,
+  // Skills
   unityIcon,
   csharpIcon,
   golangIcon,
@@ -79,11 +91,15 @@ export {
   socketIoIcon,
   solanaIcon,
   reactIcon,
+  // Avatar and Logo
   avatar,
   theParsiusIcon,
+  // Stores
   appStoreIcon,
   googlePlayIcon,
   cafeBazaarIcon,
+  itchIoIcon,
+  // Honeyland
   honeylandIcon,
   honeylandHive,
   honeylandUniverse,
@@ -91,6 +107,7 @@ export {
   honeylandLand,
   honeylandMarketplace,
   honeylandUpgrade,
+  // Line-Up
   lineUpIcon,
   lineUpLoading,
   lineUpMenu,
@@ -98,12 +115,20 @@ export {
   lineUpFormation,
   lineUpMatch,
   lineUpMatchGoal,
+  // Funtomime
   funtomimeIcon,
   funtomimeMenu,
   funtomimeAvatars,
   funtomimeMatchInfo,
   funtomimePickTopic,
   funtomimeMatch,
+  // Saving Private Teddy
+  savingPrivateTeddyIcon,
+  savingPrivateTeddyMenu,
+  savingPrivateTeddyLevel1,
+  savingPrivateTeddyLevel2,
+  savingPrivateTeddyLevel6,
+  // Agha Khan
   aghaKhanIcon,
   aghaKhanLoading,
   aghaKhanMenu,

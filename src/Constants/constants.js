@@ -15,6 +15,7 @@ import {
 
 import {
   avatar,
+  // technology icons
   unityIcon,
   csharpIcon,
   golangIcon,
@@ -29,9 +30,12 @@ import {
   socketIoIcon,
   solanaIcon,
   reactIcon,
+  // store icons
   appStoreIcon,
   googlePlayIcon,
   cafeBazaarIcon,
+  itchIoIcon,
+  // honeyland
   honeylandIcon,
   honeylandHive,
   honeylandUniverse,
@@ -39,6 +43,7 @@ import {
   honeylandLand,
   honeylandMarketplace,
   honeylandUpgrade,
+  // line-up
   lineUpIcon,
   lineUpLoading,
   lineUpMenu,
@@ -46,12 +51,16 @@ import {
   lineUpFormation,
   lineUpMatch,
   lineUpMatchGoal,
+  // funtomime
   funtomimeIcon,
   funtomimeMenu,
   funtomimeAvatars,
   funtomimeMatchInfo,
   funtomimePickTopic,
   funtomimeMatch,
+  // saving private teddy
+  savingPrivateTeddyIcon, 
+  // agha khan
   aghaKhanIcon,
   aghaKhanLoading,
   aghaKhanMenu,
@@ -63,6 +72,7 @@ import {
 library.add(faX, faBars, faWindowRestore, faBagShopping, faDiceD6);
 
 const media = {
+  // skilss
   unityIcon,
   csharpIcon,
   golangIcon,
@@ -77,10 +87,14 @@ const media = {
   socketIoIcon,
   solanaIcon,
   reactIcon,
+  // avatar
   avatar,
+  // stores
   appStoreIcon,
   googlePlayIcon,
   cafeBazaarIcon,
+  itchIoIcon,
+  // honeyland
   honeylandIcon,
   honeylandHive,
   honeylandUniverse,
@@ -88,6 +102,7 @@ const media = {
   honeylandLand,
   honeylandMarketplace,
   honeylandUpgrade,
+  // line-up
   lineUpIcon,
   lineUpLoading,
   lineUpMenu,
@@ -95,12 +110,20 @@ const media = {
   lineUpFormation,
   lineUpMatch,
   lineUpMatchGoal,
+  // funtomime
   funtomimeIcon,
   funtomimeMenu,
   funtomimeAvatars,
   funtomimeMatchInfo,
   funtomimePickTopic,
   funtomimeMatch,
+  // saving private teddy
+  savingPrivateTeddyIcon,
+  savingPrivateTeddyMenu,
+  savingPrivateTeddyLevel1,
+  savingPrivateTeddyLevel2,
+  savingPrivateTeddyLevel6,
+  // agha khan
   aghaKhanIcon,
   aghaKhanLoading,
   aghaKhanMenu,
@@ -220,6 +243,25 @@ const projects = [
         name: "Cafe Bazaar",
         link: "https://cafebazaar.ir/app/com.RobinGames.Funtomime?l=en",
         icon: cafeBazaarIcon,
+      },
+    ],
+  },
+  {
+    name: "Saving Private Teddy",
+    description:
+      "In “Saving Private Teddy,” a game created during a game jam with the theme “Delightful and Safe,” players guide a child through dark, eerie environments to find his lost teddy bear. Using Unity and C#, our team developed a unique puzzle game that emphasizes the contrast between light and darkness. My role involved not only the intricate design of the levels but also providing technical support to ensure seamless gameplay. This project highlights the innovative use of light to evoke a sense of safety in a scary setting, offering players a delightful yet thrilling experience.",
+    icon: savingPrivateTeddyIcon,
+    images: [
+      savingPrivateTeddyMenu,
+      savingPrivateTeddyLevel1,
+      savingPrivateTeddyLevel2,
+      savingPrivateTeddyLevel6,
+    ],
+    store_data: [
+      {
+        name: "Itch.io",
+        link: "https://theparsius.itch.io/saving-private-teddy",
+        icon: itchIoIcon,
       },
     ],
   },
