@@ -59,7 +59,11 @@ import {
   funtomimePickTopic,
   funtomimeMatch,
   // saving private teddy
-  savingPrivateTeddyIcon, 
+  savingPrivateTeddyIcon,
+  savingPrivateTeddyMenu,
+  savingPrivateTeddyLevel1,
+  savingPrivateTeddyLevel2,
+  savingPrivateTeddyLevel6,
   // agha khan
   aghaKhanIcon,
   aghaKhanLoading,
