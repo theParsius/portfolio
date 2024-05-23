@@ -58,7 +58,7 @@ import savingPrivateTeddyLevel6 from "./projects/savingPrivateTeddy/level6.png";
 // --- Agha Khan
 import aghaKhanIcon from "./projects/aghaKhan/icon.png";
 import aghaKhanLoading from "./projects/aghaKhan/loading.jpg";
-import aghaKhanMenu from "./projects/aghaKhan/menu.jpg";
+import aghaKhanMenu from "./projects/aghaKhan/menu.png";
 import aghaKhanGame from "./projects/aghaKhan/game.jpg";
 import aghaKhanConceptCharacter from "./projects/aghaKhan/concept_character.jpg";
 import aghaKhanAshou from "./projects/aghaKhan/ashou.jpg";
