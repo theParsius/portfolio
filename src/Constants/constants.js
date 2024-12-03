@@ -270,7 +270,7 @@ const projects = [
     ],
   },
   {
-    name: "Unnamed (Canceled)",
+    name: "Agha Khan",
     description:
       "This innovative online multiplayer project was designed to add a unique spin to the dynamics of familiar strategy games. A standout feature was the integration of dual spells for each hero, controlled by players, which added a new layer of engagement and strategy. My contribution involved using Unity and C#, with Golang for backend development, focusing on crafting these complex game mechanics to enhance real-time player interaction.",
     icon: aghaKhanIcon,
