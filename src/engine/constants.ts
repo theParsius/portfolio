@@ -23,10 +23,11 @@ export const PHYSICS = {
 };
 
 export const FEEL = {
-  spriteW: 36, // 12 px sprite × 3
-  spriteH: 54,
-  spriteOffsetX: -7, // sprite drawn left of the hitbox
-  runFrameDistance: 110, // px of travel per half run cycle
+  spriteOffsetX: -7, // sprite drawn left of the hitbox (sprite is 12 px × 3 = 36 px wide)
+  runFrameDistance: 55, // px of travel per run frame (4 frames: one cycle = 220 px, as before)
+  landFrameTime: 0.08, // s the crouch frame shows after landing
+  bumpFrameTime: 0.16, // s the head-bump frame shows
+  blinkEvery: 3, // s between idle blinks
   dustSpeed: 520, // landing faster than this spawns dust
   dustCount: 5,
   dustLife: 0.32,

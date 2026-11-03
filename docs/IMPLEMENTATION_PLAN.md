@@ -255,7 +255,7 @@ The live, up-to-date list is the Claude Doc [theParsius Portfolio: What I Need t
 
 3. Deploy only once the full implementation is done (merge `rebuild` → `main`). The workflow deploys from `main` only; other branches run lint, test and build.
 
-**Status:** M0–M4 done on `rebuild`. The live deploy is deferred per decision 3.
+**Status:** M0–M5 done on `rebuild`. Waiting on you: playtests and the real player sheet. The live deploy is deferred per decision 3.
 
 Notes from M3: all 25 screenshots with originals were matched automatically (`scripts/images.ts`); Open Graph images are WebP for now, which some sites (Facebook, LinkedIn) may not preview, so M6's generated 1200 × 630 cards should be PNG or JPEG. Focus on leaving a room returns to whatever opened it (card or Projects sign link), falling back to the card.
 
@@ -266,6 +266,15 @@ Notes from M4: the engine is a straight port of the prototype; nothing was re-tu
 - drop-through, the lightbox pause, the touch pad, and keyboard input inside an iframe.
 
 The debug hook `window.__game` exists only on the dev server or with `?test` in the URL. The touch pad still shows on every device while playing; restricting it to coarse pointers is M5. The player still uses the prototype's placeholder frames until the sprite sheet arrives.
+
+Notes from M5:
+- `?tune` opens a slider panel that edits the live constants. Changes are remembered between reloads, and "Copy as TS" puts them on the clipboard. Constants are unchanged until playtests happen (needs 3+ people).
+- `npm run sprites:game` generates the player sheet (placeholder in the avatar palette: idle×2, run×4, jump, fall, land, bump), the ? and used blocks, and the coin. A real sheet in `assets-src/sprites/` replaces the placeholder without code changes.
+- Sound is optional and off by default, toggled from the HUD. It's synthesized with WebAudio (no audio files, synth loaded on first enable).
+- The touch pad shows on coarse pointers only. The suite also passes on WebKit (`WEBKIT=1 npm run e2e`).
+- New camera rule: an outside scroll (wheel, focus, scrollbar) holds the view until the player moves.
+- Reduced motion is audited with `document.getAnimations()`.
+- The progress bar (open decision #11) is not built; it's waiting on your call.
 
 **Before M6:**
 3. WordFly store URLs, contact email, itch.io profile URL, `cv.pdf`.

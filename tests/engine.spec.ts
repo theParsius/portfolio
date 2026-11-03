@@ -204,6 +204,14 @@ describe('jump arc', () => {
     expect(apex(0.05)).toBeLessThan(apex(10) * 0.6);
   });
   it('clears the 165 px climb the layout relies on', () => expect(apex(10)).toBeGreaterThan(165));
+  it('emits exactly one jump event per jump', () => {
+    const p = standing(FLOOR_Y);
+    const input = createInput();
+    input.jump = true;
+    input.jumpPressed = true;
+    const events = run(p, input, world(), 1.5);
+    expect(events.filter((e) => e.type === 'jump')).toHaveLength(1);
+  });
 });
 
 describe('running', () => {

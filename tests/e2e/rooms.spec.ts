@@ -167,6 +167,7 @@ test.describe('with motion', () => {
     await page.locator('#room [data-exit]').first().click();
     await expect(page).toHaveURL('/portfolio/');
     await expect.poll(() => scrollLeft(page)).toBeCloseTo(before, 0);
+    await expect(page.locator('.fade-veil')).toHaveCSS('opacity', '0'); // clicks mid-fade are ignored
     await page.locator(`#card-${p.id} .frame`).click();
     await expect(roomTitle(page)).toHaveText(p.title);
   });

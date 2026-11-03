@@ -30,6 +30,15 @@ export default defineConfig({
         hasTouch: true,
       },
     },
+    // Opt-in (WEBKIT=1 npm run e2e): desktop Safari engine, for focus and keyboard checks.
+    ...(process.env.WEBKIT
+      ? [
+          {
+            name: 'safari-1280x800',
+            use: { ...devices['Desktop Safari'], viewport: { width: 1280, height: 800 } },
+          },
+        ]
+      : []),
   ],
   webServer: {
     command: `npm run build && npx vite preview --port ${PORT} --strictPort`,

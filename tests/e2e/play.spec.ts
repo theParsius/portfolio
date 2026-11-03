@@ -217,3 +217,19 @@ test('keyboard works when the page is embedded in an iframe', async ({
   await page.keyboard.up('ArrowRight');
   expect(await f.evaluate(() => window.__game.state().player.x)).toBeGreaterThan(x0 + 60);
 });
+
+test('scrolling away during play holds the view until the player moves', async ({ page }) => {
+  await page.goto('./?test');
+  await settle(page);
+  await startPlay(page);
+  await page.waitForTimeout(400); // land, camera settles
+  const sc = page.locator('#level');
+  const home = await sc.evaluate((el) => el.scrollLeft);
+  await sc.evaluate((el) => (el.scrollLeft += 900));
+  await page.waitForTimeout(500);
+  expect(await sc.evaluate((el) => el.scrollLeft)).toBeCloseTo(home + 900, -1);
+  await page.keyboard.down('ArrowRight');
+  await page.waitForTimeout(150);
+  await page.keyboard.up('ArrowRight');
+  await expect.poll(() => sc.evaluate((el) => el.scrollLeft)).toBeLessThan(home + 300);
+});

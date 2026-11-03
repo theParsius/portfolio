@@ -11,6 +11,7 @@ import type { Project } from './content/types';
 import { Game, type Snapshot } from './engine/game';
 import { collect } from './engine/colliders';
 import { focusGame } from './engine/input';
+import { setSound, sfx, soundOn } from './engine/sound';
 import { mainUrl, parse, roomUrl, isPanel } from './router';
 import { arrowScroll, goTo, mapWheel, type Level } from './ui/sideways';
 import { hideToast, mountToast, toast } from './ui/toast';
@@ -202,6 +203,11 @@ function showPanel(id: PanelId, behavior?: ScrollBehavior): void {
   panel(id).querySelector<HTMLElement>('h1, h2')?.focus({ preventScroll: true });
 }
 
+function syncSound(): void {
+  header.soundButton.setAttribute('aria-pressed', String(soundOn()));
+}
+syncSound();
+
 // ---------- Input ----------
 
 const plainClick = (e: MouseEvent) =>
@@ -255,6 +261,13 @@ document.addEventListener('click', async (e) => {
     return;
   }
 
+  if (t.closest('[data-sound]')) {
+    await setSound(!soundOn());
+    syncSound();
+    sfx('coin');
+    if (game.on) focusGame();
+    return;
+  }
   if (t.closest('[data-play]')) game.start();
   else if (t.closest('[data-stop]')) game.stop();
 });
@@ -263,6 +276,7 @@ addEventListener(
   'keydown',
   (e) => {
     if (lightbox.isOpen) return; // the dialog handles its own keys
+    if ((e.target as Element | null)?.closest?.('.tune')) return; // sliders keep their arrows
     const inField = (e.target as Element | null)?.closest(
       'input, textarea, select, [contenteditable]',
     );
@@ -309,6 +323,8 @@ const heroCanvas = main.track.querySelector<HTMLCanvasElement>('.hero-sprite');
 if (heroCanvas) mountHeroSprite(heroCanvas, playing);
 
 const first = parse(location);
+if (new URLSearchParams(location.search).has('tune'))
+  void import('./ui/tunePanel').then((m) => m.mountTunePanel());
 // Test hook for Playwright (dev server, or any page opened with ?test).
 if (import.meta.env.DEV || new URLSearchParams(location.search).has('test')) {
   Object.assign(window, {
@@ -338,7 +354,13 @@ if (import.meta.env.DEV || new URLSearchParams(location.search).has('test')) {
 }
 if (first.view === 'main') {
   // Unknown paths arrive here through 404.html: show the main level at its real URL.
-  const canonical = mainUrl(first.at);
+  // Keep the playtest flags (?tune, ?test) so a reload keeps them.
+  const flags = [...new URLSearchParams(location.search).keys()].filter(
+    (k) => k === 'tune' || k === 'test',
+  );
+  const url = new URL(mainUrl(first.at), location.origin);
+  for (const k of flags) url.searchParams.set(k, '');
+  const canonical = url.pathname + url.search.replace(/=(?=&|$)/g, '');
   if (location.pathname + location.search !== canonical) history.replaceState(null, '', canonical);
 }
 route();

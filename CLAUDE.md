@@ -21,7 +21,10 @@ Full spec: docs/SPEC.md. Behavioural reference: docs/prototype.html (open it in 
 - `npm run dev`: local server
 - `npm run test`: Vitest unit tests (includes content validation)
 - `npm run validate`: check content against files in public/
-- `npm run e2e`: Playwright (viewports 1280x800, 1366x640, 390x844)
+- `npm run e2e`: Playwright, Chromium (viewports 1280x800, 1366x640, 390x844)
 - `npm run build`: typecheck + build + prerender project routes
 - `npm run images`: screenshots from assets-src/ → public/ (3 sizes) + src/content/shots.json
 - `npm run sprites`: 1× pixel sprites from assets-src/sprites-upscaled/ (`-- --detect` rescans grids, slow)
+- `npm run sprites:game`: player sheet, ? block and coin → public/sprites/ + src/content/player.json
+- `WEBKIT=1 npm run e2e`: also run the suite on desktop Safari's engine
+- Append `?tune` to any URL for the live physics tuning panel

@@ -39,7 +39,8 @@ export interface World {
   width: number;
 }
 
-export type StepEvent = { type: 'land'; speed: number } | { type: 'bump'; block: number };
+export type StepEvent =
+  { type: 'jump' } | { type: 'land'; speed: number } | { type: 'bump'; block: number };
 
 export function createPlayer(x = 0, y = 0): Player {
   return {
@@ -97,6 +98,7 @@ export function step(p: Player, input: Input, world: World, dt: number): StepEve
   } else p.buffer -= dt;
   if (p.buffer > 0 && p.coyote > 0) {
     p.vy = -K.jumpVelocity;
+    events.push({ type: 'jump' });
     p.buffer = 0;
     p.coyote = 0;
     p.ground = false;

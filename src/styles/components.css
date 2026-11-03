@@ -55,6 +55,26 @@ body.playing .play-top {
 body.playing .hud {
   display: flex;
 }
+.hud .sound {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.hud .sound[aria-pressed='false'] .spk {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+@media (max-width: 480px) {
+  /* Icon only; the label stays for screen readers. */
+  .hud .sound .lbl {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
 @media (max-width: 760px) {
   .nav-links .opt {
     display: none;

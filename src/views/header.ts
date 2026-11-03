@@ -10,6 +10,7 @@ export interface Header {
   found: HTMLElement;
   playButtons: HTMLElement[];
   stopButton: HTMLElement;
+  soundButton: HTMLElement;
 }
 
 const base = import.meta.env.BASE_URL;
@@ -28,6 +29,7 @@ export function renderHeader(): Header {
       </nav>
       <div class="hud" aria-live="polite">
         <span>Projects found <b data-found>0</b>/${projects.length}</span>
+        <button class="btn small ghost sound" type="button" data-sound aria-pressed="false"><span class="spk" aria-hidden="true">♪</span><span class="lbl">Sound</span></button>
         <button class="btn small ghost" type="button" data-stop>Stop</button>
       </div>
       <button class="btn small play-top" type="button" data-play><span class="tri" aria-hidden="true"></span>Play</button>
@@ -42,5 +44,6 @@ export function renderHeader(): Header {
     found: q('[data-found]'),
     playButtons: [q('[data-play]')],
     stopButton: q('[data-stop]'),
+    soundButton: q('[data-sound]'),
   };
 }

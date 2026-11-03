@@ -1,0 +1,13 @@
+{
+  "frameW": 12,
+  "frameH": 18,
+  "placeholder": true,
+  "anims": {
+    "idle": [0, 1],
+    "run": [2, 3, 4, 5],
+    "jump": [6],
+    "fall": [7],
+    "land": [8],
+    "bump": [9]
+  }
+}

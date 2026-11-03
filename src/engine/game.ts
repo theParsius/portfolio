@@ -5,6 +5,7 @@ import { follow } from './camera';
 import { collect, type Colliders } from './colliders';
 import { FEEL, PHYSICS } from './constants';
 import { Fx } from './fx';
+import { sfx, warmSound } from './sound';
 import { clearKeys, focusGame, keyOf, press, release } from './input';
 import { createInput, createPlayer, overlaps, step, type Player } from './physics';
 
@@ -39,6 +40,8 @@ export class Game {
   level: Level;
   world: Colliders | null = null;
   camX = 0;
+  /** True after the view was scrolled from outside; cleared when the player moves. */
+  private held = false;
 
   private actor = new Actor();
   private fx: Fx;
@@ -66,6 +69,7 @@ export class Game {
     this.on = true;
     this.paused = false;
     document.body.classList.add('playing');
+    warmSound();
     if (this.host.heroSprite) this.host.heroSprite.style.visibility = 'hidden';
     focusGame();
     // Wait a frame so the ? blocks (shown by body.playing) have layout.
@@ -134,6 +138,7 @@ export class Game {
     if (restore) {
       Object.assign(this.p, restore.p, { vx: 0, vy: 0 });
       this.camX = restore.camX;
+      this.held = false;
       level.scroller.scrollLeft = this.camX;
     } else this.spawn();
     clearKeys(this.input);
@@ -149,7 +154,9 @@ export class Game {
 
   /** Wheel or scrollbar moved the view during play: keep the float camera in sync. */
   syncCamera(): void {
-    if (this.on) this.camX = this.level.scroller.scrollLeft;
+    if (!this.on) return;
+    this.camX = this.level.scroller.scrollLeft;
+    this.held = true;
   }
 
   private spawn(): void {
@@ -178,6 +185,7 @@ export class Game {
     }
     Object.assign(p, { vx: 0, vy: 0, ground: false, coyote: 0, buffer: 0, drop: 0, face: 1 });
     this.camX = sc.scrollLeft;
+    this.held = false;
   }
 
   // ---------- Input ----------
@@ -234,14 +242,22 @@ export class Game {
         this.acc -= PHYSICS.step;
       }
       const sc = this.level.scroller;
-      this.camX = follow(
-        this.camX,
-        this.p.x + this.p.w / 2,
-        sc.clientWidth,
-        sc.scrollWidth - sc.clientWidth,
-        dt,
-      );
-      sc.scrollLeft = this.camX;
+      // Scrolled from outside (wheel, focus, scrollbar): hold the view until the player moves.
+      if (Math.abs(sc.scrollLeft - Math.round(this.camX)) > 1) {
+        this.camX = sc.scrollLeft;
+        this.held = true;
+      }
+      if (this.held && (this.p.vx !== 0 || !this.p.ground)) this.held = false;
+      if (!this.held) {
+        this.camX = follow(
+          this.camX,
+          this.p.x + this.p.w / 2,
+          sc.clientWidth,
+          sc.scrollWidth - sc.clientWidth,
+          dt,
+        );
+        sc.scrollLeft = this.camX;
+      }
     }
     this.fx.render();
     this.actor.render(this.p);
@@ -253,8 +269,18 @@ export class Game {
     if (!world) return;
     const p = this.p;
     for (const ev of step(p, this.input, world, dt)) {
-      if (ev.type === 'bump') this.bump(ev.block);
-      else if (ev.speed > FEEL.dustSpeed) this.fx.dust(p.x + p.w / 2, p.y + p.h);
+      if (ev.type === 'jump') sfx('jump');
+      else if (ev.type === 'bump') {
+        this.actor.bumped();
+        sfx('bump');
+        this.bump(ev.block);
+      } else {
+        this.actor.landed();
+        if (ev.speed > FEEL.dustSpeed) {
+          sfx('land');
+          this.fx.dust(p.x + p.w / 2, p.y + p.h);
+        }
+      }
     }
     this.actor.advance(p, dt);
     this.fx.update(dt);
@@ -295,6 +321,7 @@ export class Game {
     void info.el.offsetWidth; // restart the animation
     info.el.classList.add('hit');
     this.fx.coin(b.x + b.w / 2, b.y - 4);
+    sfx('coin');
 
     if (info.exit) {
       this.later(FEEL.bumpToExitMs, () => this.host.onExitBlock(info.el));
