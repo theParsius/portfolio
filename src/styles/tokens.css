@@ -25,11 +25,12 @@
 }
 
 :root {
-  --thumb-h: clamp(140px, 22vh, 190px);
-  --card-w: 340px;
+  --thumb-h: clamp(150px, 24vh, 220px);
+  --card-w: 380px;
   --card-gap: 120px;
+  --hover-h: 132px; /* cards float this far above the grass; their mascot and ? block stand underneath */
   --qblock: 40px;
-  --qblock-lift: 64px; /* ? block bottom above the card top */
+  --qblock-rise: 80px; /* ? block bottom above the grass, under the card (bumpable from the floor) */
   --mascot-h: 76px;
 }
 @media (max-width: 760px) {

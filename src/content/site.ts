@@ -11,9 +11,10 @@ export const site: Site = {
   stackLine: 'Unity and C#, Golang backends, Solana.',
   url: 'https://theparsius.github.io/portfolio/',
   base: '/portfolio/',
-  email: null, // TODO(M6): contact email
+  email: 'theparsius@gmail.com',
   linkedin: 'https://www.linkedin.com/in/parsa-tashakkori-23b023a3/',
-  itch: 'https://theparsius.itch.io', // TODO(M6): confirm profile URL
+  itch: 'https://theparsius.itch.io',
   github: 'https://github.com/theParsius',
-  cv: null, // TODO(M6): set to '/cv.pdf' once public/cv.pdf exists
+  cv: '/cv.pdf',
+  portfolioPdf: '/portfolio.pdf',
 };

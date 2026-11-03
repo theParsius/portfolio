@@ -4,6 +4,8 @@ import type { Rect, World } from './physics';
 export interface ReachResult {
   /** Indices into world.blocks that cannot be head-bumped from any reachable surface. */
   unreachedBlocks: number[];
+  /** Per block: true when its top can be stood on (screenshot platforms need this, not a bump). */
+  standable: boolean[];
   reachedSurfaces: number;
   totalSurfaces: number;
 }
@@ -44,5 +46,7 @@ export function reach(world: World, limits = REACH): ReachResult {
         }),
     )
     .map(({ i }) => i);
-  return { unreachedBlocks, reachedSurfaces: seen.size, totalSurfaces: surfaces.length };
+  const first = 1 + world.plats.length; // blocks follow the floor and the platforms
+  const standable = world.blocks.map((_, i) => seen.has(first + i));
+  return { unreachedBlocks, standable, reachedSurfaces: seen.size, totalSurfaces: surfaces.length };
 }

@@ -172,3 +172,45 @@ test.describe('with motion', () => {
     await expect(roomTitle(page)).toHaveText(p.title);
   });
 });
+
+test('screenshots float as a climb and show a plaque outside the image', async ({
+  page,
+  isMobile,
+}) => {
+  const p = projects[0]!;
+  await page.emulateMedia({ reducedMotion: 'reduce' }); // no bob while measuring
+  await page.goto(roomPath(p.id));
+  await settle(page);
+  const boxes = await page.evaluate(() => {
+    const floor = document.querySelector('#room .floor')!.getBoundingClientRect().top;
+    return [...document.querySelectorAll('#room .shot')].map((el) => {
+      const r = el.getBoundingClientRect();
+      return { top: Math.round(floor - r.top), bottom: Math.round(floor - r.bottom) };
+    });
+  });
+  expect(new Set(boxes.map((b) => b.top)).size).toBeGreaterThan(2); // tops step up and down
+  for (const b of boxes) expect(b.bottom).toBeGreaterThanOrEqual(50); // none rests on the grass
+  test.skip(isMobile, 'no hover on touch');
+  for (const n of [0, 1]) {
+    const slot = page.locator('#room .shot-slot').nth(n);
+    await slot.scrollIntoViewIfNeeded();
+    const cap = slot.locator('.shot-cap');
+    await expect(cap).toHaveCSS('opacity', '0');
+    await slot.locator('.shot').hover();
+    await expect(cap).toHaveCSS('opacity', '1');
+    await expect(cap).toHaveText(p.screenshots[n]!.caption ?? p.screenshots[n]!.alt);
+    const shot = (await slot.locator('.shot').boundingBox())!;
+    const c = (await cap.boundingBox())!;
+    const outside = c.y >= shot.y + shot.height || c.y + c.height <= shot.y;
+    expect(outside, 'plaque sits above or below the image, not on it').toBe(true);
+  }
+});
+
+test('the lightbox shows the screenshot caption', async ({ page }) => {
+  const p = projects[2]!;
+  await page.goto(roomPath(p.id));
+  await page.locator('#room .shot').first().click();
+  await expect(page.locator('dialog.lightbox .lb-cap')).toHaveText(
+    p.screenshots[0]!.caption ?? p.screenshots[0]!.alt,
+  );
+});

@@ -21,7 +21,8 @@ import { renderHeader, type PanelId } from './views/header';
 import { mountHeroSprite } from './views/heroSprite';
 import { createLightbox } from './views/lightbox';
 import { renderMainLevel } from './views/mainLevel';
-import { createRoomLevel, renderRoom } from './views/room';
+import { createRoomLevel, layoutRoom, renderRoom } from './views/room';
+import { startShotHover } from './engine/hover';
 
 const TITLE_MAIN = `${site.name}, game developer`;
 
@@ -50,11 +51,20 @@ const game = new Game(
     onExitBlock: (el) => {
       if (viewing) void leaveRoom(pointOf(el));
     },
+    onLinkBlock: (el) => {
+      if (!(el instanceof HTMLAnchorElement)) return;
+      if (el.dataset.go) void goRoom(el.dataset.go, pointOf(el));
+      else if (!window.open(el.href, '_blank'))
+        toast(
+          `Your browser blocked the new tab. Click "${el.textContent ?? 'the link'}" to open it.`,
+        );
+    },
     onFlag: () => document.getElementById('contact')?.classList.add('cleared'),
   },
   main,
 );
 mountTouchPad(game.input);
+startShotHover(room.track, () => !room.scroller.hidden);
 mapWheel(main.scroller, () => game.syncCamera());
 mapWheel(room.scroller, () => game.syncCamera());
 
@@ -91,6 +101,7 @@ function showRoom(id: string): void {
   main.scroller.hidden = true;
   room.scroller.hidden = false;
   document.body.classList.add('viewing');
+  layoutRoom(room);
   room.scroller.scrollLeft = 0;
   active = room;
   document.title = `${p.title}, ${site.name}`;
@@ -162,6 +173,16 @@ async function leaveRoom(at?: Point): Promise<void> {
     },
     at,
   );
+  if (game.on) game.pause(false);
+  busy = false;
+}
+
+/** Prev / next from play: the same switch, behind the iris. */
+async function goRoom(id: string, at?: Point): Promise<void> {
+  if (busy || !viewing || viewing.id === id) return;
+  busy = true;
+  if (game.on) game.pause(true);
+  await transition(navKind(), () => switchRoom(id), at);
   if (game.on) game.pause(false);
   busy = false;
 }
@@ -309,6 +330,7 @@ addEventListener(
 
 // Colliders follow layout: rebuild on resize, font load and any track size change.
 const relayout = () => {
+  if (viewing) layoutRoom(room);
   if (game.on) game.rebuild();
 };
 addEventListener('resize', relayout);
@@ -342,7 +364,7 @@ if (import.meta.env.DEV || new URLSearchParams(location.search).has('test')) {
           blocks,
           floor,
           width,
-          ids: w.blockInfo.map((b) => b.id ?? (b.exit ? 'exit' : '')),
+          ids: w.blockInfo.map((b) => b.id ?? b.kind),
         };
       },
       place: (x: number, y: number, vy = 0) => {

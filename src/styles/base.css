@@ -10,7 +10,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 17px/1.6 var(--font-body);
+  font: 19px/1.6 var(--font-body);
   overflow-x: hidden;
 }
 body:focus {

@@ -18,19 +18,25 @@ test('renders all five panels in order on one track', async ({ page }) => {
   await expect(page.locator('main:not([hidden])')).toHaveCount(1);
 });
 
-test('every panel stands on the floor', async ({ page }) => {
+test('scenery stands on the floor and cards float above it', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' }); // no bob while measuring
   await page.goto('./');
   await settle(page);
   const gaps = await page.evaluate(() => {
     const floor = document.querySelector('.floor')?.getBoundingClientRect().top ?? NaN;
+    const hover = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--hover-h'),
+    );
     return [...document.querySelectorAll('.card .frame, .deco, .hero-sprite, .about .avatar')]
       .filter((el) => el.getClientRects().length > 0)
       .map((el) => ({
         el: el.className,
-        gap: Math.round(floor - el.getBoundingClientRect().bottom),
+        off:
+          Math.round(floor - el.getBoundingClientRect().bottom) -
+          (el.matches('.frame') ? hover : 0),
       }));
   });
-  expect(gaps.filter((g) => Math.abs(g.gap) > 1)).toEqual([]);
+  expect(gaps.filter((g) => Math.abs(g.off) > 1)).toEqual([]);
 });
 
 test('header links slide to their panel', async ({ page, isMobile }) => {
@@ -78,12 +84,25 @@ test('vertical wheel scrolls sideways', async ({ page, isMobile }) => {
   await expect.poll(() => scrollLeft(page)).toBeGreaterThanOrEqual(450);
 });
 
-test('placeholder links show a toast instead of navigating', async ({ page }) => {
+test('contact links are real: email, CV and portfolio PDF', async ({ page, request }) => {
   await page.goto('./?at=contact');
-  await settle(page);
-  await page.locator('#contact').getByRole('link', { name: 'Email' }).click();
-  await expect(page.getByRole('status').filter({ hasText: 'coming soon' })).toBeVisible();
-  await expect(page).toHaveURL(/\?at=contact$/);
+  const contact = page.locator('#contact');
+  await expect(contact.getByRole('link', { name: 'Email' })).toHaveAttribute(
+    'href',
+    'mailto:theparsius@gmail.com',
+  );
+  for (const [name, file] of [
+    ['Download CV', 'cv.pdf'],
+    ['Portfolio PDF', 'portfolio.pdf'],
+  ] as const) {
+    const link = contact.getByRole('link', { name });
+    await expect(link).toHaveAttribute('href', `/portfolio/${file}`);
+    await expect(link).toHaveAttribute('download', '');
+    const res = await request.get(`/portfolio/${file}`);
+    expect(res.ok()).toBe(true);
+    expect(res.headers()['content-type']).toContain('pdf');
+  }
+  await expect(page.locator('[data-todo]')).toHaveCount(0); // no placeholders left
 });
 
 test('cards are single links named by title, years, role and status', async ({ page }) => {

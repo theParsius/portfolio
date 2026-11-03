@@ -9,6 +9,7 @@ export interface ProjectLink {
 export interface Screenshot {
   src: string; // /projects/<id>/shot-1.webp (base-relative, resolve with asset())
   alt: string; // describes what the shot shows, not "screenshot 1"
+  caption?: string; // short line shown on the plaque above the shot; falls back to alt
   width: number; // intrinsic px, to reserve layout space
   height: number;
 }
@@ -49,4 +50,6 @@ export interface Site {
   itch: string | null;
   github: string | null;
   cv: string | null;
+  /** The printable portfolio, base-relative (public/). */
+  portfolioPdf: string | null;
 }

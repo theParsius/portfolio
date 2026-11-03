@@ -1,7 +1,11 @@
 import type { Screenshot } from '../content/types';
 import { asset } from './asset';
 
+/** Text for the plaque above a shot: its caption, else its alt text. */
+export const captionOf = (s: Screenshot): string => s.caption ?? s.alt;
+
 /** File names written by scripts/images.ts for one screenshot. */
+
 export function shotVariants(s: Screenshot): { full: string; room: string; thumb: string } {
   const base = s.src.replace(/\.webp$/, '');
   return {

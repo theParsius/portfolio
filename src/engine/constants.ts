@@ -37,8 +37,14 @@ export const FEEL = {
   bumpCooldownMs: 600,
   bumpToRoomMs: 320, // delay between head-bump and the transition (card block)
   bumpToExitMs: 300, // same for exit blocks
+  captionTime: 2.5, // s a screenshot's plaque stays up after a head-bump
   npcPadX: 28, // talk zone = mascot rect grown by these
   npcPadY: 20,
+  // Screenshots hover in place (also in play, carrying a player who stands on them)
+  hoverX: 5, // px each way, side to side
+  hoverY: 5, // px each way, up and down
+  hoverPeriodX: 4.4, // s per side-to-side sway
+  hoverPeriodY: 3.1, // s per bob (different from X, so the path wanders)
 };
 
 export const CAMERA = {

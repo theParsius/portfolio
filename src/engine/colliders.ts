@@ -3,10 +3,16 @@ import type { Rect, World } from './physics';
 
 export interface BlockInfo {
   el: HTMLElement;
+  /** card: a card's ? block · exit: a room's exit block · shot: a floating screenshot ·
+   *  link: a room's store or prev / next button (bumping it follows the link) */
+  kind: 'card' | 'exit' | 'shot' | 'link';
   /** Project id for card blocks; null for exit blocks. */
   id: string | null;
   exit: boolean;
   cool: number;
+  /** Hovering screenshots: index for hoverOffset(), and the rect with no hover applied. */
+  hover: number | null;
+  base: Rect;
 }
 
 export interface Npc extends Rect {
@@ -27,7 +33,9 @@ const visible = (el: Element) => el.getClientRects().length > 0;
  *   [data-solid]          the element's top edge is a one-way platform
  *   [data-solid="text"]   one platform per rendered line (top + 18% of the line height)
  *   [data-solid="kids"]   one platform per child
- *   .qblock               solid box
+ *   .qblock               solid box that reports head-bumps
+ *   .shot                 same (screenshots in rooms hover, and show their plaque when bumped)
+ *   [data-bump]           same (room links: bumping one follows it)
  *   .floor                solid ground
  */
 export function collect(level: Level, previous?: Colliders): Colliders {
@@ -71,19 +79,31 @@ export function collect(level: Level, previous?: Colliders): Colliders {
     ? { x: fr.left - t.left, y: fr.top - t.top, w: fr.width, h: fr.height }
     : { x: 0, y: t.height - 48, w: level.track.scrollWidth, h: 48 };
 
-  const blockEls = [...level.track.querySelectorAll<HTMLElement>('.qblock')].filter(visible);
+  const blockEls = [
+    ...level.track.querySelectorAll<HTMLElement>('.qblock, .shot, [data-bump]'),
+  ].filter(visible);
   const blocks: Rect[] = [];
   const blockInfo: BlockInfo[] = [];
   for (const el of blockEls) {
     const r = el.getBoundingClientRect();
-    blocks.push({ x: r.left - t.left, y: r.top - t.top, w: r.width, h: r.height });
+    const rect = { x: r.left - t.left, y: r.top - t.top, w: r.width, h: r.height };
+    blocks.push(rect);
     // Keep cooldowns across rebuilds.
     const prev = previous?.blockInfo.find((b) => b.el === el);
+    const exit = el.hasAttribute('data-exit');
+    const shot = el.classList.contains('shot');
+    // A hovering shot is read wherever it is right now: take its hover offset back off.
+    const slot = shot ? el.closest<HTMLElement>('.shot-slot') : null;
+    const hx = parseFloat(slot?.style.getPropertyValue('--hx') ?? '') || 0;
+    const hy = parseFloat(slot?.style.getPropertyValue('--hy') ?? '') || 0;
     blockInfo.push({
       el,
+      kind: shot ? 'shot' : exit ? 'exit' : el.hasAttribute('data-bump') ? 'link' : 'card',
       id: el.closest<HTMLElement>('.card')?.dataset.id ?? null,
-      exit: el.hasAttribute('data-exit'),
+      exit,
       cool: prev?.cool ?? 0,
+      hover: slot ? Number(slot.dataset.n) || 0 : null,
+      base: { ...rect, x: rect.x - hx, y: rect.y - hy },
     });
   }
 

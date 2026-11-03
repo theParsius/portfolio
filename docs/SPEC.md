@@ -34,7 +34,7 @@ Everything below works in the prototype and must survive the rebuild, except whe
 | Sideways browsing | Wheel and trackpad vertical scroll mapped to horizontal; left/right arrows scroll 60% of a screen; swipe on touch | Keep |
 | Header | Logo, Projects, About, Contact, CV, Play. In play mode: "Projects found x/7" + Stop | Keep |
 | Projects sign | Lists all 7 titles + years as links; each opens that project's room | Keep, it is the fast path for leads |
-| Project cards | Thumbnail (1 landscape or 3 portrait shots), status badge, icon, title, year, role, stack tags, mascot on top | Keep |
+| Project cards | Thumbnail (1 landscape or 3 portrait shots), icon, title, year, role with the status badge beside it (never over the thumbnail), stack tags, mascot on top | Keep |
 | Play mode toggle | Play button or P; Esc or Stop exits | Keep |
 | Page as level | Headings, each text line, cards, icons, tags, buttons, mascots, scenery are one-way platforms | Keep |
 | ? blocks | Shown only in play mode above each card; head-bump pops a coin, marks found, opens the room | Keep |
@@ -44,7 +44,7 @@ Everything below works in the prototype and must survive the rebuild, except whe
 | Room exit | Head-bump either exit block in play; click it otherwise; browser back and Esc (not playing) also exit | Keep |
 | State on return | Player position, camera and found count restored exactly | Keep |
 | Iris transition | Stepped circle wipe closing on the block or click point, opening on the new screen | Keep in play mode; decide for click navigation (see open decisions) |
-| Lightbox | Click a screenshot to enlarge; arrows cycle; Esc closes | Keep |
+| Lightbox | Click a screenshot to enlarge, with its caption under it; arrows cycle; Esc closes | Keep |
 | Touch pad | Left, right, down, jump buttons in play mode | Shown only on touch screens (`pointer: coarse`); keyboard focus verified in Chromium and WebKit |
 | Focus guard | If the page loses keyboard focus during play, a toast asks for a click | Keep |
 | Placeholder links | Store links, Email, LinkedIn, itch.io, CV show a toast | Replace with real URLs |
@@ -149,7 +149,7 @@ The main level is one horizontal track, `height = max(540px, 100svh − header)`
 
 1. **Hero** (100vw wide): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. Two trees (148px, ×4) and a tower (129px, ×3) near the right edge double as stairs.
 2. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
-3. **Cards** (340px each, 120px gaps; 320px and 90px on phones): each card stands directly on the floor. The mascot stands on the card's top edge, left. The ? block floats above the card's top edge, right; it is hidden until play mode.
+3. **Cards** (380px each, 120px gaps; 320px and 90px on phones): each card floats `--hover-h` (132px) above the floor, with a pixel shadow on the grass and a 4px two-step bob (off while playing and under reduced motion). Underneath each card: the mascot standing on the grass (left), its speech bubble beside it (play only, when the player is near), and the ? block 80px above the grass (right; hidden until play mode, bumped from the floor). The mascot and ? block are the first steps up onto the card.
 4. **About** (\~860px): pixel avatar standing on the floor, short bio, stack line.
 5. **Contact** (\~820px): heading, Email, LinkedIn, itch.io, Download CV buttons, name line. The goal flag stands on the floor near the right end.
 
@@ -175,8 +175,8 @@ Each project is its own horizontal level on the same floor, entered and exited t
 
 1. **Entrance** (230px; 88px on phones): exit ? block 74px above the floor with an "Exit" label, the project mascot standing on the floor beside it (hidden on phones).
 2. **Intro**: icon, title in the accent colour, years + status badge, description, store links, facts box (Role, Status, Platform, Stack). On phones the facts box drops under the text.
-3. **Screenshots sign**: heading + "N shots. Click any to enlarge."
-4. **Screenshot row**: every screenshot stands on the floor, 64px apart. Portrait shots: height `min(540px, trackHeight − 196px)`. Landscape: width `min(640px, 82vw)`.
+3. **Screenshots sign**: heading + "N shots. Hover for a note, click to enlarge." The sign is as wide as its heading, so it never runs into the first shot.
+4. **Screenshot field**: the screenshots are the platforms, laid out by `src/views/shotPlan.ts` from the track height, the viewport width and the height of the "Screenshots" sign before it. No shot rests on the grass: every bottom is at least 64px up. Each shot hovers: a small wandering sway, ±5px in x and ±5px in y on different periods (`FEEL.hoverX/Y`, `hoverPeriodX/Y`), out of phase with its neighbours, computed by `hoverOffset()` in `src/engine/hover.ts`. The room view draws it every frame, and in play the engine moves each shot's platform with the same function, carrying a player who stands on it and pushing one it drifts into out the short way. Off under reduced motion. The climb starts from the sign's heading (its text is solid; the sign sits 84px higher than other panels to make a taller first step): the first top sits at most 135px above it, each later top at most 145px above the previous one (the jump's apex is ≈177px; the hardest step is simulated with the real physics), and horizontal gaps are 70–120px. Each project has its own shape (`VARIANTS`, picked by the project's position): stairs, wave, peak, overhang (a shot tucked 84px under the previous one's right end, which the player drops onto; only where the room is tall enough), sky, terraces and zigzag. Each shape sets where every top aims, the shot sizes, how high each floats and the gaps; wave, peak, overhang, sky and zigzag keep their dips off the bottom (`low`), so their shots stay big. Portrait shots are 200–520px tall within a taller band, and float at most 80px up; landscape shots are up to `min(640px, 80vw)` wide. Each shot has a caption plaque (its `caption`, else its alt text) drawn outside the image: below it when the shot floats 100px or more (left-aligned under a shot with another tucked beneath it), else above the head of a player standing on it. The plaque shows on hover or keyboard focus; in play, for as long as the player stands on the shot and for 2.5 s after head-bumping it. Unit tests run the reachability BFS over the layout for every project at four track sizes, check that the layouts differ from each other, and simulate the hardest jump with the real physics.
 5. **More projects**: previous and next buttons, plus a second exit block so nobody walks back.
 
 **Entry and exit rules**
@@ -223,6 +223,8 @@ The engine runs a fixed 120 Hz physics step against colliders read from the live
 - `data-solid="text"` → one platform per rendered text line (Range.getClientRects, merged per line, top offset 18% of line height). Paragraphs become stairs.
 - `data-solid="kids"` → one platform per child (button rows, tag rows), so gaps between them are not walkable.
 - `.qblock` → fully solid box: land on top, blocked from the sides, head-bump from below triggers it.
+- `.shot` (rooms) → the same solid box; a head-bump shows its caption plaque instead of opening anything.
+- `[data-bump]` (room store links and prev / next) → the same solid box; a head-bump follows the link: store links open in a new tab (a toast explains if the browser blocks it), prev / next switch rooms behind the iris and play continues. The intro and end panels sit 100px above the grass (84px on phones, where the facts box moves above the text) so the player can stand under these and jump into them.
 - `.floor` → solid, cannot drop through.
 
 **Rules**
@@ -305,7 +307,7 @@ The identity comes straight from the 2025 PDF: pure black, pink pixel type with 
 **Type**
 
 - Display: Pixelify Sans 600–700. Name `clamp(50px, min(9vw, 13vh), 124px)`, line-height 0.92, text-shadow 5px 5px 0 `--peri`. Section headings 36–52px, 3px shadow.
-- Body: Atkinson Hyperlegible 400/700, 17px / 1.6.
+- Body: Atkinson Hyperlegible 400/700, 19px / 1.6.
 - Small UI (badges, years, labels, bubbles): Pixelify Sans 13–15px.
 
 **Components**

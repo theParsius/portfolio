@@ -2,9 +2,10 @@ import { projects } from '../content/projects';
 import type { Project } from '../content/types';
 import { asset } from '../lib/asset';
 import { esc, STATUS_LABEL, yearsLabel } from '../lib/format';
-import { shotVariants } from '../lib/shots';
+import { captionOf, shotVariants } from '../lib/shots';
 import { spriteImg } from '../lib/sprites';
 import type { Level } from '../ui/sideways';
+import { planShots } from './shotPlan';
 
 export function createRoomLevel(): Level {
   const scroller = document.createElement('main');
@@ -36,17 +37,23 @@ export function renderRoom(level: Level, p: Project): void {
   const shots = p.screenshots
     .map((s, n) => {
       const v = shotVariants(s);
-      return `<button class="shot" type="button" data-shot="${n}" data-solid>
-        <span class="visually-hidden">Enlarge: </span>
-        <img src="${v.room}" alt="${esc(s.alt)}" width="${s.width}" height="${s.height}" loading="lazy" decoding="async">
-      </button>`;
+      const cap = captionOf(s);
+      // The plaque repeats the alt text unless a separate caption is set; only then is it announced.
+      const own = cap !== s.alt;
+      return `<div class="shot-slot">
+        <p class="shot-cap" id="cap-${n}"${own ? '' : ' aria-hidden="true"'}>${esc(cap)}</p>
+        <button class="shot" type="button" data-shot="${n}"${own ? ` aria-describedby="cap-${n}"` : ''}>
+          <span class="visually-hidden">Enlarge: </span>
+          <img src="${v.room}" alt="${esc(s.alt)}" width="${s.width}" height="${s.height}" loading="lazy" decoding="async">
+        </button>
+      </div>`;
     })
     .join('');
   const links = p.links.length
-    ? `<div class="r-links" data-solid="kids">${p.links
+    ? `<div class="r-links">${p.links
         .map(
           (l) =>
-            `<a class="btn small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`,
+            `<a class="btn small" href="${esc(l.url)}" target="_blank" rel="noopener" data-bump>${esc(l.label)}</a>`,
         )
         .join('')}</div>`
     : '';
@@ -64,7 +71,7 @@ export function renderRoom(level: Level, p: Project): void {
     </section>
     <section class="panel r-intro" aria-labelledby="room-title">
       <div class="r-title">
-        <img data-solid src="${asset(p.icon)}" alt="" width="88" height="88">
+        <img data-solid src="${asset(p.icon)}" alt="" width="104" height="104">
         <div>
           <h1 id="room-title" data-solid="text" tabindex="-1">${esc(p.title)}</h1>
           <div class="r-meta" data-solid="kids"><span>${yearsLabel(p)}</span><span class="status s-${p.status}">${STATUS_LABEL[p.status]}</span></div>
@@ -86,17 +93,56 @@ export function renderRoom(level: Level, p: Project): void {
     </section>
     <section class="panel r-sign" aria-labelledby="shots-title">
       <h2 id="shots-title" data-solid="text">Screenshots</h2>
-      <p class="sub" data-solid="text">${p.screenshots.length} shots. Click any to enlarge.</p>
+      <p class="sub" data-solid="text">${p.screenshots.length} shots. Hover for a note, click to enlarge. In play, they are platforms.</p>
     </section>
-    <div class="shots-row ${p.orientation}" role="group" aria-labelledby="shots-title">${shots}</div>
+    <div class="shots-field ${p.orientation}" role="group" aria-labelledby="shots-title">${shots}</div>
     <section class="panel r-end" aria-labelledby="more-title">
       <h2 id="more-title" data-solid="text">More projects</h2>
-      <div class="r-nav" data-solid="kids">
-        <a class="btn small ghost" href="${roomPath(prev.id)}" data-go="${prev.id}">◀ ${esc(prev.title)}</a>
-        <a class="btn small ghost" href="${roomPath(next.id)}" data-go="${next.id}">${esc(next.title)} ▶</a>
+      <div class="r-nav">
+        <a class="btn small ghost" href="${roomPath(prev.id)}" data-go="${prev.id}" data-bump>◀ ${esc(prev.title)}</a>
+        <a class="btn small ghost" href="${roomPath(next.id)}" data-go="${next.id}" data-bump>${esc(next.title)} ▶</a>
       </div>
       ${exitBlock}
     </section>`;
 }
 
 const roomPath = (id: string) => `${import.meta.env.BASE_URL}projects/${id}/`;
+
+/**
+ * Positions the screenshots as a platformer field (see shotPlan.ts). Needs layout, so call it
+ * after the room is visible, and again on resize.
+ */
+export function layoutRoom(level: Level): void {
+  const field = level.track.querySelector<HTMLElement>('.shots-field');
+  if (!field || !field.clientHeight) return;
+  const ground = parseFloat(getComputedStyle(field).getPropertyValue('--ground-h')) || 48;
+  const floorTop = field.getBoundingClientRect().bottom - ground;
+  const slots = [...field.querySelectorAll<HTMLElement>('.shot-slot')];
+  const sizes = slots.map((sl) => {
+    const img = sl.querySelector('img');
+    return {
+      width: Number(img?.getAttribute('width')) || 16,
+      height: Number(img?.getAttribute('height')) || 9,
+    };
+  });
+  // The sign's heading is the step up to the first shot.
+  const sign = level.track.querySelector('.r-sign h2');
+  const entry = sign ? Math.round(floorTop - sign.getBoundingClientRect().top) : undefined;
+  const variant = Math.max(
+    0,
+    projects.findIndex((p) => p.id === level.track.dataset.id),
+  );
+  const plan = planShots(sizes, field.clientHeight - ground, window.innerWidth, { variant, entry });
+  field.style.width = `${plan.width}px`;
+  for (const b of plan.shots) {
+    const sl = slots[b.i];
+    if (!sl) continue;
+    sl.style.left = `${b.x}px`;
+    sl.style.bottom = `calc(var(--ground-h) + ${b.y}px)`;
+    sl.style.width = `${b.w}px`;
+    sl.style.height = `${b.h}px`;
+    sl.style.setProperty('--elev', `${b.y}px`);
+    sl.dataset.n = String(b.i);
+    sl.dataset.cap = b.cap;
+  }
+}

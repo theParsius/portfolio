@@ -10,11 +10,12 @@ import type { Project, Screenshot } from './types';
  * Builds shot-1…shot-N entries for a project. Sizes come from src/content/shots.json,
  * written by scripts/images.ts, so they always match the exported files.
  */
-function shots(id: string, alts: string[]): Screenshot[] {
+/** Each entry: the alt text, or { alt, caption } when the plaque should say something shorter. */
+function shots(id: string, entries: (string | { alt: string; caption: string })[]): Screenshot[] {
   const sizes = (manifest as Record<string, { width: number; height: number }[]>)[id] ?? [];
-  return alts.map((alt, i) => ({
+  return entries.map((e, i) => ({
     src: `/projects/${id}/shot-${i + 1}.webp`,
-    alt,
+    ...(typeof e === 'string' ? { alt: e } : e),
     width: sizes[i]?.width ?? 0,
     height: sizes[i]?.height ?? 0,
   }));
@@ -69,7 +70,16 @@ export const projects: Project[] = [
     hook: 'Hidden-word puzzles that work online and offline.',
     description:
       'WordFly is a mobile puzzle game where players uncover hidden words in engaging levels. I worked on both the Unity client and the Golang server, focusing on smooth gameplay across online and offline modes. My main challenge was keeping state consistent and performant, which I solved by carefully synchronizing client and server logic.',
-    links: [], // TODO(M6): Google Play and App Store URLs
+    links: [
+      {
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.pioneer.wordflyen',
+      },
+      {
+        label: 'App Store',
+        url: 'https://apps.apple.com/us/app/word-fly-find-the-words/id6749900883',
+      },
+    ],
     orientation: 'portrait',
     ...art('wordfly'),
     screenshots: shots('wordfly', [

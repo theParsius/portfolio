@@ -38,10 +38,12 @@ async function expectReachable(page: Page, where: string) {
   const w = await colliders(page);
   expect(w.blocks.length, `${where}: no ? blocks found`).toBeGreaterThan(0);
   const r = reach(w);
-  expect(
-    r.unreachedBlocks.map((i) => w.ids[i]),
-    `${where}: unreachable blocks`,
-  ).toEqual([]);
+  // ? and exit blocks must be bumpable; screenshots are platforms, so their tops must be standable.
+  const bad = w.ids
+    .map((id, i) => ({ id, i }))
+    .filter(({ id, i }) => (id === 'shot' ? !r.standable[i] : r.unreachedBlocks.includes(i)))
+    .map(({ id, i }) => `${id}#${i}`);
+  expect(bad, `${where}: unreachable blocks`).toEqual([]);
 }
 
 /** Put the player under block `i` moving up fast enough to hit it. */
@@ -57,6 +59,8 @@ async function startPlay(page: Page) {
   await page.keyboard.press('p');
   await expect(page.locator('body')).toHaveClass(/playing/);
   await expect.poll(async () => (await state(page)).on).toBe(true);
+  // The spawn lands on the next frames: wait for it, so a test's place() is not overwritten.
+  await expect.poll(async () => (await state(page)).player.ground).toBe(true);
 }
 
 test('every ? block on the main level is reachable', async ({ page }) => {
@@ -232,4 +236,103 @@ test('scrolling away during play holds the view until the player moves', async (
   await page.waitForTimeout(150);
   await page.keyboard.up('ArrowRight');
   await expect.poll(() => sc.evaluate((el) => el.scrollLeft)).toBeLessThan(home + 300);
+});
+
+test('in a room, bumping a screenshot or standing on it shows its plaque', async ({ page }) => {
+  await page.goto(`./projects/${projects[0]!.id}/?test`);
+  await settle(page);
+  await startPlay(page);
+  const w = await colliders(page);
+  const shots = w.blocks.filter((_, i) => w.ids[i] === 'shot');
+  expect(shots).toHaveLength(projects[0]!.screenshots.length);
+  const slot = (n: number) => page.locator('#room .shot-slot').nth(n);
+
+  // Bump one that floats high enough to get under.
+  const f = shots.findIndex((s) => w.floor.y - (s.y + s.h) >= 70);
+  expect(f, 'no floating screenshot').toBeGreaterThanOrEqual(0);
+  await bump(page, shots[f]!);
+  await expect(slot(f)).toHaveClass(/show/);
+  await expect(slot(f).locator('.shot-cap')).toHaveCSS('opacity', '1');
+  expect((await state(page)).level).toBe('room'); // a shot is not a door
+
+  const standOn = f === 0 ? 2 : 0;
+  const b = shots[standOn]!;
+  await page.evaluate(({ x, y }) => window.__game.place(x, y), {
+    x: b.x + b.w / 2 - PHYSICS.playerW / 2,
+    y: b.y - PHYSICS.playerH - 2,
+  });
+  await expect(slot(standOn)).toHaveClass(/show/);
+  await page.waitForTimeout(3000); // well past the bump timer: standing keeps it up
+  await expect(slot(standOn)).toHaveClass(/show/);
+  await expect(slot(f)).not.toHaveClass(/show/);
+});
+
+test.describe('with motion', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+  });
+
+  test('screenshots hover in play, and carry a player standing on one', async ({ page }) => {
+    await page.goto(`./projects/${projects[1]!.id}/?test`);
+    await settle(page);
+    await startPlay(page);
+    const rect = () =>
+      page.evaluate(() => {
+        const r = document.querySelectorAll('#room .shot')[1]!.getBoundingClientRect();
+        return { x: r.x, y: r.y };
+      });
+    // Drop the player onto the shot from just above it (track coordinates from the hook).
+    const w = await colliders(page);
+    const b = w.blocks.filter((_, i) => w.ids[i] === 'shot')[1]!;
+    await page.evaluate(({ x, y }) => window.__game.place(x, y), {
+      x: b.x + b.w / 2 - PHYSICS.playerW / 2,
+      y: b.y - PHYSICS.playerH - 2,
+    });
+    await page.waitForTimeout(300);
+    const samples: { shot: { x: number; y: number }; feet: number; px: number }[] = [];
+    for (let k = 0; k < 4; k++) {
+      const box = await rect();
+      const s = await state(page);
+      const top = (await colliders(page)).blocks.filter((_, i) => w.ids[i] === 'shot')[1]!.y;
+      samples.push({
+        shot: { x: box.x, y: box.y },
+        feet: s.player.y + s.player.h - top,
+        px: s.player.x,
+      });
+      expect(s.player.ground).toBe(true);
+      await page.waitForTimeout(450);
+    }
+    const xs = samples.map((s) => s.shot.x);
+    const ys = samples.map((s) => s.shot.y);
+    expect(Math.max(...xs) - Math.min(...xs), 'shot sways sideways').toBeGreaterThan(1);
+    expect(Math.max(...ys) - Math.min(...ys), 'shot bobs').toBeGreaterThan(1);
+    for (const s of samples) expect(Math.abs(s.feet), 'player rides on the shot').toBeLessThan(3);
+    const pxs = samples.map((s) => s.px);
+    expect(Math.max(...pxs) - Math.min(...pxs), 'player moves with it').toBeGreaterThan(1);
+  });
+});
+
+test('in a room, bumping a store link opens it and bumping next goes to the next room', async ({
+  page,
+  context,
+}) => {
+  const i = projects.findIndex((p) => p.links.length > 0);
+  const p = projects[i]!;
+  await context.route(/^https?:\/\/(?!localhost)/, (r) => r.fulfill({ body: 'store page' }));
+  await page.goto(`./projects/${p.id}/?test`);
+  await settle(page);
+  await startPlay(page);
+  const w = await colliders(page);
+  const links = w.blocks.filter((_, k) => w.ids[k] === 'link');
+  expect(links).toHaveLength(p.links.length + 2); // store links + prev / next
+  const popup = context.waitForEvent('page');
+  await bump(page, links[0]!);
+  expect((await popup).url()).toContain(new URL(p.links[0]!.url).host);
+  await page.bringToFront();
+
+  await bump(page, links.at(-1)!);
+  const next = projects[(i + 1) % projects.length]!;
+  await expect(page).toHaveURL(new RegExp(`/projects/${next.id}/`));
+  await expect(page.locator('#room h1')).toHaveText(next.title);
+  expect((await state(page)).on).toBe(true); // still playing, now in the next room
 });

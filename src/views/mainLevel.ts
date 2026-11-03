@@ -23,20 +23,21 @@ function card(p: Project): string {
   const metric = p.metrics?.[0] ? `<p class="metric">${esc(p.metrics[0])}</p>` : '';
   return `
     <article class="card" role="listitem" id="card-${p.id}" data-id="${p.id}" style="--c:${p.color}">
-      <div class="bubble" aria-hidden="true">${esc(p.hook)}</div>
-      ${spriteImg(p.mascot, 'mascot', { attrs: 'data-solid aria-hidden="true"' })}
-      <div class="qblock" aria-hidden="true">?</div>
       <a class="frame" href="${roomUrl(p.id)}" data-room="${p.id}" data-solid>
         <div class="thumb ${p.orientation}">${thumbs}</div>
         <img class="icon" data-solid src="${asset(p.icon)}" alt="" width="64" height="64" loading="lazy">
         <div class="body">
           <div class="titlerow" data-solid="kids"><h3>${esc(p.title)}</h3><span class="year">${yearsLabel(p)}</span></div>
-          <p class="role">${esc(p.role)}</p>
+          <div class="subrow"><p class="role">${esc(p.role)}</p><span class="status s-${p.status}"><span class="visually-hidden">Status: </span>${STATUS_LABEL[p.status]}</span></div>
           ${metric}
           <ul class="tags" data-solid="kids">${p.stack.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
-          <span class="status s-${p.status}"><span class="visually-hidden">Status: </span>${STATUS_LABEL[p.status]}</span>
         </div>
       </a>
+      <div class="under">
+        ${spriteImg(p.mascot, 'mascot', { attrs: 'data-solid aria-hidden="true"' })}
+        <div class="bubble" aria-hidden="true">${esc(p.hook)}</div>
+        <div class="qblock" aria-hidden="true">?</div>
+      </div>
     </article>`;
 }
 
@@ -102,6 +103,7 @@ export function renderMainLevel(): Level {
           <a class="btn ghost" ${linkAttrs(site.linkedin, 'LinkedIn')}>LinkedIn</a>
           <a class="btn ghost" ${linkAttrs(site.itch, 'itch.io')}>itch.io</a>
           <a class="btn ghost" ${linkAttrs(site.cv, 'CV', { download: true })}>Download CV</a>
+          <a class="btn ghost" ${linkAttrs(site.portfolioPdf, 'Portfolio PDF', { download: true })}>Portfolio PDF</a>
         </div>
         <p class="credit" data-solid="text">${esc(site.name)}</p>
         ${spriteImg('/sprites/flag.png', 'deco flag', { attrs: 'data-flag aria-hidden="true"' })}

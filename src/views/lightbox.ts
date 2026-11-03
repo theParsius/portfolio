@@ -1,6 +1,6 @@
 import type { Project } from '../content/types';
 import { esc } from '../lib/format';
-import { shotVariants } from '../lib/shots';
+import { captionOf, shotVariants } from '../lib/shots';
 
 export interface Lightbox {
   el: HTMLDialogElement;
@@ -29,6 +29,7 @@ export function createLightbox(onToggle: (open: boolean) => void): Lightbox {
     el.innerHTML = `
       <div class="lb">
         <img src="${shotVariants(s).full}" alt="${esc(s.alt)}" width="${s.width}" height="${s.height}">
+        <p class="lb-cap"${captionOf(s) === s.alt ? ' aria-hidden="true"' : ''}>${esc(captionOf(s))}</p>
         <div class="row">
           <button class="btn small ghost" type="button" data-lb="-1" aria-label="Previous screenshot">◀</button>
           <span aria-live="polite">${index + 1} / ${n}</span>

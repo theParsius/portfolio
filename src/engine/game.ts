@@ -4,6 +4,7 @@ import { Actor } from './actor';
 import { follow } from './camera';
 import { collect, type Colliders } from './colliders';
 import { FEEL, PHYSICS } from './constants';
+import { hoverClock, hoverOffset } from './hover';
 import { Fx } from './fx';
 import { sfx, warmSound } from './sound';
 import { clearKeys, focusGame, keyOf, press, release } from './input';
@@ -20,6 +21,8 @@ export interface GameHost {
   onCardBlock(id: string, el: HTMLElement): void;
   /** Called after a room's exit block is head-bumped. */
   onExitBlock(el: HTMLElement): void;
+  /** Called after a room's link (store, prev / next) is head-bumped. */
+  onLinkBlock(el: HTMLElement): void;
   /** Called when the flag is touched. */
   onFlag(): void;
 }
@@ -50,6 +53,9 @@ export class Game {
   private acc = 0;
   private focusClock = 0;
   private talking: HTMLElement | null = null;
+  /** Screenshot slot whose plaque is showing, and how long a head-bump keeps it up. */
+  private captioned: HTMLElement | null = null;
+  private captionTime = 0;
   private cleared = false;
   private timers: number[] = [];
 
@@ -99,6 +105,7 @@ export class Game {
     this.fx.clear();
     this.actor.reset();
     this.setTalking(null);
+    this.setCaption(null);
     clearKeys(this.input);
   }
 
@@ -123,6 +130,7 @@ export class Game {
   park(level: Level): void {
     this.fx.clear();
     this.setTalking(null);
+    this.setCaption(null);
     level.track.append(this.actor.el);
     this.level = level;
   }
@@ -268,6 +276,7 @@ export class Game {
     const world = this.world;
     if (!world) return;
     const p = this.p;
+    this.hover(world);
     for (const ev of step(p, this.input, world, dt)) {
       if (ev.type === 'jump') sfx('jump');
       else if (ev.type === 'bump') {
@@ -300,6 +309,24 @@ export class Game {
     }
     this.setTalking(talk);
 
+    // Screenshot plaques: shown while standing on a shot, or for a while after bumping one.
+    this.captionTime = Math.max(0, this.captionTime - dt);
+    let standing: HTMLElement | null = null;
+    if (p.ground) {
+      world.blocks.forEach((b, i) => {
+        const info = world.blockInfo[i];
+        if (
+          info?.kind === 'shot' &&
+          Math.abs(p.y + p.h - b.y) < 1 &&
+          p.x < b.x + b.w &&
+          p.x + p.w > b.x
+        )
+          standing = info.el.closest<HTMLElement>('.shot-slot');
+      });
+    }
+    if (standing) this.setCaption(standing, FEEL.captionTime);
+    else if (this.captionTime === 0) this.setCaption(null);
+
     if (world.flag && !this.cleared && overlaps(p, world.flag)) {
       this.cleared = true;
       toast(
@@ -308,6 +335,43 @@ export class Game {
       );
       this.host.onFlag();
     }
+  }
+
+  /**
+   * Moves hovering screenshots to where they are drawn now. A player standing on one rides along;
+   * one that a shot drifts into is pushed out the short way (never through it).
+   */
+  private hover(world: Colliders): void {
+    const p = this.p;
+    const t = hoverClock();
+    world.blockInfo.forEach((info, i) => {
+      const b = world.blocks[i];
+      if (info.hover === null || !b) return;
+      const o = hoverOffset(info.hover, t);
+      const x = info.base.x + o.x;
+      const y = info.base.y + o.y;
+      const dx = x - b.x;
+      const dy = y - b.y;
+      if (!dx && !dy) return;
+      const riding =
+        p.ground && Math.abs(p.y + p.h - b.y) < 1.5 && p.x < b.x + b.w && p.x + p.w > b.x;
+      b.x = x;
+      b.y = y;
+      if (riding) {
+        p.x += dx;
+        p.y = b.y - p.h;
+      } else if (overlaps(p, b)) {
+        const left = p.x + p.w - b.x;
+        const right = b.x + b.w - p.x;
+        const up = p.y + p.h - b.y;
+        const down = b.y + b.h - p.y;
+        const m = Math.min(left, right, up, down);
+        if (m === up) p.y = b.y - p.h;
+        else if (m === down) p.y = b.y + b.h;
+        else if (m === left) p.x = b.x - p.w;
+        else p.x = b.x + b.w;
+      }
+    });
   }
 
   private bump(index: number): void {
@@ -320,6 +384,15 @@ export class Game {
     info.el.classList.remove('hit');
     void info.el.offsetWidth; // restart the animation
     info.el.classList.add('hit');
+    if (info.kind === 'shot') {
+      this.setCaption(info.el.closest<HTMLElement>('.shot-slot'), FEEL.captionTime);
+      return;
+    }
+    if (info.kind === 'link') {
+      sfx('coin');
+      this.later(FEEL.bumpToExitMs, () => this.host.onLinkBlock(info.el));
+      return;
+    }
     this.fx.coin(b.x + b.w / 2, b.y - 4);
     sfx('coin');
 
@@ -346,6 +419,15 @@ export class Game {
       if (this.on) fn();
     }, ms);
     this.timers.push(t);
+  }
+
+  private setCaption(slot: HTMLElement | null, time = 0): void {
+    if (slot) this.captionTime = Math.max(this.captionTime, time);
+    if (slot === this.captioned) return;
+    this.captioned?.classList.remove('show');
+    slot?.classList.add('show');
+    this.captioned = slot;
+    if (slot) this.captionTime = time;
   }
 
   private setTalking(card: HTMLElement | null): void {
