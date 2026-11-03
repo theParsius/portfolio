@@ -1,0 +1,119 @@
+{
+  "sprites/trees.png": {
+    "mode": "pixel",
+    "period": 6.85,
+    "ox": 5.994,
+    "oy": 5.137,
+    "err": 27,
+    "width": 41,
+    "height": 37
+  },
+  "sprites/tower.png": {
+    "mode": "pixel",
+    "period": 8.1,
+    "ox": 7.087,
+    "oy": 7.087,
+    "err": 17.5,
+    "width": 18,
+    "height": 43
+  },
+  "sprites/flag.png": {
+    "mode": "pixel",
+    "period": 4.8,
+    "ox": 4.2,
+    "oy": 4.2,
+    "err": 29.2,
+    "width": 18,
+    "height": 23
+  },
+  "sprites/grass.png": {
+    "mode": "pixel",
+    "period": 6.75,
+    "ox": 5.062,
+    "oy": 3.375,
+    "err": 7.6,
+    "width": 132,
+    "height": 12
+  },
+  "sprites/clouds.png": {
+    "mode": "pixel",
+    "period": 5.75,
+    "ox": 0.719,
+    "oy": 5.031,
+    "err": 20.8,
+    "width": 252,
+    "height": 58
+  },
+  "sprites/avatar.png": {
+    "mode": "pixel",
+    "period": 5.15,
+    "ox": 1.931,
+    "oy": 4.506,
+    "err": 35.4,
+    "width": 61,
+    "height": 66
+  },
+  "projects/honeyland/mascot.png": {
+    "mode": "smooth",
+    "period": 5.15,
+    "ox": 1.287,
+    "oy": 1.287,
+    "err": 59,
+    "width": 276,
+    "height": 242
+  },
+  "projects/wordfly/mascot.png": {
+    "mode": "smooth",
+    "period": 5.35,
+    "ox": 4.012,
+    "oy": 0.669,
+    "err": 48.8,
+    "width": 278,
+    "height": 252
+  },
+  "projects/dice-fight/mascot.png": {
+    "mode": "pixel",
+    "period": 4.9,
+    "ox": 2.45,
+    "oy": 0,
+    "err": 38.5,
+    "width": 27,
+    "height": 36
+  },
+  "projects/line-up/mascot.png": {
+    "mode": "smooth",
+    "period": 5.45,
+    "ox": 1.362,
+    "oy": 1.362,
+    "err": 68.5,
+    "width": 162,
+    "height": 174
+  },
+  "projects/funtomime/mascot.png": {
+    "mode": "smooth",
+    "period": 5.25,
+    "ox": 0.656,
+    "oy": 0,
+    "err": 94.9,
+    "width": 187,
+    "height": 233
+  },
+  "projects/saving-private-teddy/mascot.png": {
+    "mode": "smooth",
+    "period": 4.65,
+    "ox": 1.744,
+    "oy": 2.325,
+    "err": 51.4,
+    "width": 199,
+    "height": 242
+  },
+  "projects/agha-khan/mascot.png": {
+    "mode": "smooth",
+    "period": 6,
+    "ox": 3.75,
+    "oy": 2.25,
+    "err": 117.7,
+    "width": 225,
+    "height": 285
+  }
+}

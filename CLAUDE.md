@@ -14,6 +14,8 @@ Full spec: docs/SPEC.md. Behavioural reference: docs/prototype.html (open it in 
 - Respect prefers-reduced-motion. Pixel art at integer scales with image-rendering: pixelated.
 - Work one milestone at a time from docs/SPEC.md "Build plan". Stop and report when its acceptance criteria pass.
 
+- Keep the owner's to-do doc current: "theParsius Portfolio: What I Need to Provide" (Claude Doc, https://claude.ai/artifact/Enhry6GnVqgwYwxEDathiA). After each milestone or any new placeholder/TODO, update its Status table, add rows for new needs, and log received items.
+
 ## Commands
 
 - `npm run dev`: local server

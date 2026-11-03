@@ -21,3 +21,19 @@ const ENTITIES: Record<string, string> = {
   "'": '&#39;',
 };
 export const esc = (s: string): string => s.replace(/[&<>"']/g, (c) => ENTITIES[c] ?? c);
+
+const WORDS = [
+  'Zero',
+  'One',
+  'Two',
+  'Three',
+  'Four',
+  'Five',
+  'Six',
+  'Seven',
+  'Eight',
+  'Nine',
+  'Ten',
+];
+/** "Seven" for small counts, digits above ten. */
+export const countWord = (n: number): string => WORDS[n] ?? String(n);

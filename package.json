@@ -11,10 +11,14 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "validate": "tsx scripts/validate-content.ts"
+    "validate": "tsx scripts/validate-content.ts",
+    "e2e": "playwright test",
+    "sprites": "tsx scripts/pixelate.ts"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.6",
     "eslint": "^10.14.0",
     "prettier": "^3.9.10",

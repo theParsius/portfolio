@@ -20,6 +20,21 @@
   --font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --header-h: 66px;
-  --ground-h: 46px;
+  --ground-h: 48px; /* grass tile 12px × 4 */
   --track-h: max(540px, calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px)));
+}
+
+:root {
+  --thumb-h: clamp(140px, 22vh, 190px);
+  --card-w: 340px;
+  --card-gap: 120px;
+  --qblock: 40px;
+  --qblock-lift: 64px; /* ? block bottom above the card top */
+  --mascot-h: 76px;
+}
+@media (max-width: 760px) {
+  :root {
+    --card-w: min(320px, calc(100vw - 48px));
+    --card-gap: 90px;
+  }
 }

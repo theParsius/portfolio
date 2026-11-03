@@ -5,5 +5,9 @@ export default defineConfig({
   base: site.base,
   server: { host: true },
   build: { target: 'es2022', assetsInlineLimit: 0 },
-  test: { include: ['tests/**/*.spec.ts'], exclude: ['tests/e2e/**'], environment: 'node' },
+  test: {
+    include: ['tests/**/*.spec.ts'],
+    exclude: ['tests/e2e/**', 'node_modules/**'],
+    environment: 'node',
+  },
 });

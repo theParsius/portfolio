@@ -247,6 +247,8 @@ Port the prototype's game section into modules. Don't re-tune anything here; jus
 
 ## 6. Needed from you
 
+The live, up-to-date list is the Claude Doc [theParsius Portfolio: What I Need to Provide](https://claude.ai/artifact/Enhry6GnVqgwYwxEDathiA). This section is a snapshot.
+
 **Decided (Nov 3, 2026):**
 1. Base path: keep `theparsius.github.io/portfolio/`. Routes are `/portfolio/` and `/portfolio/projects/<id>/`.
 2. `assets-src/**` is stored in Git LFS (see `.gitattributes`). Actual size is 7 MB.

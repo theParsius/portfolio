@@ -145,9 +145,9 @@ Site-level config (`site.ts`): name, handle, one-line role, short bio paragraphs
 
 ## Main level layout
 
-The main level is one horizontal track, `height = max(540px, 100svh − header)`, with a 46px grass floor running its full width. Every panel is bottom-aligned to the floor, left to right:
+The main level is one horizontal track, `height = max(540px, 100svh − header)`, with a 48px grass floor (12px tile × 4) running its full width. Every panel is bottom-aligned to the floor, left to right:
 
-1. **Hero** (100vw wide): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. Two trees and a tower near the right edge double as stairs.
+1. **Hero** (100vw wide): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. Two trees (148px, ×4) and a tower (129px, ×3) near the right edge double as stairs.
 2. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
 3. **Cards** (340px each, 120px gaps; 320px and 90px on phones): each card stands directly on the floor. The mascot stands on the card's top edge, left. The ? block floats above the card's top edge, right; it is hidden until play mode.
 4. **About** (\~860px): pixel avatar standing on the floor, short bio, stack line.
@@ -161,7 +161,7 @@ The main level is one horizontal track, `height = max(540px, 100svh − header)`
 | Max horizontal gap between platforms on a climb | 230px | Running jump distance |
 | ? block bottom above the card top | 64px | Player (54px) standing on the card can jump into it |
 | ? block size | 40 × 40px | Easy head-bump target |
-| Mascot height | 76px | Also a step up to the block |
+| Mascot height | 76px (smooth mascots); 72px for the Dice Fight pixel mascot (×2) | Also a step up to the block |
 | Card thumbnail height | clamp(140px, 22vh, 190px) | Keeps the card + block + bubble inside short laptop screens |
 | Track min height | 540px | Card stack + block + bubble fits |
 
@@ -314,7 +314,7 @@ The identity comes straight from the 2025 PDF: pure black, pink pixel type with 
 - **Speech bubble:** white, black text, 3px black outline, periwinkle offset shadow.
 - **Toast:** black, 2px pink inset border, periwinkle shadow, fixed under the header.
 
-**Pixel rules:** pixel art renders with `image-rendering: pixelated` at integer scales only. Photos and app icons keep smooth scaling. All motion uses `steps()` easing so it reads as sprite animation.
+**Pixel rules:** pixel art renders with `image-rendering: pixelated` at integer scales only. `scripts/pixelate.ts` recovers 1× sprites from the upscaled PDF art; sprites without a uniform grid (6 of 7 mascots, see `src/content/sprites.json`) are drawn smoothly until 1× versions exist. Photos and app icons keep smooth scaling. All motion uses `steps()` easing so it reads as sprite animation.
 
 ## Assets
 
@@ -326,7 +326,7 @@ All 55 images in the prototype were extracted from the PDF and ship in `portfoli
 | --- | --- | --- |
 | `public/sprites/clouds.png` | Pink cloud bank (PDF cover) | 1451 × 343, transparent |
 | `public/sprites/trees.png`, `tower.png`, `flag.png` | Scenery (PDF cover, intro page) | small PNGs, transparent |
-| `public/sprites/grass.png` | Ground strip | 900 × 87, tiles horizontally (visible seam) |
+| `public/sprites/grass-tile.png` | Ground tile | 98 × 12 at 1×, cut at the strip's exact repeat, seamless |
 | `public/sprites/avatar.png` | Waving pixel portrait | 318 × 348 |
 | `public/projects/<id>/icon.webp` | App icon | 160 × 160 |
 | `public/projects/<id>/mascot.png` | Pixel mascot | ≤ 308px, transparent |
