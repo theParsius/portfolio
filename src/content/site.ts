@@ -17,4 +17,5 @@ export const site: Site = {
   github: 'https://github.com/theParsius',
   cv: '/cv.pdf',
   portfolioPdf: '/portfolio.pdf',
+  analytics: 'theparsius',
 };

@@ -23,6 +23,7 @@ import { createLightbox } from './views/lightbox';
 import { renderMainLevel } from './views/mainLevel';
 import { createRoomLevel, layoutRoom, renderRoom } from './views/room';
 import { startShotHover } from './engine/hover';
+import { trackEvent, trackView } from './lib/analytics';
 
 const TITLE_MAIN = `${site.name}, game developer`;
 
@@ -45,16 +46,21 @@ const game = new Game(
     heroSprite: main.track.querySelector<HTMLElement>('.hero-sprite'),
     blocked: () => busy || lightbox.isOpen,
     onCardBlock: (id, el) => {
-      if (!viewing)
-        void enterRoom(id, el.closest('.card')?.querySelector<HTMLElement>('.frame'), pointOf(el));
+      if (viewing) return;
+      trackEvent(`play: opened ${id}`);
+      void enterRoom(id, el.closest('.card')?.querySelector<HTMLElement>('.frame'), pointOf(el));
     },
     onExitBlock: (el) => {
       if (viewing) void leaveRoom(pointOf(el));
     },
     onLinkBlock: (el) => {
       if (!(el instanceof HTMLAnchorElement)) return;
-      if (el.dataset.go) void goRoom(el.dataset.go, pointOf(el));
-      else if (!window.open(el.href, '_blank'))
+      if (el.dataset.go) {
+        void goRoom(el.dataset.go, pointOf(el));
+        return;
+      }
+      trackLink(el);
+      if (!window.open(el.href, '_blank'))
         toast(
           `Your browser blocked the new tab. Click "${el.textContent ?? 'the link'}" to open it.`,
         );
@@ -106,6 +112,7 @@ function showRoom(id: string): void {
   active = room;
   document.title = `${p.title}, ${site.name}`;
   room.track.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true });
+  trackView(roomUrl(id));
   game.setLevel(room); // in play: spawn at the entrance
   if (game.on) focusGame();
 }
@@ -229,6 +236,24 @@ function syncSound(): void {
 }
 syncSound();
 
+// ---------- Analytics ----------
+
+function startPlay(): void {
+  if (!game.on) trackEvent('play: start');
+  game.start();
+}
+
+/** Downloads and links that leave the site (store pages, LinkedIn, itch.io, email). */
+function trackLink(a: HTMLAnchorElement): void {
+  const label = (a.textContent ?? '').replace(/\s+/g, ' ').trim() || a.href;
+  if (a.hasAttribute('download')) trackEvent(`download: ${label}`);
+  else if (a.protocol === 'mailto:') trackEvent('contact: email');
+  else if (a.origin !== location.origin) {
+    const where = viewing ? `${viewing.id} → ${label}` : label;
+    trackEvent(`link: ${where}`);
+  }
+}
+
 // ---------- Input ----------
 
 const plainClick = (e: MouseEvent) =>
@@ -237,6 +262,9 @@ const plainClick = (e: MouseEvent) =>
 document.addEventListener('click', async (e) => {
   const t = e.target as Element | null;
   if (!t) return;
+
+  const link = t.closest<HTMLAnchorElement>('a[href]');
+  if (link) trackLink(link);
 
   const todo = t.closest<HTMLElement>('[data-todo]');
   if (todo) {
@@ -289,7 +317,7 @@ document.addEventListener('click', async (e) => {
     if (game.on) focusGame();
     return;
   }
-  if (t.closest('[data-play]')) game.start();
+  if (t.closest('[data-play]')) startPlay();
   else if (t.closest('[data-stop]')) game.stop();
 });
 
@@ -305,7 +333,10 @@ addEventListener(
       (e.code === 'KeyP' || e.key.toLowerCase() === 'p') && !e.metaKey && !e.ctrlKey && !e.altKey;
     if (isP && !inField) {
       e.preventDefault();
-      if (!e.repeat) game.toggle();
+      if (!e.repeat) {
+        if (game.on) game.toggle();
+        else startPlay();
+      }
       return;
     }
     if (game.keyDown(e)) return; // movement, jump, drop; Esc stops play (does not exit)
@@ -386,6 +417,7 @@ if (first.view === 'main') {
   if (location.pathname + location.search !== canonical) history.replaceState(null, '', canonical);
 }
 route();
+if (!viewing) trackView(); // a room counts its own view in showRoom
 // A deep-linked room has no main-level position to return to; exiting shows its card instead.
 if (first.view === 'room') savedScroll = null;
 // Text width shifts panel positions once fonts load; re-align a ?at= landing.

@@ -346,7 +346,8 @@ All 55 images in the prototype were extracted from the PDF and ship in `portfoli
 - [ ] 10–15 s gameplay loop per shipped project (MP4/WebM, muted) for cards or rooms.
 - [ ] Higher-resolution screenshots where originals exist (current ones are PDF-quality).
 - [ ] Real store, itch.io, LinkedIn and email links; `cv.pdf`.
-- [ ] Favicon and Open Graph images (1200 × 630) per route.
+- [x] Favicon: the pixel "P" (assets-src/brand/logo-1x.png, 18 × 20, snapped from theParsiusLogo.png) as favicon.svg, a 40px PNG and a 180px Apple touch icon; also in the header at 2× (the P alone under 440px wide).
+- [ ] Open Graph images (1200 × 630) per route.
 
 **Pipeline rules:** keep sources in `assets-src/` (Aseprite files, originals). Export pixel art as PNG at 1× and scale in CSS at integer factors. Export photos and screenshots as WebP, max 1440px wide, with width and height recorded in content data. Budget: under 1.5 MB transferred before first interaction; screenshots lazy-load per room.
 
@@ -367,7 +368,7 @@ The two biggest risks are untuned game feel and stale copy; everything else is a
 | 9 | Sound | Jump/coin sounds sell feel, but autoplay annoys | Done: off by default, Sound toggle in the play HUD, remembered in localStorage; synthesized with WebAudio (no files), synth loaded on first enable |
 | 10 | Touch pad on desktop | Clutters the screen, overlaps cards | Done: shown only on `pointer: coarse`; the play suite passes on WebKit (`WEBKIT=1 npm run e2e`) |
 | 11 | Horizontal scroll on some mice | Unfamiliar for some leads | Keep wheel mapping + Projects sign; add a thin progress bar under the header |
-| 12 | Analytics | Want to know if leads play or open rooms | Optional privacy-friendly counter (e.g. Plausible); no cookies |
+| 12 | Analytics | Want to know if leads play or open rooms | Done: GoatCounter (`site.analytics`, dashboard at theparsius.goatcounter.com), no cookies and no script: `src/lib/analytics.ts` sends one beacon per hit. Counts page views (main level once per load, each room shown) and events: `play: start`, `play: opened <id>`, `download: <label>`, `contact: email`, `link: <room> → <label>`. Off on localhost, in automated browsers and under Do Not Track / Global Privacy Control |
 
 ## Build plan
 
@@ -419,7 +420,7 @@ Side-scrolling pixel-art portfolio with an optional platformer "play this page" 
 Full spec: docs/SPEC.md. Behavioural reference: prototype.html (open it in a browser).
 
 ## Rules
-- Vite + TypeScript strict, plain DOM. No React, no game engine, no runtime CDN requests.
+- Vite + TypeScript strict, plain DOM. No React, no game engine, no runtime CDN requests (the analytics beacon is the one outgoing request; it loads no code).
 - All project content comes from src/content/projects.ts. Never hard-code project text in views.
 - Engine works in track coordinates (element rect minus track rect). Never in viewport coordinates.
 - Physics constants live in src/engine/constants.ts only. Changing one = update docs/SPEC.md too.

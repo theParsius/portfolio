@@ -52,4 +52,6 @@ export interface Site {
   cv: string | null;
   /** The printable portfolio, base-relative (public/). */
   portfolioPdf: string | null;
+  /** GoatCounter site code (dashboard at https://<code>.goatcounter.com); null = no analytics. */
+  analytics: string | null;
 }

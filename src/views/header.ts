@@ -1,5 +1,6 @@
 import { site } from '../content/site';
 import { projects } from '../content/projects';
+import { asset } from '../lib/asset';
 import { esc } from '../lib/format';
 import { linkAttrs } from '../lib/links';
 
@@ -20,7 +21,7 @@ export function renderHeader(): Header {
   el.className = 'site-header';
   el.innerHTML = `
     <div class="bar">
-      <a class="logo" href="${base}" data-nav="top">${esc(site.handle)}</a>
+      <a class="logo" href="${base}" data-nav="top"><img src="${asset('/sprites/logo.png')}" alt="" width="36" height="40"><span class="logo-text">${esc(site.handle)}</span></a>
       <nav class="nav-links" aria-label="Main">
         <a href="${base}?at=projects" data-nav="projects">Projects</a>
         <a class="opt" href="${base}?at=about" data-nav="about">About</a>
