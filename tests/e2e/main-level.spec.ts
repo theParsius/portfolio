@@ -136,3 +136,53 @@ test('has no serious accessibility violations', async ({ page }) => {
   const serious = violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
   expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(', ')}`)).toEqual([]);
 });
+
+for (const path of ['./', `projects/${projects[1]!.id}/`]) {
+  test(`clouds fill the sky of ${path} without covering text`, async ({ page }) => {
+    await page.goto(path);
+    await settle(page);
+    const r = await page.evaluate(() => {
+      const level = document.querySelector('main:not([hidden])')!;
+      const clouds = [...level.querySelectorAll('.sky .cloud')].map((c) =>
+        c.getBoundingClientRect(),
+      );
+      const text = [...level.querySelectorAll('h1, h2, h3, p, dl, .index, .btn, .cta, .r-meta')]
+        .map((t) => t.getBoundingClientRect())
+        .filter((t) => t.width && t.height);
+      const covered = clouds.filter((c) =>
+        text.some(
+          (t) => c.left < t.right && c.right > t.left && c.top < t.bottom && c.bottom > t.top,
+        ),
+      ).length;
+      return { clouds: clouds.length, covered };
+    });
+    expect(r.clouds).toBeGreaterThanOrEqual(3);
+    expect(r.covered).toBe(0);
+  });
+}
+
+// Phone browsers show much less than the screen (toolbars): nothing may run up under the header.
+for (const [w, h] of [
+  [375, 548],
+  [360, 640],
+  [390, 664],
+] as const) {
+  test(`at ${w}×${h} no text runs above the top of any level`, async ({ page }) => {
+    await page.setViewportSize({ width: w, height: h });
+    for (const path of ['./', ...projects.map((p) => `projects/${p.id}/`)]) {
+      await page.goto(path);
+      await settle(page);
+      const above = await page.evaluate(() => {
+        const level = document.querySelector('main:not([hidden])')!;
+        const top = level.querySelector('.track')!.getBoundingClientRect().top;
+        return [...level.querySelectorAll('h1, h2, h3, p, dl, .btn, .card .frame')]
+          .filter((el) => {
+            const r = el.getBoundingClientRect();
+            return r.width > 0 && r.top < top - 1;
+          })
+          .map((el) => el.textContent?.trim().slice(0, 30));
+      });
+      expect(above, path).toEqual([]);
+    }
+  });
+}

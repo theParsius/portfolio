@@ -40,6 +40,11 @@ export const SPRITES: Record<string, string> = {
   ),
 };
 
+/** 1× strips cut into one sprite per figure (split at fully transparent columns), left to right. */
+const SPLITS: Record<string, string[]> = {
+  'sprites/trees.png': ['sprites/tree-1.png', 'sprites/tree-2.png'],
+};
+
 export interface SpriteGrid {
   mode: 'pixel' | 'smooth';
   period: number;
@@ -157,13 +162,49 @@ async function runDetect(): Promise<void> {
 async function runApply(): Promise<void> {
   const config = JSON.parse(readFileSync(CONFIG, 'utf8')) as Record<string, SpriteGrid>;
   for (const [out, g] of Object.entries(config)) {
-    const src = resolve(SRC, SPRITES[out] ?? out);
+    if (!SPRITES[out]) continue; // a piece cut by splitStrips()
+    const src = resolve(SRC, SPRITES[out]);
     if (!existsSync(src)) throw new Error(`missing source ${src}`);
     if (g.mode === 'pixel') await downsample(src, g, resolve(OUT, out));
     else copyFileSync(src, resolve(OUT, out));
     console.log(`${g.mode.padEnd(6)} ${out} → ${g.width}×${g.height}`);
   }
   await grassTile();
+  await splitStrips(config);
+}
+
+/** Cuts each strip in SPLITS at its empty columns and registers the pieces in sprites.json. */
+async function splitStrips(config: Record<string, SpriteGrid>): Promise<void> {
+  for (const [strip, pieces] of Object.entries(SPLITS)) {
+    const g = config[strip];
+    if (!g || g.mode !== 'pixel') throw new Error(`${strip}: split needs a pixel sprite`);
+    const file = resolve(OUT, strip);
+    const { data, W, H } = await load(file);
+    const filled = (x: number) => {
+      for (let y = 0; y < H; y++) if ((data[(y * W + x) * 4 + 3] ?? 0) > 0) return true;
+      return false;
+    };
+    const runs: [number, number][] = [];
+    for (let x = 0; x < W; x++) {
+      if (!filled(x)) continue;
+      const last = runs.at(-1);
+      if (last && last[1] === x) last[1] = x + 1;
+      else runs.push([x, x + 1]);
+    }
+    if (runs.length !== pieces.length)
+      throw new Error(`${strip}: found ${runs.length} figures, expected ${pieces.length}`);
+    for (const [i, [a, b]] of runs.entries()) {
+      const out = pieces[i];
+      if (!out) continue;
+      await sharp(file)
+        .extract({ left: a, top: 0, width: b - a, height: H }) // full height: feet stay on the ground line
+        .png({ palette: true })
+        .toFile(resolve(OUT, out));
+      config[out] = { ...g, ox: 0, oy: 0, width: b - a, height: H };
+      console.log(`split  ${out} → ${b - a}×${H}`);
+    }
+  }
+  writeFileSync(CONFIG, JSON.stringify(config, null, 2) + '\n');
 }
 
 /**

@@ -50,10 +50,8 @@ export function renderMainLevel(): Level {
   scroller.innerHTML = `
     <div class="track" data-track>
       <div class="floor" aria-hidden="true"></div>
-      ${spriteImg('/sprites/clouds.png', 'cloud move', { attrs: 'aria-hidden="true"', style: 'left:38vw' })}
 
       <section class="panel hero" id="top" aria-labelledby="hero-title">
-        ${spriteImg('/sprites/trees.png', 'deco trees', { attrs: 'data-solid aria-hidden="true"' })}
         ${spriteImg('/sprites/tower.png', 'deco tower', { attrs: 'data-solid aria-hidden="true"' })}
         <canvas class="hero-sprite" aria-hidden="true"></canvas>
         <h1 id="hero-title" data-solid="text" tabindex="-1">${esc(site.name)}</h1>
@@ -66,7 +64,8 @@ export function renderMainLevel(): Level {
       </section>
 
       <section class="panel about" id="about" aria-labelledby="about-title">
-        ${spriteImg('/sprites/clouds.png', 'cloud', { attrs: 'aria-hidden="true"', style: 'left:42%' })}
+        ${spriteImg('/sprites/tree-1.png', 'deco tree tree-l', { attrs: 'data-solid aria-hidden="true"' })}
+        ${spriteImg('/sprites/tree-2.png', 'deco tree tree-r', { attrs: 'data-solid aria-hidden="true"' })}
         <h2 id="about-title" data-solid="text" tabindex="-1">About</h2>
         <div class="cols">
           <div class="avatar-slot">

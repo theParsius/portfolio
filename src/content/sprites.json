@@ -115,5 +115,23 @@
     "err": 117.7,
     "width": 225,
     "height": 285
+  },
+  "sprites/tree-1.png": {
+    "mode": "pixel",
+    "period": 6.85,
+    "ox": 0,
+    "oy": 0,
+    "err": 27,
+    "width": 19,
+    "height": 37
+  },
+  "sprites/tree-2.png": {
+    "mode": "pixel",
+    "period": 6.85,
+    "ox": 0,
+    "oy": 0,
+    "err": 27,
+    "width": 20,
+    "height": 37
   }
 }

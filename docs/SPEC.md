@@ -145,13 +145,17 @@ Site-level config (`site.ts`): name, handle, one-line role, short bio paragraphs
 
 ## Main level layout
 
-The main level is one horizontal track, `height = max(540px, 100svh − header)`, with a 48px grass floor (12px tile × 4) running its full width. Every panel is bottom-aligned to the floor, left to right:
+The main level is one horizontal track, `height = max(540px, 100svh − header)`, with a 48px grass floor (12px tile × 4) running its full width. Every panel is bottom-aligned to the floor, left to right (clouds: see the note below the list):
 
-1. **Hero** (100vw wide): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. Two trees (148px, ×4) and a tower (129px, ×3) near the right edge double as stairs.
-2. **About** (\~860px): pixel avatar floating 48px above the grass with a pixel shadow, short bio, stack line.
+1. **Hero** (as wide as its text; 100vw on phones): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. The tower (129px, ×3) stands right after the name and doubles as a step.
+2. **About** (\~1100px): a tree (148px, ×4; one half of the old trees strip, cut by `npm run sprites`) on each side, pixel avatar floating 48px above the grass with a pixel shadow, short bio, stack line. Tower and trees are hidden on phones.
 3. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
 4. **Cards** (380px each, 120px gaps; 320px and 90px on phones): each card floats `--hover-h` (132px) above the floor, with a pixel shadow on the grass and a 4px two-step bob (off while playing and under reduced motion). Underneath each card: the mascot standing on the grass (left; idle double hop with a squash every 3–4 s, staggered, off under reduced motion), its speech bubble beside it (play only, when the player is near), and the ? block 80px above the grass (right; hidden until play mode, bumped from the floor). The mascot and ? block are the first steps up onto the card.
 5. **Contact** (\~820px): heading, Email, LinkedIn, itch.io, Download CV buttons, name line. The goal flag stands on the floor near the right end.
+
+**Phones and short screens.** A phone browser shows far less than the screen (toolbars), so nothing may stack up past the top of the track. On phones (≤ 760px wide) tall content is laid out sideways, the way the level scrolls: the About text gets a column of its own with the avatar floating to its right, and a room's intro is two columns (title and facts; description, metric and links). Below 700px tall the About and room text get tighter, and below 620px the card thumbnails shrink to 120px. Tested at 375×548, 360×640 and 390×664 (no text above the track).
+
+**Clouds.** `views/sky.ts` scatters the cloud sprite along the whole track of the main level and of every room, after layout and again on resize: every 400–900px (closer for small ones), at one of a few heights in the top 42% of the track, ×1 or ×2 (×1 only on phones), sometimes mirrored, each drifting 70px at its own speed (still under reduced motion). A spot is skipped where the cloud (plus its drift) would cover text, buttons, the avatar or scenery, or where less than 60% of its body (bottom half) would show past cards and screenshots. Seeded per level, so the sky is the same on every visit. Clouds sit behind everything (`.sky`, z-index −1 in an isolated track) and are not colliders.
 
 **Geometry rules the engine depends on**
 

@@ -23,6 +23,7 @@ import { createLightbox } from './views/lightbox';
 import { renderMainLevel } from './views/mainLevel';
 import { createRoomLevel, layoutRoom, renderRoom } from './views/room';
 import { startShotHover } from './engine/hover';
+import { placeClouds } from './views/sky';
 import { trackEvent, trackView } from './lib/analytics';
 
 const TITLE_MAIN = `${site.name}, game developer`;
@@ -108,6 +109,7 @@ function showRoom(id: string): void {
   room.scroller.hidden = false;
   document.body.classList.add('viewing');
   layoutRoom(room);
+  placeClouds(room.track, p.id);
   room.scroller.scrollLeft = 0;
   active = room;
   document.title = `${p.title}, ${site.name}`;
@@ -126,6 +128,7 @@ function showMain(): void {
   room.track.replaceChildren();
   main.scroller.hidden = false;
   document.body.classList.remove('viewing');
+  placeClouds(main.track, 'main'); // the window may have changed size while the room was open
   active = main;
   document.title = TITLE_MAIN;
   const card = document.querySelector<HTMLElement>(`#card-${id}`);
@@ -361,7 +364,10 @@ addEventListener(
 
 // Colliders follow layout: rebuild on resize, font load and any track size change.
 const relayout = () => {
-  if (viewing) layoutRoom(room);
+  if (viewing) {
+    layoutRoom(room);
+    placeClouds(room.track, viewing.id);
+  } else placeClouds(main.track, 'main');
   if (game.on) game.rebuild();
 };
 addEventListener('resize', relayout);

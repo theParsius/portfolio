@@ -306,27 +306,42 @@
   .r-exit .exit-label {
     left: 4px;
   }
+  /* Phones are short and the level scrolls sideways: two columns side by side instead of one
+     tall stack (which ran up under the header). Left: title and facts. Right: text and links. */
   .r-intro {
-    width: calc(100vw - 88px);
+    width: max-content;
+    display: grid;
+    grid-template-columns: 280px min(330px, calc(100vw - 48px));
+    column-gap: 36px;
+    align-content: end;
     padding-left: 4px;
-    padding-right: 20px;
+    padding-right: 28px;
+    padding-bottom: calc(var(--ground-h) + 84px);
   }
   .r-info {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    align-items: start;
+    display: contents;
+  }
+  .r-title {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    margin-bottom: 14px;
+    gap: 14px;
+  }
+  .r-title h1 {
+    font-size: 40px;
   }
   .r-info .facts {
-    order: -1; /* above the text, so the links at the bottom can be bumped from the grass */
+    grid-column: 1;
+    grid-row: 2;
     font-size: 15px;
     padding: 10px 14px;
     gap: 4px 12px;
   }
-  .r-intro {
-    padding-bottom: calc(var(--ground-h) + 84px);
-  }
-  .r-title {
-    margin-bottom: 14px;
+  .r-info > div {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: end;
   }
   .r-info p {
     font-size: 16px;
@@ -388,5 +403,14 @@
   }
   .r-links {
     margin-top: 12px;
+  }
+}
+/* Short phones: a little tighter still. */
+@media (max-width: 760px) and (max-height: 700px) {
+  .r-title h1 {
+    font-size: 34px;
+  }
+  .r-info p {
+    font-size: 15px;
   }
 }

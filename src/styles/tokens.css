@@ -39,3 +39,10 @@
     --card-gap: 90px;
   }
 }
+/* Very short screens (small phones with browser bars): shorter card thumbnails, so the tallest
+   card (a title on two lines) stays below the top of the level. */
+@media (max-height: 620px) {
+  :root {
+    --thumb-h: 120px;
+  }
+}

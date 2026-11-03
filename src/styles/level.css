@@ -23,6 +23,7 @@
 }
 .track {
   position: relative;
+  isolation: isolate; /* the sky layer (z-index -1) stays inside the track, behind everything */
   display: flex;
   height: 100%;
   width: max-content;
@@ -52,14 +53,23 @@
   bottom: var(--ground-h);
   pointer-events: none;
 }
+/* Clouds: placed by views/sky.ts after layout (position, size --s, speed --dur), clear of text */
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
 .cloud {
   position: absolute;
-  top: 7%;
   pointer-events: none;
-  --s: 2;
+}
+.cloud.flip {
+  scale: -1 1;
 }
 .cloud.move {
-  animation: drift 70s linear infinite alternate;
+  animation: drift var(--dur, 70s) linear infinite alternate;
 }
 @keyframes drift {
   to {
@@ -77,11 +87,10 @@
   margin: 0;
 }
 
-/* Hero */
+/* Hero: as wide as its text, then the tower right after the name */
 .hero {
-  width: max(100vw, 760px);
   padding-left: max(24px, calc(50vw - 546px));
-  padding-right: 200px;
+  padding-right: calc(54px + 2 * 70px); /* tower (18 px × 3) with room on both sides */
   padding-bottom: calc(var(--ground-h) + 76px); /* the idle player stands below the buttons */
 }
 .hero h1 {
@@ -90,6 +99,7 @@
   text-shadow: 5px 5px 0 var(--peri);
   margin: 0 0 22px;
   max-width: 9ch;
+  width: max-content;
 }
 .hero .lede {
   font-size: clamp(20px, 2.2vw, 25px);
@@ -114,12 +124,8 @@
   height: 54px;
   image-rendering: pixelated;
 }
-.hero .trees {
-  right: 220px;
-  --s: 4;
-}
 .hero .tower {
-  right: 40px;
+  right: 70px;
   --s: 3;
 }
 
@@ -507,12 +513,21 @@ button.qblock {
   }
 }
 
-/* About */
+/* About: a tree on each side (one tree is 19-20 px × 4) */
 .about {
-  width: min(860px, 100vw);
-  padding-left: 60px;
-  padding-right: 80px;
+  width: min(1100px, 100vw);
+  padding-left: calc(30px + 80px + 50px);
+  padding-right: calc(30px + 80px + 60px);
   padding-bottom: var(--ground-h);
+}
+.about .tree {
+  --s: 4;
+}
+.about .tree-l {
+  left: 30px;
+}
+.about .tree-r {
+  right: 30px;
 }
 .about .cols {
   display: grid;
@@ -577,7 +592,7 @@ button.qblock {
     padding-right: 24px;
   }
   .hero .tower,
-  .hero .trees {
+  .about .tree {
     display: none;
   }
   .hero-sprite {
@@ -597,14 +612,18 @@ button.qblock {
     padding-left: 24px;
     padding-right: 24px;
   }
-  /* Phones: text full width, the avatar floating below it (side by side, the text column was
-     too narrow and pushed the heading off the top). */
+  /* Phones: the text gets a full screen-wide column and the avatar floats beside it, to the
+     right (the level scrolls sideways; stacked, the text ran up under the header). */
+  .about {
+    width: max-content;
+    padding-right: 28px;
+  }
   .about .cols {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: min(330px, calc(100vw - 48px)) auto;
+    gap: 28px;
   }
   .about .text {
-    padding-bottom: 0;
+    padding-bottom: 44px;
   }
   .about .avatar-slot {
     order: 2;
@@ -619,9 +638,6 @@ button.qblock {
   }
   .contact .flag {
     right: 24px;
-  }
-  .cloud {
-    --s: 1;
   }
 }
 @media (pointer: coarse) {
@@ -646,5 +662,17 @@ button.qblock {
   .card:hover .mascot,
   .card:focus-within .mascot {
     transform: none;
+  }
+}
+
+/* Short screens (phones with browser bars, landscape, small laptops): tighter About text. */
+@media (max-height: 700px) {
+  .about p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .about h2 {
+    margin-bottom: 10px;
   }
 }
