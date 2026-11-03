@@ -1,0 +1,91 @@
+/* Play mode layer: the actor, coins, dust and the touch pad. */
+
+.actor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 54px;
+  z-index: 40;
+  pointer-events: none;
+  display: none;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+body.playing .actor {
+  display: block;
+}
+.fx {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 39;
+  pointer-events: none;
+  will-change: transform;
+}
+.fx.coin {
+  width: 14px;
+  height: 20px;
+  margin: -10px 0 0 -7px;
+  background: #f7c85a;
+  box-shadow:
+    inset 3px 0 0 #fff3c4,
+    inset -3px 0 0 #b07418,
+    0 0 0 2px #7a4a08;
+}
+.fx.dust {
+  width: 4px;
+  height: 4px;
+  background: #f3efe4;
+}
+
+/* Touch pad (shown on all devices while playing; M5 may limit it to coarse pointers) */
+.pad {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 4px);
+  z-index: 60;
+  padding: 0 18px;
+  justify-content: space-between;
+  pointer-events: none;
+}
+body.playing .pad {
+  display: flex;
+}
+.pad div {
+  display: flex;
+  gap: 12px;
+}
+.pad button {
+  pointer-events: auto;
+  touch-action: none;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  background: rgb(17 15 26 / 0.85);
+  color: var(--ink);
+  font: 24px var(--font-display);
+  box-shadow: inset 0 0 0 2px var(--line);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.pad button.jump {
+  background: var(--pink);
+  color: #000;
+  box-shadow: 4px 4px 0 var(--peri);
+  font-size: 18px;
+  width: 76px;
+}
+@media (pointer: fine) {
+  .pad button {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+  .pad button.jump {
+    width: 64px;
+    font-size: 16px;
+  }
+}

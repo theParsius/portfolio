@@ -255,9 +255,17 @@ The live, up-to-date list is the Claude Doc [theParsius Portfolio: What I Need t
 
 3. Deploy only once the full implementation is done (merge `rebuild` → `main`). The workflow deploys from `main` only; other branches run lint, test and build.
 
-**Status:** M0–M3 done on `rebuild`. The live deploy is deferred per decision 3.
+**Status:** M0–M4 done on `rebuild`. The live deploy is deferred per decision 3.
 
 Notes from M3: all 25 screenshots with originals were matched automatically (`scripts/images.ts`); Open Graph images are WebP for now, which some sites (Facebook, LinkedIn) may not preview, so M6's generated 1200 × 630 cards should be PNG or JPEG. Focus on leaving a room returns to whatever opened it (card or Projects sign link), falling back to the card.
+
+Notes from M4: the engine is a straight port of the prototype; nothing was re-tuned. `tests/e2e/play.spec.ts` covers:
+- the reachability BFS on the main level and every room, at all 3 viewports;
+- P / Play / Stop / Esc;
+- bump → room → exit, with exact restore and found counted once;
+- drop-through, the lightbox pause, the touch pad, and keyboard input inside an iframe.
+
+The debug hook `window.__game` exists only on the dev server or with `?test` in the URL. The touch pad still shows on every device while playing; restricting it to coarse pointers is M5. The player still uses the prototype's placeholder frames until the sprite sheet arrives.
 
 **Before M6:**
 3. WordFly store URLs, contact email, itch.io profile URL, `cv.pdf`.
