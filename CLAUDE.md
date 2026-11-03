@@ -4,6 +4,7 @@ Side-scrolling pixel-art portfolio with an optional platformer "play this page" 
 Full spec: docs/SPEC.md. Behavioural reference: docs/prototype.html (open it in a browser).
 
 ## Rules
+
 - Vite + TypeScript strict, plain DOM. No React, no game engine, no runtime CDN requests.
 - All project content comes from src/content/projects.ts. Never hard-code project text in views.
 - Engine works in track coordinates (element rect minus track rect). Never in viewport coordinates.
@@ -14,7 +15,9 @@ Full spec: docs/SPEC.md. Behavioural reference: docs/prototype.html (open it in 
 - Work one milestone at a time from docs/SPEC.md "Build plan". Stop and report when its acceptance criteria pass.
 
 ## Commands
-- npm run dev      local server
-- npm run test     Vitest unit tests
-- npm run e2e      Playwright (viewports 1280x800, 1366x640, 390x844)
-- npm run build    build + prerender project routes
+
+- `npm run dev`: local server
+- `npm run test`: Vitest unit tests (includes content validation)
+- `npm run validate`: check content against files in public/
+- `npm run e2e`: Playwright (viewports 1280x800, 1366x640, 390x844)
+- `npm run build`: typecheck + build + prerender project routes

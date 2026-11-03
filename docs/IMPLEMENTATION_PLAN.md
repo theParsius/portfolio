@@ -251,7 +251,9 @@ Port the prototype's game section into modules. Don't re-tune anything here; jus
 1. Base path: keep `theparsius.github.io/portfolio/`. Routes are `/portfolio/` and `/portfolio/projects/<id>/`.
 2. `assets-src/**` is stored in Git LFS (see `.gitattributes`). Actual size is 7 MB.
 
-M0 is done on branch `rebuild` (not yet committed).
+3. Deploy only once the full implementation is done (merge `rebuild` → `main`). The workflow deploys from `main` only; other branches run lint, test and build.
+
+**Status:** M0 done. M1 done, except that the live deploy is deferred per decision 3.
 
 **Before M6:**
 3. WordFly store URLs, contact email, itch.io profile URL, `cv.pdf`.

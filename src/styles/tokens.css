@@ -1,0 +1,25 @@
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --ink: #f3eff9;
+  --dim: #a9a3bc;
+  --pink: #f9b8e8;
+  --peri: #5b6ce0;
+  --panel: #110f1a;
+  --line: #25213a;
+  --gold: #e8a317;
+  --gold-dark: #8a4e12;
+
+  --s-live: #5be36a;
+  --s-released: #5be36a;
+  --s-prototype: #f5b055;
+  --s-jam: #f9b8e8;
+  --s-unreleased: #9c97ae;
+
+  --font-display: 'Pixelify Sans', ui-monospace, monospace;
+  --font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --header-h: 66px;
+  --ground-h: 46px;
+  --track-h: max(540px, calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px)));
+}
