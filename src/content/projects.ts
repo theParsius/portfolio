@@ -1,3 +1,4 @@
+import manifest from './shots.json' with { type: 'json' };
 import type { Project, Screenshot } from './types';
 
 /**
@@ -5,9 +6,18 @@ import type { Project, Screenshot } from './types';
  * Copy is placeholder from the 2025 PDF and will be rewritten before launch (SPEC: open decisions 2–5).
  */
 
-/** Builds shot-1…shot-N entries for a project; all shots in a set share one size. */
-function shots(id: string, width: number, height: number, alts: string[]): Screenshot[] {
-  return alts.map((alt, i) => ({ src: `/projects/${id}/shot-${i + 1}.webp`, alt, width, height }));
+/**
+ * Builds shot-1…shot-N entries for a project. Sizes come from src/content/shots.json,
+ * written by scripts/images.ts, so they always match the exported files.
+ */
+function shots(id: string, alts: string[]): Screenshot[] {
+  const sizes = (manifest as Record<string, { width: number; height: number }[]>)[id] ?? [];
+  return alts.map((alt, i) => ({
+    src: `/projects/${id}/shot-${i + 1}.webp`,
+    alt,
+    width: sizes[i]?.width ?? 0,
+    height: sizes[i]?.height ?? 0,
+  }));
 }
 
 const art = (id: string) => ({
@@ -38,7 +48,7 @@ export const projects: Project[] = [
     ],
     orientation: 'landscape',
     ...art('honeyland'),
-    screenshots: shots('honeyland', 555, 270, [
+    screenshots: shots('honeyland', [
       'A hive interior where the player’s bees gather, with the main menu along the bottom.',
       'The marketplace listing Gen 3 bees for sale, each with a mood and a price.',
       'A story chapter, “The Honeycomb”, with bees performing on a stage.',
@@ -62,7 +72,7 @@ export const projects: Project[] = [
     links: [], // TODO(M6): Google Play and App Store URLs
     orientation: 'portrait',
     ...art('wordfly'),
-    screenshots: shots('wordfly', 396, 861, [
+    screenshots: shots('wordfly', [
       'The home screen: a pelican mascot and a pilot flying over a map, with a big Play button.',
       'The Bangkok city map, with levels pinned to landmarks.',
       'A daily level listing secret-word lengths above a cluster of letter bubbles.',
@@ -85,7 +95,7 @@ export const projects: Project[] = [
     links: [],
     orientation: 'portrait',
     ...art('dice-fight'),
-    screenshots: shots('dice-fight', 362, 790, [
+    screenshots: shots('dice-fight', [
       'Two pixel-art fighters trading blows on a night street.',
       'Fighter select, with item slots and the fighter’s health, defence and attack.',
       'A turn in a fight: the rolled dice form a Pair beneath the two fighters.',
@@ -108,12 +118,12 @@ export const projects: Project[] = [
     links: [{ label: 'Cafe Bazaar', url: 'https://cafebazaar.ir/app/com.LuLuGames.LineUp?l=en' }],
     orientation: 'portrait',
     ...art('line-up'),
-    screenshots: shots('line-up', 324, 576, [
+    screenshots: shots('line-up', [
       'The formation editor: an empty pitch beside the player’s card bench.',
       'A live match as Paulo Dybala scores a goal.',
       'A head-to-head duel between a rival’s card and the player’s card mid-match.',
       'The main menu with card packs, a Play button, and shop links.',
-      'The match result listing both teams’ players and ratings.',
+      'The draft screen: picking players for each side, with their ratings.',
     ]),
   },
   {
@@ -133,7 +143,7 @@ export const projects: Project[] = [
     ],
     orientation: 'portrait',
     ...art('funtomime'),
-    screenshots: shots('funtomime', 324, 576, [
+    screenshots: shots('funtomime', [
       'A player-uploaded video clue with four answer choices and power-ups below.',
       'The topic picker, offering categories such as general knowledge and celebrities.',
       'The match board tracking each round’s score against the opponent.',
@@ -156,7 +166,7 @@ export const projects: Project[] = [
     links: [{ label: 'itch.io', url: 'https://theparsius.itch.io/saving-private-teddy' }],
     orientation: 'landscape',
     ...art('saving-private-teddy'),
-    screenshots: shots('saving-private-teddy', 576, 324, [
+    screenshots: shots('saving-private-teddy', [
       'A dark bedroom seen from above, lit only by a beam of light from the door.',
       'The path of light bends around a corner towards the teddy bear.',
       'A puzzle room where mirrors split the beam of light.',
@@ -179,7 +189,7 @@ export const projects: Project[] = [
     links: [],
     orientation: 'landscape',
     ...art('agha-khan'),
-    screenshots: shots('agha-khan', 576, 324, [
+    screenshots: shots('agha-khan', [
       'Concept sketches of an old sorcerer holding fire in his hand.',
       'Stylised statues of the game’s heroes and creatures.',
       'A floating island arena with a board of units under a stormy sky.',

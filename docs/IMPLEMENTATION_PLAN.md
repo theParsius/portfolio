@@ -255,7 +255,9 @@ The live, up-to-date list is the Claude Doc [theParsius Portfolio: What I Need t
 
 3. Deploy only once the full implementation is done (merge `rebuild` → `main`). The workflow deploys from `main` only; other branches run lint, test and build.
 
-**Status:** M0 done. M1 done, except that the live deploy is deferred per decision 3.
+**Status:** M0–M3 done on `rebuild`. The live deploy is deferred per decision 3.
+
+Notes from M3: all 25 screenshots with originals were matched automatically (`scripts/images.ts`); Open Graph images are WebP for now, which some sites (Facebook, LinkedIn) may not preview, so M6's generated 1200 × 630 cards should be PNG or JPEG. Focus on leaving a room returns to whatever opened it (card or Projects sign link), falling back to the card.
 
 **Before M6:**
 3. WordFly store URLs, contact email, itch.io profile URL, `cv.pdf`.

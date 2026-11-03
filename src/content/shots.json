@@ -1,0 +1,191 @@
+{
+  "agha-khan": [
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/ashou.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/concept_character.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/game.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/loading.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/menu.png"
+    }
+  ],
+  "dice-fight": [
+    {
+      "width": 362,
+      "height": 790,
+      "source": "starter/shot-1.webp"
+    },
+    {
+      "width": 362,
+      "height": 790,
+      "source": "starter/shot-2.webp"
+    },
+    {
+      "width": 362,
+      "height": 790,
+      "source": "starter/shot-3.webp"
+    },
+    {
+      "width": 362,
+      "height": 790,
+      "source": "starter/shot-4.webp"
+    },
+    {
+      "width": 362,
+      "height": 790,
+      "source": "starter/shot-5.webp"
+    }
+  ],
+  "funtomime": [
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/match.jpg"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/pick_topic.png"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/match_info.png"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/avatars.png"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/menu.png"
+    }
+  ],
+  "honeyland": [
+    {
+      "width": 1440,
+      "height": 701,
+      "source": "originals/hive.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 701,
+      "source": "originals/marketplace.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 701,
+      "source": "originals/npc.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 701,
+      "source": "originals/universe.jpg"
+    },
+    {
+      "width": 1440,
+      "height": 701,
+      "source": "originals/upgrade.jpg"
+    }
+  ],
+  "line-up": [
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/formation.jpg"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/match_goal.jpg"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/match.jpg"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/menu.jpg"
+    },
+    {
+      "width": 1080,
+      "height": 1920,
+      "source": "originals/pick.jpg"
+    }
+  ],
+  "saving-private-teddy": [
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/level1.png"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/level2.png"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/level6.png"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/menu.png"
+    },
+    {
+      "width": 1440,
+      "height": 810,
+      "source": "originals/level3.png"
+    }
+  ],
+  "wordfly": [
+    {
+      "width": 396,
+      "height": 861,
+      "source": "starter/shot-1.webp"
+    },
+    {
+      "width": 396,
+      "height": 861,
+      "source": "starter/shot-2.webp"
+    },
+    {
+      "width": 396,
+      "height": 861,
+      "source": "starter/shot-3.webp"
+    },
+    {
+      "width": 396,
+      "height": 861,
+      "source": "starter/shot-4.webp"
+    },
+    {
+      "width": 396,
+      "height": 861,
+      "source": "starter/shot-5.webp"
+    }
+  ]
+}

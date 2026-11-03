@@ -1,4 +1,4 @@
-import grids from '../content/sprites.json';
+import grids from '../content/sprites.json' with { type: 'json' };
 import { asset } from './asset';
 
 interface Grid {

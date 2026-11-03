@@ -13,7 +13,8 @@
     "test": "vitest run",
     "validate": "tsx scripts/validate-content.ts",
     "e2e": "playwright test",
-    "sprites": "tsx scripts/pixelate.ts"
+    "sprites": "tsx scripts/pixelate.ts",
+    "images": "tsx scripts/images.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",

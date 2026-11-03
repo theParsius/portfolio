@@ -4,11 +4,12 @@ import type { Project } from '../content/types';
 import { asset } from '../lib/asset';
 import { countWord, esc, STATUS_LABEL, yearsLabel } from '../lib/format';
 import { linkAttrs } from '../lib/links';
+import { shotVariants } from '../lib/shots';
 import { spriteImg } from '../lib/sprites';
+import { roomUrl } from '../router';
 import type { Level } from '../ui/sideways';
 
 const base = import.meta.env.BASE_URL;
-export const roomHref = (id: string): string => `${base}projects/${id}/`;
 
 function card(p: Project): string {
   const shots =
@@ -16,7 +17,7 @@ function card(p: Project): string {
   const thumbs = shots
     .map(
       (s) =>
-        `<img src="${asset(s.src)}" alt="" width="${s.width}" height="${s.height}" loading="lazy" decoding="async">`,
+        `<img src="${shotVariants(s).thumb}" alt="" width="${s.width}" height="${s.height}" loading="lazy" decoding="async">`,
     )
     .join('');
   const metric = p.metrics?.[0] ? `<p class="metric">${esc(p.metrics[0])}</p>` : '';
@@ -25,7 +26,7 @@ function card(p: Project): string {
       <div class="bubble" aria-hidden="true">${esc(p.hook)}</div>
       ${spriteImg(p.mascot, 'mascot', { attrs: 'data-solid aria-hidden="true"' })}
       <div class="qblock" aria-hidden="true">?</div>
-      <a class="frame" href="${roomHref(p.id)}" data-room="${p.id}" data-solid>
+      <a class="frame" href="${roomUrl(p.id)}" data-room="${p.id}" data-solid>
         <div class="thumb ${p.orientation}">${thumbs}</div>
         <img class="icon" data-solid src="${asset(p.icon)}" alt="" width="64" height="64" loading="lazy">
         <div class="body">
@@ -70,7 +71,7 @@ export function renderMainLevel(): Level {
           ${projects
             .map(
               (p) =>
-                `<li><a href="${roomHref(p.id)}" data-room="${p.id}" style="--c:${p.color}">${esc(p.title)}</a><span class="yr">${yearsLabel(p)}</span></li>`,
+                `<li><a href="${roomUrl(p.id)}" data-room="${p.id}" style="--c:${p.color}">${esc(p.title)}</a><span class="yr">${yearsLabel(p)}</span></li>`,
             )
             .join('')}
         </ul>

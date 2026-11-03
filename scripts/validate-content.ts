@@ -57,6 +57,10 @@ async function checkProject(p: Project, r: Report): Promise<void> {
     if (m.width !== s.width || m.height !== s.height) {
       r.errors.push(at(`${s.src} is ${m.width}×${m.height}, content says ${s.width}×${s.height}`));
     }
+    for (const v of ['room', 'thumb']) {
+      const variant = s.src.replace(/\.webp$/, `-${v}.webp`);
+      if (!existsSync(pub(variant))) r.errors.push(at(`missing ${variant}; run npm run images`));
+    }
     const shape = s.width >= s.height ? 'landscape' : 'portrait';
     if (shape !== p.orientation)
       r.errors.push(at(`${s.src} is ${shape}, project is ${p.orientation}`));

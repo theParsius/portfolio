@@ -23,3 +23,5 @@ Full spec: docs/SPEC.md. Behavioural reference: docs/prototype.html (open it in 
 - `npm run validate`: check content against files in public/
 - `npm run e2e`: Playwright (viewports 1280x800, 1366x640, 390x844)
 - `npm run build`: typecheck + build + prerender project routes
+- `npm run images`: screenshots from assets-src/ → public/ (3 sizes) + src/content/shots.json
+- `npm run sprites`: 1× pixel sprites from assets-src/sprites-upscaled/ (`-- --detect` rescans grids, slow)
