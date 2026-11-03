@@ -65,6 +65,20 @@ export function renderMainLevel(): Level {
         </div>
       </section>
 
+      <section class="panel about" id="about" aria-labelledby="about-title">
+        ${spriteImg('/sprites/clouds.png', 'cloud', { attrs: 'aria-hidden="true"', style: 'left:42%' })}
+        <h2 id="about-title" data-solid="text" tabindex="-1">About</h2>
+        <div class="cols">
+          <div class="avatar-slot">
+            ${spriteImg('/sprites/avatar.png', 'avatar', { attrs: 'data-solid', alt: `Pixel portrait of ${esc(site.name.split(' ')[0] ?? '')} waving` })}
+          </div>
+          <div class="text">
+            ${site.bio.map((b) => `<p data-solid="text">${esc(b)}</p>`).join('')}
+            <p class="stack" data-solid="text">${esc(site.stackLine)}</p>
+          </div>
+        </div>
+      </section>
+
       <section class="panel sign" id="projects" aria-labelledby="projects-title">
         <h2 id="projects-title" data-solid="text" tabindex="-1">Projects</h2>
         <p class="sub" data-solid="text">${countWord(projects.length)} games from ${Math.min(...projects.map((p) => p.years.start))} to now. Pick one, or keep walking right.</p>
@@ -82,18 +96,6 @@ export function renderMainLevel(): Level {
       <div class="cards" aria-label="Project cards" role="list">
         ${projects.map(card).join('')}
       </div>
-
-      <section class="panel about" id="about" aria-labelledby="about-title">
-        ${spriteImg('/sprites/clouds.png', 'cloud', { attrs: 'aria-hidden="true"', style: 'left:10%' })}
-        <h2 id="about-title" data-solid="text" tabindex="-1">About</h2>
-        <div class="cols">
-          ${spriteImg('/sprites/avatar.png', 'avatar', { attrs: 'data-solid', alt: `Pixel portrait of ${esc(site.name.split(' ')[0] ?? '')} waving` })}
-          <div class="text">
-            ${site.bio.map((b) => `<p data-solid="text">${esc(b)}</p>`).join('')}
-            <p class="stack" data-solid="text">${esc(site.stackLine)}</p>
-          </div>
-        </div>
-      </section>
 
       <section class="panel contact" id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title" data-solid="text" tabindex="-1">Contact</h2>

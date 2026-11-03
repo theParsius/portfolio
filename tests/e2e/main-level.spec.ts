@@ -12,13 +12,13 @@ test('renders all five panels in order on one track', async ({ page }) => {
   const ids = await page
     .locator('[data-track] > section, [data-track] > .cards')
     .evaluateAll((els) => els.map((e) => e.id || e.className));
-  expect(ids).toEqual(['top', 'projects', 'cards', 'about', 'contact']);
+  expect(ids).toEqual(['top', 'about', 'projects', 'cards', 'contact']);
   await expect(page.locator('.card')).toHaveCount(projects.length);
   await expect(page.locator('.index a')).toHaveCount(projects.length);
   await expect(page.locator('main:not([hidden])')).toHaveCount(1);
 });
 
-test('scenery stands on the floor and cards float above it', async ({ page }) => {
+test('scenery stands on the floor; cards and the avatar float above it', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' }); // no bob while measuring
   await page.goto('./');
   await settle(page);
@@ -33,7 +33,7 @@ test('scenery stands on the floor and cards float above it', async ({ page }) =>
         el: el.className,
         off:
           Math.round(floor - el.getBoundingClientRect().bottom) -
-          (el.matches('.frame') ? hover : 0),
+          (el.matches('.frame') ? hover : el.matches('.avatar') ? 48 : 0),
       }));
   });
   expect(gaps.filter((g) => Math.abs(g.off) > 1)).toEqual([]);

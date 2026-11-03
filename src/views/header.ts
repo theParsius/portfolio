@@ -23,8 +23,8 @@ export function renderHeader(): Header {
     <div class="bar">
       <a class="logo" href="${base}" data-nav="top"><img src="${asset('/sprites/logo.png')}" alt="" width="36" height="40"><span class="logo-text">${esc(site.handle)}</span></a>
       <nav class="nav-links" aria-label="Main">
-        <a href="${base}?at=projects" data-nav="projects">Projects</a>
         <a class="opt" href="${base}?at=about" data-nav="about">About</a>
+        <a href="${base}?at=projects" data-nav="projects">Projects</a>
         <a class="opt" href="${base}?at=contact" data-nav="contact">Contact</a>
         <a ${linkAttrs(site.cv, 'CV', { download: true })}>CV</a>
       </nav>

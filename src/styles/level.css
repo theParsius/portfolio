@@ -181,7 +181,8 @@
 }
 /* Shadow on the grass under anything floating */
 .card::after,
-.shot-slot::after {
+.shot-slot::after,
+.avatar-slot::after {
   content: '';
   position: absolute;
   left: 16%;
@@ -357,6 +358,55 @@ body.playing .card::after {
 .card:focus-within .mascot {
   transform: translateY(-8px);
 }
+/* Idle: mostly still, then a little double hop with a squash on landing. Uses translate/scale,
+   so the hover lift (transform) still adds on top. Staggered so the cast never hops in unison. */
+.mascot,
+.r-mascot {
+  transform-origin: 50% 100%;
+  animation: mascot-idle 3.6s infinite;
+}
+.card:nth-child(3n + 2) .mascot {
+  animation-delay: -1.2s;
+  animation-duration: 4.1s;
+}
+.card:nth-child(3n) .mascot {
+  animation-delay: -2.5s;
+  animation-duration: 3.3s;
+}
+@keyframes mascot-idle {
+  0%,
+  64%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+    animation-timing-function: steps(1);
+  }
+  68% {
+    translate: 0 0;
+    scale: 1.06 0.92;
+    animation-timing-function: steps(2);
+  }
+  74% {
+    translate: 0 -10px;
+    scale: 0.96 1.05;
+    animation-timing-function: steps(2);
+  }
+  80% {
+    translate: 0 0;
+    scale: 1.06 0.94;
+    animation-timing-function: steps(2);
+  }
+  85% {
+    translate: 0 -5px;
+    scale: 1;
+    animation-timing-function: steps(2);
+  }
+  90% {
+    translate: 0 0;
+    scale: 1.03 0.97;
+    animation-timing-function: steps(1);
+  }
+}
 .bubble {
   position: absolute;
   left: 4px;
@@ -470,12 +520,18 @@ button.qblock {
   gap: 40px;
   align-items: end;
 }
+/* The avatar floats a little above the grass, with a shadow under it like the cards. */
+.about .avatar-slot {
+  position: relative;
+  --elev: 48px;
+  margin-bottom: var(--elev);
+}
 .about .avatar {
   display: block;
   --s: 3;
 }
 .about .text {
-  padding-bottom: 44px;
+  padding-bottom: 92px;
 }
 .about p {
   margin: 0 0 14px;
@@ -541,8 +597,17 @@ button.qblock {
     padding-left: 24px;
     padding-right: 24px;
   }
+  /* Phones: text full width, the avatar floating below it (side by side, the text column was
+     too narrow and pushed the heading off the top). */
   .about .cols {
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .about .text {
+    padding-bottom: 0;
+  }
+  .about .avatar-slot {
+    order: 2;
   }
   .about .avatar {
     --s: 2;
@@ -568,7 +633,10 @@ button.qblock {
   .cloud.move,
   .qblock,
   .card .frame,
-  .card::after {
+  .card::after,
+  .avatar-slot::after,
+  .mascot,
+  .r-mascot {
     animation: none;
   }
   .mascot,

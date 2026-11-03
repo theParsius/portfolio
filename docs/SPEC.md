@@ -30,9 +30,9 @@ Everything below works in the prototype and must survive the rebuild, except whe
 
 | Feature | Prototype behaviour | v1 decision |
 | --- | --- | --- |
-| Horizontal main level | One track on a continuous ground: hero, Projects sign, 7 cards, About, Contact + flag | Keep |
+| Horizontal main level | One track on a continuous ground: hero, About, Projects sign, 7 cards, Contact + flag | Keep |
 | Sideways browsing | Wheel and trackpad vertical scroll mapped to horizontal; left/right arrows scroll 60% of a screen; swipe on touch | Keep |
-| Header | Logo, Projects, About, Contact, CV, Play. In play mode: "Projects found x/7" + Stop | Keep |
+| Header | Logo, About, Projects, Contact, CV, Play. In play mode: "Projects found x/7" + Stop | Keep |
 | Projects sign | Lists all 7 titles + years as links; each opens that project's room | Keep, it is the fast path for leads |
 | Project cards | Thumbnail (1 landscape or 3 portrait shots), icon, title, year, role with the status badge beside it (never over the thumbnail), stack tags, mascot on top | Keep |
 | Play mode toggle | Play button or P; Esc or Stop exits | Keep |
@@ -148,9 +148,9 @@ Site-level config (`site.ts`): name, handle, one-line role, short bio paragraphs
 The main level is one horizontal track, `height = max(540px, 100svh − header)`, with a 48px grass floor (12px tile × 4) running its full width. Every panel is bottom-aligned to the floor, left to right:
 
 1. **Hero** (100vw wide): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. Two trees (148px, ×4) and a tower (129px, ×3) near the right edge double as stairs.
-2. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
-3. **Cards** (380px each, 120px gaps; 320px and 90px on phones): each card floats `--hover-h` (132px) above the floor, with a pixel shadow on the grass and a 4px two-step bob (off while playing and under reduced motion). Underneath each card: the mascot standing on the grass (left), its speech bubble beside it (play only, when the player is near), and the ? block 80px above the grass (right; hidden until play mode, bumped from the floor). The mascot and ? block are the first steps up onto the card.
-4. **About** (\~860px): pixel avatar standing on the floor, short bio, stack line.
+2. **About** (\~860px): pixel avatar floating 48px above the grass with a pixel shadow, short bio, stack line.
+3. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
+4. **Cards** (380px each, 120px gaps; 320px and 90px on phones): each card floats `--hover-h` (132px) above the floor, with a pixel shadow on the grass and a 4px two-step bob (off while playing and under reduced motion). Underneath each card: the mascot standing on the grass (left; idle double hop with a squash every 3–4 s, staggered, off under reduced motion), its speech bubble beside it (play only, when the player is near), and the ? block 80px above the grass (right; hidden until play mode, bumped from the floor). The mascot and ? block are the first steps up onto the card.
 5. **Contact** (\~820px): heading, Email, LinkedIn, itch.io, Download CV buttons, name line. The goal flag stands on the floor near the right end.
 
 **Geometry rules the engine depends on**
