@@ -133,5 +133,10 @@
     "err": 27,
     "width": 20,
     "height": 37
+  },
+  "projects/the-last-ember/mascot.png": {
+    "mode": "pixel",
+    "width": 17,
+    "height": 34
   }
 }

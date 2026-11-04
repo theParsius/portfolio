@@ -1,4 +1,5 @@
 import { site } from '../content/site';
+import { SCORE } from '../engine/constants';
 import { projects } from '../content/projects';
 import { asset } from '../lib/asset';
 import { esc } from '../lib/format';
@@ -9,6 +10,8 @@ export type PanelId = 'top' | 'projects' | 'about' | 'contact';
 export interface Header {
   el: HTMLElement;
   found: HTMLElement;
+  stars: HTMLElement;
+  score: HTMLElement;
   playButtons: HTMLElement[];
   stopButton: HTMLElement;
   soundButton: HTMLElement;
@@ -29,7 +32,9 @@ export function renderHeader(): Header {
         <a ${linkAttrs(site.cv, 'CV', { download: true })}>CV</a>
       </nav>
       <div class="hud" aria-live="polite">
-        <span>Projects found <b data-found>0</b>/${projects.length}</span>
+        <span><span class="hud-long">Projects found </span><span class="q-icon" aria-hidden="true"></span><b data-found>0</b>/${projects.length}</span>
+        <span><span class="star-icon" aria-hidden="true"></span><span class="visually-hidden">Stars </span><b data-stars>0</b>/${projects.length * SCORE.starsPerRoom}</span>
+        <span>Score <b data-score>0</b></span>
         <button class="btn small ghost sound" type="button" data-sound aria-pressed="false"><span class="spk" aria-hidden="true">♪</span><span class="lbl">Sound</span></button>
         <button class="btn small ghost" type="button" data-stop>Stop</button>
       </div>
@@ -43,6 +48,8 @@ export function renderHeader(): Header {
   return {
     el,
     found: q('[data-found]'),
+    stars: q('[data-stars]'),
+    score: q('[data-score]'),
     playButtons: [q('[data-play]')],
     stopButton: q('[data-stop]'),
     soundButton: q('[data-sound]'),

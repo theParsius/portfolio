@@ -43,6 +43,8 @@ const lightbox = createLightbox((open) => {
 const game = new Game(
   {
     foundEl: header.found,
+    starsEl: header.stars,
+    scoreEl: header.score,
     totalProjects: projects.length,
     heroSprite: main.track.querySelector<HTMLElement>('.hero-sprite'),
     blocked: () => busy || lightbox.isOpen,
@@ -89,6 +91,8 @@ let savedScroll: number | null = null;
 let opener: HTMLElement | null = null;
 /** Player and camera on the main level when a room was entered during play. */
 let savedPlayer: Snapshot | null = null;
+/** The room first entered from the main level; prev / next can move on from it. */
+let enteredFrom: string | null = null;
 let busy = false;
 const playing = () => game.on;
 const navKind = () => (game.on ? 'iris' : 'fade');
@@ -99,6 +103,7 @@ function showRoom(id: string): void {
   if (!viewing) {
     savedScroll = main.scroller.scrollLeft;
     savedPlayer = game.on ? game.snapshot() : null;
+    enteredFrom = id;
   }
   viewing = p;
   lightbox.close();
@@ -132,11 +137,17 @@ function showMain(): void {
   active = main;
   document.title = TITLE_MAIN;
   const card = document.querySelector<HTMLElement>(`#card-${id}`);
+  // Moved on with prev / next: return at this room's card, not where the first one was entered.
+  if (id !== enteredFrom) {
+    savedScroll = null;
+    savedPlayer = null;
+  }
+  enteredFrom = null;
   if (savedScroll !== null) main.scroller.scrollLeft = savedScroll;
   else if (card) goTo(main, card, 'auto'); // deep link: no position to restore, so show the card
   savedScroll = null;
   // In play: restore the player and camera exactly (or spawn after a deep link).
-  game.setLevel(main, savedPlayer);
+  game.setLevel(main, savedPlayer, id);
   savedPlayer = null;
   if (game.on) focusGame();
   else {
@@ -401,6 +412,7 @@ if (import.meta.env.DEV || new URLSearchParams(location.search).has('test')) {
           blocks,
           floor,
           width,
+          stars: w.stars.map(({ x, y, w, h, key }) => ({ x, y, w, h, key })),
           ids: w.blockInfo.map((b) => b.id ?? b.kind),
         };
       },

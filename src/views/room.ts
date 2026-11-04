@@ -5,7 +5,8 @@ import { esc, STATUS_LABEL, yearsLabel } from '../lib/format';
 import { captionOf, shotVariants } from '../lib/shots';
 import { spriteImg } from '../lib/sprites';
 import type { Level } from '../ui/sideways';
-import { planShots } from './shotPlan';
+import { SCORE } from '../engine/constants';
+import { planShots, planStars } from './shotPlan';
 
 export function createRoomLevel(): Level {
   const scroller = document.createElement('main');
@@ -61,6 +62,12 @@ export function renderRoom(level: Level, p: Project): void {
     .map((m) => `<p class="r-metric" data-solid="text">${esc(m)}</p>`)
     .join('');
 
+  // Play mode only (hidden otherwise, and from screen readers): placed by layoutRoom().
+  const stars = Array.from(
+    { length: SCORE.starsPerRoom },
+    (_, k) => `<span class="star" data-star="${k}" aria-hidden="true"></span>`,
+  ).join('');
+
   level.track.style.setProperty('--c', p.color);
   level.track.dataset.id = p.id;
   level.track.innerHTML = `
@@ -95,7 +102,7 @@ export function renderRoom(level: Level, p: Project): void {
       <h2 id="shots-title" data-solid="text">Screenshots</h2>
       <p class="sub" data-solid="text">${p.screenshots.length} shots. Hover for a note, click to enlarge. In play, they are platforms.</p>
     </section>
-    <div class="shots-field ${p.orientation}" role="group" aria-labelledby="shots-title">${shots}</div>
+    <div class="shots-field ${p.orientation}" role="group" aria-labelledby="shots-title">${shots}${stars}</div>
     <section class="panel r-end" aria-labelledby="more-title">
       <h2 id="more-title" data-solid="text">More projects</h2>
       <div class="r-nav">
@@ -145,4 +152,12 @@ export function layoutRoom(level: Level): void {
     sl.dataset.n = String(b.i);
     sl.dataset.cap = b.cap;
   }
+  const stars = planStars(plan, SCORE.starsPerRoom);
+  field.querySelectorAll<HTMLElement>('.star').forEach((el, k) => {
+    const s = stars[k];
+    el.hidden = !s;
+    if (!s) return;
+    el.style.left = `${s.x}px`;
+    el.style.bottom = `calc(var(--ground-h) + ${s.y}px)`;
+  });
 }

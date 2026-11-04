@@ -32,12 +32,13 @@ Everything below works in the prototype and must survive the rebuild, except whe
 | --- | --- | --- |
 | Horizontal main level | One track on a continuous ground: hero, About, Projects sign, 7 cards, Contact + flag | Keep |
 | Sideways browsing | Wheel and trackpad vertical scroll mapped to horizontal; left/right arrows scroll 60% of a screen; swipe on touch | Keep |
-| Header | Logo, About, Projects, Contact, CV, Play. In play mode: "Projects found x/7" + Stop | Keep |
+| Header | Logo, About, Projects, Contact, CV, Play. In play mode: "Projects found x/7" + Stop | Keep; v1 adds a star count "★ x/24" and "Score n" to the play HUD (under 480px the found and star labels become icons) |
 | Projects sign | Lists all 7 titles + years as links; each opens that project's room | Keep, it is the fast path for leads |
 | Project cards | Thumbnail (1 landscape or 3 portrait shots), icon, title, year, role with the status badge beside it (never over the thumbnail), stack tags, mascot on top | Keep |
 | Play mode toggle | Play button or P; Esc or Stop exits | Keep |
 | Page as level | Headings, each text line, cards, icons, tags, buttons, mascots, scenery are one-way platforms | Keep |
 | ? blocks | Shown only in play mode above each card; head-bump pops a coin, marks found, opens the room | Keep |
+| Room stars | n/a (new in v1) | 3 stars per room, play mode only, in the air over the gaps between screenshots; touch to take; 100 points each, +200 for a room's full set |
 | Mascot NPCs | Walking near a card's mascot shows a speech bubble with the one-line hook | Keep |
 | Flag | Touching it shows "Level clear" and makes the contact buttons bounce | Keep |
 | Project rooms | Own horizontal level: exit block + mascot, intro, Screenshots sign, all shots full height, More projects + second exit block | Keep |
@@ -93,7 +94,7 @@ portfolio/
 All project content lives in one typed array; cards, the Projects sign, rooms, page titles and meta tags are all generated from it. Copy is placeholder from the 2025 PDF and will be rewritten.
 
 ```ts
-export type Status = 'live' | 'released' | 'prototype' | 'jam' | 'unreleased';
+export type Status = 'live' | 'released' | 'development' | 'prototype' | 'jam' | 'unreleased';
 export type Orientation = 'portrait' | 'landscape';
 
 export interface ProjectLink {
@@ -129,13 +130,14 @@ export interface Project {
 }
 ```
 
-Order in the array = order on the level. Prototype order: Honeyland, WordFly, Dice Fight, Line-Up, Funtomime, Saving Private Teddy, Agha Khan.
+Order in the array = order on the level. Prototype order: Honeyland, WordFly, Dice Fight, Line-Up, Funtomime, Saving Private Teddy, Agha Khan. v1 adds The Last Ember (2025–now, in development, personal project) after Dice Fight.
 
 | id | Status | Orientation | Accent | Links |
 | --- | --- | --- | --- | --- |
 | honeyland | live | landscape | #E8B547 | Google Play, App Store |
 | wordfly | live | portrait | #3B8EF5 | Google Play, App Store |
 | dice-fight | prototype | portrait | #F5B055 | none |
+| the-last-ember | development | landscape | #ECE3CD | none |
 | line-up | released | portrait | #58C23A | Cafe Bazaar |
 | funtomime | released | portrait | #CC85E3 | Cafe Bazaar |
 | saving-private-teddy | jam | landscape | #C9C9D2 | itch.io |
@@ -149,7 +151,7 @@ The main level is one horizontal track, `height = max(540px, 100svh − header)`
 
 1. **Hero** (as wide as its text; 100vw on phones): name in large pixel type, one-line role, "See projects" and "Play this page" buttons, "or press P" hint (hidden on touch). Clouds drift across the top. The idle player sprite stands on the ground. The tower (129px, ×3) stands right after the name and doubles as a step.
 2. **About** (\~1100px): a tree (148px, ×4; one half of the old trees strip, cut by `npm run sprites`) on each side, pixel avatar floating 48px above the grass with a pixel shadow, short bio, stack line. Tower and trees are hidden on phones.
-3. **Projects sign** (\~470px): heading, one sentence, the list of all 7 projects with years. Each name opens that project's room.
+3. **Projects sign** (\~470px): heading, one sentence, the list of all 8 projects with years. On screens under 700px tall the list is tighter (20px titles), so the sign fits under the header. Each name opens that project's room.
 4. **Cards** (380px each, 120px gaps; 320px and 90px on phones): each card floats `--hover-h` (132px) above the floor, with a pixel shadow on the grass and a 4px two-step bob (off while playing and under reduced motion). Underneath each card: the mascot standing on the grass (left; idle double hop with a squash every 3–4 s, staggered, off under reduced motion), its speech bubble beside it (play only, when the player is near), and the ? block 80px above the grass (right; hidden until play mode, bumped from the floor). The mascot and ? block are the first steps up onto the card.
 5. **Contact** (\~820px): heading, Email, LinkedIn, itch.io, Download CV buttons, name line. The goal flag stands on the floor near the right end.
 
@@ -180,7 +182,8 @@ Each project is its own horizontal level on the same floor, entered and exited t
 1. **Entrance** (230px; 88px on phones): exit ? block 74px above the floor with an "Exit" label, the project mascot standing on the floor beside it (hidden on phones).
 2. **Intro**: icon, title in the accent colour, years + status badge, description, store links, facts box (Role, Status, Platform, Stack). On phones the facts box drops under the text.
 3. **Screenshots sign**: heading + "N shots. Hover for a note, click to enlarge." The sign is as wide as its heading, so it never runs into the first shot.
-4. **Screenshot field**: the screenshots are the platforms, laid out by `src/views/shotPlan.ts` from the track height, the viewport width and the height of the "Screenshots" sign before it. No shot rests on the grass: every bottom is at least 64px up. Each shot hovers: a small wandering sway, ±5px in x and ±5px in y on different periods (`FEEL.hoverX/Y`, `hoverPeriodX/Y`), out of phase with its neighbours, computed by `hoverOffset()` in `src/engine/hover.ts`. The room view draws it every frame, and in play the engine moves each shot's platform with the same function, carrying a player who stands on it and pushing one it drifts into out the short way. Off under reduced motion. The climb starts from the sign's heading (its text is solid; the sign sits 84px higher than other panels to make a taller first step): the first top sits at most 135px above it, each later top at most 145px above the previous one (the jump's apex is ≈177px; the hardest step is simulated with the real physics), and horizontal gaps are 70–120px. Each project has its own shape (`VARIANTS`, picked by the project's position): stairs, wave, peak, overhang (a shot tucked 84px under the previous one's right end, which the player drops onto; only where the room is tall enough), sky, terraces and zigzag. Each shape sets where every top aims, the shot sizes, how high each floats and the gaps; wave, peak, overhang, sky and zigzag keep their dips off the bottom (`low`), so their shots stay big. Portrait shots are 200–520px tall within a taller band, and float at most 80px up; landscape shots are up to `min(640px, 80vw)` wide. Each shot has a caption plaque (its `caption`, else its alt text) drawn outside the image: below it when the shot floats 100px or more (left-aligned under a shot with another tucked beneath it), else above the head of a player standing on it. The plaque shows on hover or keyboard focus; in play, for as long as the player stands on the shot and for 2.5 s after head-bumping it. Unit tests run the reachability BFS over the layout for every project at four track sizes, check that the layouts differ from each other, and simulate the hardest jump with the real physics.
+4. **Screenshot field**: the screenshots are the platforms, laid out by `src/views/shotPlan.ts` from the track height, the viewport width and the height of the "Screenshots" sign before it. No shot rests on the grass: every bottom is at least 64px up. Each shot hovers: a small wandering sway, ±5px in x and ±5px in y on different periods (`FEEL.hoverX/Y`, `hoverPeriodX/Y`), out of phase with its neighbours, computed by `hoverOffset()` in `src/engine/hover.ts`. The room view draws it every frame, and in play the engine moves each shot's platform with the same function, carrying a player who stands on it and pushing one it drifts into out the short way. Off under reduced motion. The climb starts from the sign's heading (its text is solid; the sign sits 84px higher than other panels to make a taller first step): the first top sits at most 135px above it, each later top at most 145px above the previous one (the jump's apex is ≈177px; the hardest step is simulated with the real physics), and horizontal gaps are 70–120px. Each project has its own shape (`VARIANTS`, picked by the project's position): stairs, wave, peak, valley (high, a deep dip, then back up; added for The Last Ember so the rooms after it keep their shapes), overhang (a shot tucked 84px under the previous one's right end, which the player drops onto; only where the room is tall enough), sky, terraces and zigzag. Each shape sets where every top aims, the shot sizes, how high each floats and the gaps; wave, peak, overhang, sky, zigzag and valley keep their dips off the bottom (`low`), so their shots stay big. Portrait shots are 200–520px tall within a taller band, and float at most 80px up; landscape shots are up to `min(640px, 80vw)` wide. Each shot has a caption plaque (its `caption`, else its alt text) drawn outside the image: below it when the shot floats 100px or more (left-aligned under a shot with another tucked beneath it), else above the head of a player standing on it. The plaque shows on hover or keyboard focus; in play, for as long as the player stands on the shot and for 2.5 s after head-bumping it. Unit tests run the reachability BFS over the layout for every project at four track sizes, check that the layouts differ from each other, and simulate the hardest jump with the real physics.
+   **Stars** (play mode only, `aria-hidden`; not content): `planStars()` in `src/views/shotPlan.ts` puts `SCORE.starsPerRoom` (3) stars over the gaps between screenshots, centred in the gap with the bottom 24px above the higher of the two tops beside it, so a jump from shot to shot passes through it and a hop from the higher shot always reaches it. Gaps under a tucked shot are skipped; with more gaps than stars they spread out (first gap, last gap, evenly between). The sprite is 11 × 11 drawn ×3 (`public/sprites/star.svg`, placeholder art) and bobs 6px inside a fixed box (off under reduced motion). Unit tests check, for every project at four track sizes, that each star sits in clear air (5px past every shot's sway) and within one jump of a standable top; the e2e suite checks the same on the live layout of every room.
 5. **More projects**: previous and next buttons, plus a second exit block so nobody walks back.
 
 **Entry and exit rules**
@@ -191,10 +194,12 @@ Each project is its own horizontal level on the same floor, entered and exited t
 | Spawn | On the floor, 50px right of the entrance exit block | n/a |
 | Exit a room | Head-bump either exit block | Click either exit block, browser back, or Esc |
 | Prev / next | Button jumps straight to that room; player respawns at its entrance | Same, no transition |
-| Return state | Restore player x/y, velocity reset, camera and found count | Restore scroll position and focus the card |
+| Return state | Restore player x/y, velocity reset, camera, found count, stars and score | Restore scroll position and focus the card |
 | Esc | Stops play mode (does not exit) | Exits the room |
 
-Found count only increases from main-level blocks. Exit blocks never count.
+A project counts as found once its room is visited during play, however the player got there: its card's ? block, prev / next, or starting play inside the room. Its card's ? block shows as used. Exit blocks never count.
+
+Exiting returns to the room on screen: after prev / next, the main level opens at that project's card (the player stands on the floor under its ? block, focus on the card when not playing), not where the first room was entered.
 
 ## Play mode engine
 
@@ -230,6 +235,7 @@ The engine runs a fixed 120 Hz physics step against colliders read from the live
 - `.shot` (rooms) → the same solid box; a head-bump shows its caption plaque instead of opening anything.
 - `[data-bump]` (room store links and prev / next) → the same solid box; a head-bump follows the link: store links open in a new tab (a toast explains if the browser blocks it), prev / next switch rooms behind the iris and play continues. The intro and end panels sit 100px above the grass (84px on phones, where the facts box moves above the text) so the player can stand under these and jump into them.
 - `.floor` → solid, cannot drop through.
+- `.star` (rooms) → not solid: overlapping the player takes it.
 
 **Rules**
 
@@ -238,6 +244,7 @@ The engine runs a fixed 120 Hz physics step against colliders read from the live
 - Head-bump: block jolts up 12px, a coin pops (rises then falls, 0.55 s), then after \~320ms the transition starts. 600ms cooldown per block.
 - Landing faster than 520 px/s spawns 5 dust particles.
 - NPC talk zone = mascot rect grown 28px sideways and 20px vertically.
+- Stars: touching one takes it (a rising chime, the star pops up and fades), adds `SCORE.star` (100) to the score and updates the HUD. Taking a room's last star adds `SCORE.roomBonus` (200) and a toast, "All 3 stars in this room. +200 bonus." (or "Every star found. Final score n." for the last of all 24). Taken stars are kept for the visit as `<project id>:<n>` and stay gone when the room is entered again; a reload starts over, like the found count. The flag's toast reports projects, stars and score. Max score 4200 (8 rooms).
 
 **Camera:** follows the player's centre to 40% of the viewport width, lerp factor `min(1, dt × 6)`, clamped to the track. A float `camX` is kept separately, because `scrollLeft` rounds to whole pixels and stalls a slow lerp. Wheel input during play moves the camera and updates `camX`. Any outside scroll (wheel, scrollbar, focus moving to an off-screen element) holds the view there until the player moves again.
 
@@ -304,6 +311,7 @@ The identity comes straight from the 2025 PDF: pure black, pink pixel type with 
 | `--gold` | #E8A317 | ? block, found count, Exit label |
 | `--gold-dark` | #8A4E12 | Used ? block, block shading |
 | Status live/released | #5BE36A | Badge |
+| Status development ("In development") | #F0915A | Badge |
 | Status prototype | #F5B055 | Badge |
 | Status jam | #F9B8E8 | Badge |
 | Status unreleased | #9C97AE | Badge |

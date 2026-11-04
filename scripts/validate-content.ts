@@ -81,7 +81,8 @@ export async function validateContent(): Promise<Report> {
     const f = site[k];
     if (f && !existsSync(pub(f))) r.errors.push(`site.${k} missing: ${f}`);
   }
-  for (const k of ['email', 'cv', 'portfolioPdf'] as const) if (!site[k]) r.warnings.push(`site.${k} not set yet`);
+  for (const k of ['email', 'cv', 'portfolioPdf'] as const)
+    if (!site[k]) r.warnings.push(`site.${k} not set yet`);
   for (const p of projects) {
     if (p.links.length === 0 && (p.status === 'live' || p.status === 'released')) {
       r.warnings.push(`${p.id}: ${p.status} but has no store links`);

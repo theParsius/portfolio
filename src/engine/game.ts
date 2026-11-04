@@ -2,8 +2,8 @@ import type { Level } from '../ui/sideways';
 import { toast } from '../ui/toast';
 import { Actor } from './actor';
 import { follow } from './camera';
-import { collect, type Colliders } from './colliders';
-import { FEEL, PHYSICS } from './constants';
+import { collect, type Colliders, type Star } from './colliders';
+import { FEEL, PHYSICS, SCORE } from './constants';
 import { hoverClock, hoverOffset } from './hover';
 import { Fx } from './fx';
 import { sfx, warmSound } from './sound';
@@ -13,6 +13,9 @@ import { createInput, createPlayer, overlaps, step, type Player } from './physic
 export interface GameHost {
   /** Header "found" counter element. */
   foundEl: HTMLElement;
+  /** Header star counter and score elements. */
+  starsEl: HTMLElement;
+  scoreEl: HTMLElement;
   totalProjects: number;
   heroSprite: HTMLElement | null;
   /** True while a room transition runs or the lightbox is open (no focus nagging, no bumps). */
@@ -38,6 +41,9 @@ export class Game {
   on = false;
   paused = false;
   readonly found = new Set<string>();
+  /** Stars taken this visit, as `<project id>:<n>`. */
+  readonly stars = new Set<string>();
+  score = 0;
   readonly p = createPlayer();
   readonly input = createInput();
   level: Level;
@@ -80,6 +86,8 @@ export class Game {
     focusGame();
     // Wait a frame so the ? blocks (shown by body.playing) have layout.
     requestAnimationFrame(() => {
+      if (this.level.kind === 'room' && this.level.track.dataset.id)
+        this.markFound(this.level.track.dataset.id);
       this.rebuild();
       this.spawn();
       this.last = performance.now();
@@ -137,18 +145,20 @@ export class Game {
 
   /**
    * Makes `level` the active one. With a snapshot the player and camera are restored exactly
-   * (velocity reset); otherwise the player spawns (room entrance, or the hero on the main level).
+   * (velocity reset); otherwise the player spawns: at a room's entrance, on the main level under
+   * card `near`'s ? block when given, else at the hero.
    */
-  setLevel(level: Level, restore?: Snapshot | null): void {
+  setLevel(level: Level, restore?: Snapshot | null, near?: string): void {
     this.park(level);
     if (!this.on) return;
+    if (level.kind === 'room' && level.track.dataset.id) this.markFound(level.track.dataset.id);
     this.rebuild();
     if (restore) {
       Object.assign(this.p, restore.p, { vx: 0, vy: 0 });
       this.camX = restore.camX;
       this.held = false;
       level.scroller.scrollLeft = this.camX;
-    } else this.spawn();
+    } else this.spawn(near);
     clearKeys(this.input);
   }
 
@@ -157,7 +167,16 @@ export class Game {
   }
 
   rebuild(): void {
+    // Stars taken on an earlier visit to this room stay gone.
+    for (const el of this.level.track.querySelectorAll<HTMLElement>('.star')) {
+      const taken = this.stars.has(`${this.level.track.dataset.id ?? ''}:${el.dataset.star ?? ''}`);
+      if (taken && !el.classList.contains('got')) el.classList.add('got', 'gone');
+    }
     this.world = collect(this.level, this.world ?? undefined);
+  }
+
+  get totalStars(): number {
+    return this.host.totalProjects * SCORE.starsPerRoom;
   }
 
   /** Wheel or scrollbar moved the view during play: keep the float camera in sync. */
@@ -167,7 +186,7 @@ export class Game {
     this.held = true;
   }
 
-  private spawn(): void {
+  private spawn(near?: string): void {
     const sc = this.level.scroller;
     const viewL = sc.scrollLeft;
     const viewR = viewL + sc.clientWidth;
@@ -175,7 +194,15 @@ export class Game {
     p.x = viewL + sc.clientWidth * 0.35;
     p.y = 40;
     const t = this.level.track.getBoundingClientRect();
-    if (this.level.kind === 'main' && this.host.heroSprite) {
+    const card = near
+      ? this.world?.blockInfo.findIndex((b) => b.kind === 'card' && b.id === near)
+      : -1;
+    const under = card !== undefined && card >= 0 ? this.world?.blocks[card] : undefined;
+    if (this.level.kind === 'main' && under && this.world) {
+      // Back from a room: stand on the floor under that project's ? block, as after bumping it.
+      p.x = under.x + under.w / 2 - p.w / 2;
+      p.y = this.world.floor.y - p.h;
+    } else if (this.level.kind === 'main' && this.host.heroSprite) {
       const r = this.host.heroSprite.getBoundingClientRect();
       const x = r.left - t.left;
       if (x > viewL - 20 && x < viewR) {
@@ -327,11 +354,13 @@ export class Game {
     if (standing) this.setCaption(standing, FEEL.captionTime);
     else if (this.captionTime === 0) this.setCaption(null);
 
+    for (const s of world.stars) if (!this.stars.has(s.key) && overlaps(p, s)) this.takeStar(s);
+
     if (world.flag && !this.cleared && overlaps(p, world.flag)) {
       this.cleared = true;
       toast(
-        `Level clear. You found ${this.found.size} of ${this.host.totalProjects} projects.`,
-        3600,
+        `Level clear. You found ${this.found.size} of ${this.host.totalProjects} projects and ${this.stars.size} of ${this.totalStars} stars. Score ${this.score}.`,
+        4200,
       );
       this.host.onFlag();
     }
@@ -401,16 +430,37 @@ export class Game {
       return;
     }
     if (!info.id) return;
-    if (!this.found.has(info.id)) {
-      this.found.add(info.id);
-      info.el.classList.add('used');
-      this.host.foundEl.textContent = String(this.found.size);
-      if (this.found.size === this.host.totalProjects) {
-        this.later(900, () => toast(`All ${this.host.totalProjects} projects found.`));
-      }
-    }
+    this.markFound(info.id);
     const id = info.id;
     this.later(FEEL.bumpToRoomMs, () => this.host.onCardBlock(id, info.el));
+  }
+
+  /** A project counts as found once its room is visited in play, however the player got there. */
+  private markFound(id: string): void {
+    if (this.found.has(id)) return;
+    this.found.add(id);
+    document.querySelector(`#card-${CSS.escape(id)} .qblock`)?.classList.add('used');
+    this.host.foundEl.textContent = String(this.found.size);
+    if (this.found.size === this.host.totalProjects) {
+      this.later(900, () => toast(`All ${this.host.totalProjects} projects found.`));
+    }
+  }
+
+  private takeStar(s: Star): void {
+    this.stars.add(s.key);
+    s.el.classList.add('got');
+    this.score += SCORE.star;
+    sfx('star');
+    const room = s.key.slice(0, s.key.lastIndexOf(':'));
+    const inRoom = [...this.stars].filter((k) => k.startsWith(`${room}:`)).length;
+    if (inRoom === SCORE.starsPerRoom) {
+      this.score += SCORE.roomBonus;
+      if (this.stars.size === this.totalStars)
+        toast(`Every star found. Final score ${this.score}.`, 4200);
+      else toast(`All ${SCORE.starsPerRoom} stars in this room. +${SCORE.roomBonus} bonus.`);
+    }
+    this.host.starsEl.textContent = String(this.stars.size);
+    this.host.scoreEl.textContent = String(this.score);
   }
 
   private later(ms: number, fn: () => void): void {
@@ -445,6 +495,8 @@ export class Game {
       paused: this.paused,
       level: this.level.kind,
       found: [...this.found],
+      stars: [...this.stars],
+      score: this.score,
       player: { ...this.p },
       camX: this.camX,
     };

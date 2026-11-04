@@ -1,3 +1,5 @@
+import { FEEL } from '../engine/constants';
+
 /**
  * Lays a room's screenshots out as platforms: the player climbs the room by jumping from the top
  * of one screenshot to the next. Every shot floats above the grass; none rests on it. The climb
@@ -47,6 +49,8 @@ export const PLAN = {
   maxGap: 120,
   span: 380, // tops aim within this band above the lowest: tall rooms keep the shape, not a ladder
   portraitSpan: 480, // portrait shots get a taller band (they are narrow; height shows them)
+  starSize: 33, // the star sprite: 11 × 11 drawn ×3
+  starLift: 24, // a star's bottom sits this far above the higher top beside its gap
 };
 
 /**
@@ -83,6 +87,15 @@ export const VARIANTS = [
     sizes: [0.55, 0.7, 1.2, 0.7, 0.55],
     lifts: [120, 150, 56, 150, 120],
     gaps: [90, 80, 80, 90],
+  },
+  // high, a deep dip, then back up: a valley in the middle of the room
+  {
+    name: 'valley',
+    low: 0.2,
+    tops: [0.55, 1, 0, 0.85, 0.4],
+    sizes: [0.75, 0.95, 0.55, 1],
+    lifts: [64, 150, 56, 130],
+    gaps: [100, 120, 100, 110],
   },
   // a climb to the top, then a drop: the fifth shot is tucked under the fourth
   {
@@ -221,4 +234,40 @@ export function planShots(
   });
   const width = Math.max(0, ...out.map((b) => b.x + b.w));
   return { shots: out, width };
+}
+
+/** A star's box in elevation coordinates: `x` from the field's left, `y` its bottom above the floor. */
+export interface StarBox {
+  x: number;
+  y: number;
+  size: number;
+}
+
+/**
+ * Puts `count` stars in the air over the gaps between screenshots, a little above the higher of
+ * the two tops beside each gap: a jump from one shot to the next passes through it, and a hop from
+ * the higher shot always reaches it. Gaps under a tucked shot are skipped (no clear air there).
+ * With more gaps than stars, the stars spread out: first gap, last gap, and evenly between.
+ */
+export function planStars(plan: ShotPlan, count: number): StarBox[] {
+  const size = PLAN.starSize;
+  const gaps: StarBox[] = [];
+  const shots = plan.shots;
+  for (let a = 1; a < shots.length; a++) {
+    const B = shots[a];
+    if (!B || B.tucked) continue;
+    // The gap opens at the right end of whatever came before (a tucked shot sticks out furthest).
+    let left: ShotBox | undefined;
+    for (const s of shots.slice(0, a)) if (!left || s.x + s.w > left.x + left.w) left = s;
+    if (!left) continue;
+    const from = left.x + left.w;
+    if (B.x - from < size + 4 * FEEL.hoverX) continue; // clear of both shots as they sway
+    const top = Math.max(left.y + left.h, B.y + B.h);
+    gaps.push({ x: Math.round((from + B.x) / 2 - size / 2), y: top + PLAN.starLift, size });
+  }
+  if (gaps.length <= count) return gaps;
+  return Array.from({ length: count }, (_, k) => {
+    const i = count === 1 ? 0 : Math.round((k * (gaps.length - 1)) / (count - 1));
+    return gaps[i] as StarBox;
+  });
 }

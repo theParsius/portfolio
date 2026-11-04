@@ -52,6 +52,13 @@ export const CAMERA = {
   lerp: 6, // per second; factor = min(1, dt × lerp)
 };
 
+/** Stars in project rooms and the score they add up to. */
+export const SCORE = {
+  starsPerRoom: 3,
+  star: 100, // points per star
+  roomBonus: 200, // extra points for taking every star in a room
+};
+
 /** Reachability limits used by the layout test (from the jump above, with margin). */
 export const REACH = {
   maxClimb: 165,

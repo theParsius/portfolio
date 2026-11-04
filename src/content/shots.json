@@ -161,6 +161,28 @@
       "source": "originals/level3.png"
     }
   ],
+  "the-last-ember": [
+    {
+      "width": 1440,
+      "height": 806,
+      "source": "originals/game.png"
+    },
+    {
+      "width": 1440,
+      "height": 809,
+      "source": "originals/tooltip.png"
+    },
+    {
+      "width": 1440,
+      "height": 808,
+      "source": "originals/deck.png"
+    },
+    {
+      "width": 1440,
+      "height": 809,
+      "source": "originals/ending.png"
+    }
+  ],
   "wordfly": [
     {
       "width": 396,

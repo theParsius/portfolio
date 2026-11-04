@@ -13,6 +13,7 @@ describe('content', () => {
       'honeyland',
       'wordfly',
       'dice-fight',
+      'the-last-ember',
       'line-up',
       'funtomime',
       'saving-private-teddy',

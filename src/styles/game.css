@@ -135,3 +135,87 @@ body.playing .actor {
   font: inherit;
   padding: 4px 10px;
 }
+
+/* Room stars: play mode only. The box stays put (colliders read it); the sprite inside bobs. */
+.star {
+  position: absolute;
+  z-index: 3;
+  display: none;
+  width: 33px;
+  height: 33px;
+  pointer-events: none;
+}
+body.playing .star:not([hidden], .gone) {
+  display: block;
+}
+.star::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/sprites/star.svg') 0 0 / 100% 100%;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 6px rgb(247 201 72 / 0.55));
+  animation: star-bob 1.6s steps(4) infinite alternate;
+}
+.star.got::before {
+  animation: star-take 0.42s steps(6) forwards;
+}
+@keyframes star-bob {
+  to {
+    translate: 0 -6px;
+  }
+}
+@keyframes star-take {
+  50% {
+    scale: 1.5;
+    opacity: 1;
+  }
+  to {
+    translate: 0 -36px;
+    scale: 0.6;
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star::before {
+    animation: none;
+  }
+  .star.got::before {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* HUD icons */
+.hud .star-icon,
+.hud .q-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  vertical-align: -4px;
+  image-rendering: pixelated;
+}
+.hud .star-icon {
+  background: url('/sprites/star.svg') 0 0 / 100% 100%;
+}
+.hud .q-icon {
+  display: none;
+  width: 20px;
+  height: 20px;
+  background: url('/sprites/qblock.png') 0 0 / 40px 20px;
+}
+@media (max-width: 480px) {
+  /* Icons instead of words; the words stay for screen readers. */
+  .hud .q-icon {
+    display: inline-block;
+  }
+  .hud .hud-long {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

@@ -676,3 +676,21 @@ button.qblock {
     margin-bottom: 10px;
   }
 }
+
+/* Short screens (phone browsers with their toolbars): a tighter Projects sign, so all of its
+   titles fit under the header. */
+@media (max-height: 700px) {
+  .index {
+    margin-top: 12px;
+    gap: 0;
+  }
+  .index a {
+    font-size: 20px;
+  }
+  .index .yr {
+    font-size: 15px;
+  }
+  .go {
+    margin-top: 12px;
+  }
+}

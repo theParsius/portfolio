@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { projects } from '../src/content/projects';
 import type { Rect, World } from '../src/engine/physics';
 import { reach } from '../src/engine/reach';
-import { planShots, PLAN, VARIANTS } from '../src/views/shotPlan';
+import { PHYSICS, REACH, SCORE } from '../src/engine/constants';
+import { planShots, planStars, PLAN, VARIANTS } from '../src/views/shotPlan';
 
 /**
  * The engine's world (screen coords, y down) for a planned screenshot field plus the sign before
@@ -99,6 +100,43 @@ describe('screenshots as platforms', () => {
       const { plan } = world(688, 1280, v, p);
       expect(plan.shots.some((s) => s.y >= PLAN.walkUnder)).toBe(true);
     });
+  });
+});
+
+describe('stars', () => {
+  projects.forEach((p, v) => {
+    for (const [avail, viewW] of SIZES) {
+      it(`${p.id} at ${avail}px tall, ${viewW}px wide: ${SCORE.starsPerRoom} stars in clear air, each reachable`, () => {
+        const { plan, w } = world(avail, viewW, v, p);
+        const stars = planStars(plan, SCORE.starsPerRoom);
+        expect(stars).toHaveLength(SCORE.starsPerRoom);
+        // screen coords, like the engine
+        const boxes = stars.map((s) => ({ x: s.x, y: avail - s.y - s.size, w: s.size, h: s.size }));
+        const r = reach(w);
+        const stand = w.blocks.filter((_, i) => r.standable[i]);
+        const m = 5; // shots sway this far each way
+        for (const b of boxes) {
+          expect(b.y, 'inside the track').toBeGreaterThanOrEqual(0);
+          for (const s of w.blocks) {
+            const apart =
+              b.x + b.w <= s.x - m ||
+              b.x >= s.x + s.w + m ||
+              b.y + b.h <= s.y - m ||
+              b.y >= s.y + s.h + m;
+            expect(apart, 'clear of every screenshot').toBe(true);
+          }
+          // From some standable top: close enough sideways, and inside the jump's reach upwards.
+          const ok = stand.some((s) => {
+            const gap = Math.max(0, Math.max(s.x, b.x) - Math.min(s.x + s.w, b.x + b.w));
+            const rise = s.y - (b.y + b.h);
+            return gap <= REACH.maxGap && rise <= REACH.maxClimb + PHYSICS.playerH && b.y < s.y;
+          });
+          expect(ok, 'reachable from a screenshot').toBe(true);
+        }
+        // spread out: no two stars in the same gap
+        expect(new Set(stars.map((s) => s.x)).size).toBe(stars.length);
+      });
+    }
   });
 });
 

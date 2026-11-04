@@ -2,7 +2,7 @@
  * Optional play-mode sound: off by default, remembered in localStorage. The synth (./sfx) is
  * only loaded the first time sound is switched on.
  */
-export type Sfx = 'jump' | 'coin' | 'bump' | 'land';
+export type Sfx = 'jump' | 'coin' | 'bump' | 'land' | 'star';
 
 const KEY = 'theparsius:sound';
 let on = false;

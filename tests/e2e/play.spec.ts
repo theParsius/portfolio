@@ -1,12 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 import { projects } from '../../src/content/projects';
-import { PHYSICS } from '../../src/engine/constants';
+import { PHYSICS, REACH, SCORE } from '../../src/engine/constants';
 import type { Rect, World } from '../../src/engine/physics';
 import { reach } from '../../src/engine/reach';
 import { settle } from './helpers';
 
 interface Snap extends World {
   ids: string[];
+  stars: (Rect & { key: string })[];
 }
 interface Hook {
   state(): {
@@ -14,6 +15,8 @@ interface Hook {
     paused: boolean;
     level: string;
     found: string[];
+    stars: string[];
+    score: number;
     player: Rect & { vx: number; vy: number; ground: boolean };
     camX: number;
   };
@@ -70,10 +73,27 @@ test('every ? block on the main level is reachable', async ({ page }) => {
 });
 
 for (const p of projects) {
-  test(`room ${p.id}: exit blocks are reachable`, async ({ page }) => {
+  test(`room ${p.id}: exit blocks and stars are reachable`, async ({ page }) => {
     await page.goto(`./projects/${p.id}/?test`);
     await settle(page);
     await expectReachable(page, p.id);
+    // Stars: each within a jump of a top the player can stand on.
+    const w = await colliders(page);
+    expect(w.stars).toHaveLength(SCORE.starsPerRoom);
+    const r = reach(w);
+    const tops = [w.floor, ...w.plats, ...w.blocks.filter((_, i) => r.standable[i])];
+    const far = w.stars.filter(
+      (b) =>
+        !tops.some((s) => {
+          const gap = Math.max(0, Math.max(s.x, b.x) - Math.min(s.x + s.w, b.x + b.w));
+          const rise = s.y - (b.y + b.h);
+          return gap <= REACH.maxGap && rise <= REACH.maxClimb + PHYSICS.playerH && b.y < s.y;
+        }),
+    );
+    expect(
+      far.map((s) => s.key),
+      `${p.id}: unreachable stars`,
+    ).toEqual([]);
   });
 }
 
@@ -335,4 +355,87 @@ test('in a room, bumping a store link opens it and bumping next goes to the next
   await expect(page).toHaveURL(new RegExp(`/projects/${next.id}/`));
   await expect(page.locator('#room h1')).toHaveText(next.title);
   expect((await state(page)).on).toBe(true); // still playing, now in the next room
+});
+
+test('stars: only in play, touching one collects it, a full room adds a bonus, taken stars stay gone', async ({
+  page,
+}) => {
+  const p = projects[0]!;
+  const next = projects[1]!;
+  await page.goto(`./projects/${p.id}/?test`);
+  await settle(page);
+  await expect(page.locator('#room .star').first()).toBeHidden(); // not content: play only
+  await startPlay(page);
+  const { stars } = await colliders(page);
+  expect(stars).toHaveLength(SCORE.starsPerRoom);
+  await expect(page.locator('#room .star:visible')).toHaveCount(SCORE.starsPerRoom);
+
+  const touch = (s: Rect) =>
+    page.evaluate(({ x, y }) => window.__game.place(x, y), {
+      x: s.x + s.w / 2 - PHYSICS.playerW / 2,
+      y: s.y + s.h / 2 - PHYSICS.playerH / 2,
+    });
+  await touch(stars[0]!);
+  await expect.poll(async () => (await state(page)).score).toBe(SCORE.star);
+  await expect(page.locator('[data-stars]')).toHaveText('1');
+  await expect(page.locator('[data-score]')).toHaveText(String(SCORE.star));
+
+  for (const s of stars.slice(1)) {
+    await touch(s);
+    await page.waitForTimeout(80);
+  }
+  const full = SCORE.starsPerRoom * SCORE.star + SCORE.roomBonus;
+  await expect.poll(async () => (await state(page)).score).toBe(full);
+  await expect(page.locator('.toast')).toContainText(`+${SCORE.roomBonus}`);
+
+  // Off to the next room and back: the stars are still taken, and nothing is counted twice.
+  await expect.poll(async () => (await colliders(page)).stars.length).toBe(0);
+  const bumpLink = async (last: boolean) => {
+    const w = await colliders(page);
+    const links = w.blocks.filter((_, k) => w.ids[k] === 'link');
+    await bump(page, last ? links.at(-1)! : links.at(-2)!);
+  };
+  await bumpLink(true);
+  await expect(page.locator('#room h1')).toHaveText(next.title);
+  await expect.poll(async () => (await colliders(page)).stars.length).toBe(SCORE.starsPerRoom);
+  await settle(page);
+  await bumpLink(false);
+  await expect(page.locator('#room h1')).toHaveText(p.title);
+  await expect.poll(async () => (await colliders(page)).stars.length).toBe(0);
+  await expect(page.locator('#room .star:visible')).toHaveCount(0);
+  expect((await state(page)).score).toBe(full);
+});
+
+test('rooms reached with next count as found, and the exit returns under that room’s card', async ({
+  page,
+}) => {
+  await page.goto('./?test');
+  await settle(page);
+  await startPlay(page);
+  const first = projects[1]!;
+  const second = projects[2]!;
+  const w = await colliders(page);
+  await page.locator(`#card-${first.id}`).scrollIntoViewIfNeeded();
+  await bump(page, w.blocks[w.ids.indexOf(first.id)]!);
+  await expect(page.locator('#room h1')).toHaveText(first.title);
+  await settle(page);
+
+  const rw = await colliders(page);
+  const links = rw.blocks.filter((_, k) => rw.ids[k] === 'link');
+  await bump(page, links.at(-1)!); // next
+  await expect(page.locator('#room h1')).toHaveText(second.title);
+  await expect(page.locator('[data-found]')).toHaveText('2');
+  expect((await state(page)).found).toEqual([first.id, second.id]);
+  await settle(page);
+
+  const nw = await colliders(page);
+  await bump(page, nw.blocks[nw.ids.indexOf('exit')]!);
+  await expect(page).toHaveURL(/\/portfolio\/(\?test)?$/);
+  await expect.poll(async () => (await state(page)).level).toBe('main');
+  const back = await state(page);
+  const mw = await colliders(page);
+  const q = mw.blocks[mw.ids.indexOf(second.id)]!;
+  expect(Math.abs(back.player.x - (q.x + q.w / 2 - PHYSICS.playerW / 2))).toBeLessThanOrEqual(1);
+  await expect(page.locator(`#card-${second.id} .qblock`)).toHaveClass(/used/);
+  await expect(page.locator(`#card-${second.id}`)).toBeInViewport();
 });

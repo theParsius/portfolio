@@ -114,6 +114,28 @@ export const projects: Project[] = [
     ]),
   },
   {
+    id: 'the-last-ember',
+    title: 'The Last Ember',
+    years: { start: 2025, end: 'now' },
+    color: '#ECE3CD',
+    role: 'Sole developer and designer',
+    status: 'development',
+    platforms: ['PC'],
+    stack: ['Unity', 'C#', 'Game design'],
+    hook: 'Tarot cards, a burning candle, and hope running out.',
+    description:
+      'The Last Ember is a tarot card game about holding on to hope while a candle burns down. Each turn offers cards from a 22-card Major Arcana deck, and every card costs or restores Hope, pushes four spirals (Avoidance, Ambition, Control and Optimism) and can leave scars. It is a personal project, still in development: I am its sole developer and designer, building it in Unity and C#.',
+    links: [],
+    orientation: 'landscape',
+    ...art('the-last-ember'),
+    screenshots: shots('the-last-ember', [
+      'A burning candle at 70 Hope beside three tarot cards, The Emperor, The Moon and The Tower, under four spiral sliders.',
+      'A tooltip on The Tower: −25 Hope, Ambition −2, Optimism −1 and a 20% risk of a Fracture scar.',
+      'The deck viewer, listing the full deck, the draw pile and the discard pile.',
+      'An ending: “You were running on ember by the end. Ember was enough.”',
+    ]),
+  },
+  {
     id: 'line-up',
     title: 'Line-Up',
     years: { start: 2021, end: 2021 },

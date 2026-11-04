@@ -19,9 +19,17 @@ export interface Npc extends Rect {
   card: HTMLElement;
 }
 
+export interface Star extends Rect {
+  el: HTMLElement;
+  /** `<project id>:<n>`, the same on every visit to the room. */
+  key: string;
+}
+
 export interface Colliders extends World {
   blockInfo: BlockInfo[];
   npcs: Npc[];
+  /** Room stars still to take (touch to collect; not solid). */
+  stars: Star[];
   flag: Rect | null;
   height: number;
 }
@@ -37,6 +45,7 @@ const visible = (el: Element) => el.getClientRects().length > 0;
  *   .shot                 same (screenshots in rooms hover, and show their plaque when bumped)
  *   [data-bump]           same (room links: bumping one follows it)
  *   .floor                solid ground
+ *   .star                 not solid: touching it collects it (rooms, play mode only)
  */
 export function collect(level: Level, previous?: Colliders): Colliders {
   const t = level.track.getBoundingClientRect();
@@ -120,6 +129,20 @@ export function collect(level: Level, previous?: Colliders): Colliders {
       };
     });
 
+  const stars: Star[] = [...level.track.querySelectorAll<HTMLElement>('.star:not(.got)')]
+    .filter(visible)
+    .map((el) => {
+      const r = el.getBoundingClientRect();
+      return {
+        x: r.left - t.left,
+        y: r.top - t.top,
+        w: r.width,
+        h: r.height,
+        el,
+        key: `${level.track.dataset.id ?? ''}:${el.dataset.star ?? ''}`,
+      };
+    });
+
   const flagEl = level.kind === 'main' ? level.track.querySelector('[data-flag]') : null;
   const flr = flagEl && visible(flagEl) ? flagEl.getBoundingClientRect() : null;
   const flag = flr
@@ -132,6 +155,7 @@ export function collect(level: Level, previous?: Colliders): Colliders {
     blockInfo,
     floor,
     npcs,
+    stars,
     flag,
     width: level.track.scrollWidth,
     height: level.track.clientHeight,

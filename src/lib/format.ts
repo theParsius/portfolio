@@ -8,6 +8,7 @@ export const yearsLabel = ({ years }: Project): string => {
 export const STATUS_LABEL: Record<Status, string> = {
   live: 'Live',
   released: 'Released',
+  development: 'In development',
   prototype: 'Prototype',
   jam: 'Game jam',
   unreleased: 'Unreleased',

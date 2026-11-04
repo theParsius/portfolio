@@ -81,6 +81,20 @@ test('exiting a deep-linked room replaces the URL and shows its card', async ({ 
   await expect(page.locator(`#card-${p.id}`)).toBeInViewport();
 });
 
+test('after next, the exit returns to the room on screen, not the one first entered', async ({
+  page,
+}) => {
+  await page.goto('./');
+  await openFromCard(page, projects[2]!.id);
+  const p = projects[3]!;
+  await page.locator('#room [data-go]').last().click();
+  await expect(roomTitle(page)).toHaveText(p.title);
+  await page.locator('#room [data-exit]').first().click();
+  await expect(page).toHaveURL('/portfolio/');
+  await expect(page.locator(`#card-${p.id}`)).toBeInViewport();
+  await expect(page.locator(`#card-${p.id} .frame`)).toBeFocused();
+});
+
 test('prev / next replace the URL without adding history', async ({ page }) => {
   await page.goto('./');
   await openFromCard(page, projects[0]!.id);

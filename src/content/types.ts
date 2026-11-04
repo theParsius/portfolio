@@ -1,4 +1,4 @@
-export type Status = 'live' | 'released' | 'prototype' | 'jam' | 'unreleased';
+export type Status = 'live' | 'released' | 'development' | 'prototype' | 'jam' | 'unreleased';
 export type Orientation = 'portrait' | 'landscape';
 
 export interface ProjectLink {

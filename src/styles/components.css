@@ -184,6 +184,9 @@ kbd {
 .status.s-released {
   color: var(--s-released);
 }
+.status.s-development {
+  color: var(--s-development);
+}
 .status.s-prototype {
   color: var(--s-prototype);
 }

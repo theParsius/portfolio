@@ -139,7 +139,13 @@ async function downsample(src: string, g: SpriteGrid, out: string): Promise<void
 }
 
 async function runDetect(): Promise<void> {
-  const config: Record<string, SpriteGrid> = {};
+  // Keep entries with no upscaled source: sprites drawn at 1× already (e.g. the-last-ember's mascot).
+  const old: Record<string, SpriteGrid> = existsSync(CONFIG)
+    ? JSON.parse(readFileSync(CONFIG, 'utf8'))
+    : {};
+  const config: Record<string, SpriteGrid> = Object.fromEntries(
+    Object.entries(old).filter(([k]) => !SPRITES[k] && !Object.values(SPLITS).flat().includes(k)),
+  );
   for (const [out, src] of Object.entries(SPRITES)) {
     const img = await load(resolve(SRC, src));
     const d = detect(img);

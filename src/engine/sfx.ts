@@ -36,6 +36,12 @@ export function play(name: Sfx): void {
       tone('square', 988, 988, t, 0.07, 0.05);
       tone('square', 1319, 1319, t + 0.07, 0.18, 0.05);
       break;
+    case 'star':
+      tone('square', 1047, 1047, t, 0.06, 0.045);
+      tone('square', 1319, 1319, t + 0.06, 0.06, 0.045);
+      tone('square', 1568, 1568, t + 0.12, 0.06, 0.045);
+      tone('square', 2093, 2093, t + 0.18, 0.2, 0.045);
+      break;
     case 'bump':
       tone('triangle', 180, 90, t, 0.1, 0.18);
       break;
