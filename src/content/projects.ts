@@ -3,7 +3,7 @@ import type { Project, Screenshot } from './types';
 
 /**
  * Order in this array = order on the main level.
- * Copy is placeholder from the 2025 PDF and will be rewritten before launch (SPEC: open decisions 2–5).
+ * Copy matches docs/SITE-TEXT.md (rewritten 2026-11-04).
  */
 
 /**
@@ -30,15 +30,15 @@ export const projects: Project[] = [
   {
     id: 'honeyland',
     title: 'Honeyland',
-    years: { start: 2022, end: 2025 }, // TODO(M6): confirm dates
+    years: { start: 2022, end: 2026 },
     color: '#E8B547',
-    role: 'Unity developer, design input',
+    role: 'Senior Unity developer, game designer across the IP',
     status: 'live',
     platforms: ['iOS', 'Android'],
     stack: ['Unity', 'C#', 'Solana', 'Web3'],
-    hook: 'Missions with NFT bees, built on Solana.',
+    hook: 'Bee squads, missions, and a player marketplace.',
     description:
-      'In Honeyland, a game merging Web2 and Web3 technologies on the Solana blockchain, players embark on missions with their NFT bees to collect items and HXD. My role included technical development using Unity and C# and active involvement in design discussions, ensuring a smooth integration of blockchain elements.',
+      'Honeyland is a mobile strategy game on Solana where players send teams of bees on missions to gather resources. I worked on it from 2022 to 2026 as a senior Unity developer, through its sale from Hexagon Studios to BRAVO READY. I also designed several other games in the Honeyland IP and, before the acquisition, helped design its live in-game events.',
     metrics: ['~125k players at peak'],
     links: [
       {
@@ -55,62 +55,6 @@ export const projects: Project[] = [
       'A story chapter, “The Honeycomb”, with bees performing on a stage.',
       'The Earth overworld map, dotted with hives and lands.',
       'The upgrade screen showing a bee’s stats next to the player’s bee collection.',
-    ]),
-  },
-  {
-    id: 'wordfly',
-    title: 'WordFly',
-    years: { start: 2025, end: 'now' }, // TODO(M6): confirm dates
-    color: '#3B8EF5',
-    // SPEC open decision 5: avoid implying sole ownership.
-    role: 'Contributed to the Unity client and Golang server',
-    status: 'live',
-    platforms: ['iOS', 'Android'],
-    stack: ['Unity', 'C#', 'Golang'],
-    hook: 'Hidden-word puzzles that work online and offline.',
-    description:
-      'WordFly is a mobile puzzle game where players uncover hidden words in engaging levels. I worked on both the Unity client and the Golang server, focusing on smooth gameplay across online and offline modes. My main challenge was keeping state consistent and performant, which I solved by carefully synchronizing client and server logic.',
-    links: [
-      {
-        label: 'Google Play',
-        url: 'https://play.google.com/store/apps/details?id=com.pioneer.wordflyen',
-      },
-      {
-        label: 'App Store',
-        url: 'https://apps.apple.com/us/app/word-fly-find-the-words/id6749900883',
-      },
-    ],
-    orientation: 'portrait',
-    ...art('wordfly'),
-    screenshots: shots('wordfly', [
-      'The home screen: a pelican mascot and a pilot flying over a map, with a big Play button.',
-      'The Bangkok city map, with levels pinned to landmarks.',
-      'A daily level listing secret-word lengths above a cluster of letter bubbles.',
-      'Level 2: two clues and letter-group bubbles to combine into words.',
-      'The album of collected city landmarks, including Wat Arun.',
-    ]),
-  },
-  {
-    id: 'dice-fight',
-    title: 'Dice Fight',
-    years: { start: 2025, end: 'now' }, // TODO(M6): confirm dates
-    color: '#F5B055',
-    role: 'Prototype and combat design',
-    status: 'prototype',
-    platforms: ['Mobile'],
-    stack: ['Unity', 'C#', 'Combat design'],
-    hook: 'A fighting game where your dice hand is your moveset.',
-    description:
-      'Dice Fight is a fast-paced combat prototype that blends fighting mechanics with dice-based strategy, roguelike progression, and Web3 features for casual mobile play. I developed the prototype in Unity and designed the combat system, focusing on meaningful choices that balance randomness with skill.',
-    links: [],
-    orientation: 'portrait',
-    ...art('dice-fight'),
-    screenshots: shots('dice-fight', [
-      'Two pixel-art fighters trading blows on a night street.',
-      'Fighter select, with item slots and the fighter’s health, defence and attack.',
-      'A turn in a fight: the rolled dice form a Pair beneath the two fighters.',
-      'The versus screen comparing the player’s stats with the opponent’s.',
-      'An item tooltip: multiplies attack by 1.25 when the hand is a Full House.',
     ]),
   },
   {
@@ -136,17 +80,63 @@ export const projects: Project[] = [
     ]),
   },
   {
+    id: 'dice-fight',
+    title: 'Dice Fight',
+    years: { start: 2025, end: 2025 },
+    color: '#F5B055',
+    role: 'Prototype and combat design',
+    status: 'prototype',
+    platforms: ['Mobile'],
+    stack: ['Unity', 'C#', 'Combat design'],
+    hook: 'A fighting game where your dice hand is your moveset.',
+    description:
+      'A mobile fighting prototype where your rolled hand (pairs, full houses) decides your moves, with roguelike item builds on top. I built it in Unity and designed the combat. The core problem was making fights feel like more than luck. Rerolls, freezing a die and power-ups turned each roll into a decision. I then iterated on visuals and hit effects, including several versions in 3D.',
+    links: [],
+    orientation: 'portrait',
+    ...art('dice-fight'),
+    screenshots: shots('dice-fight', [
+      'Two pixel-art fighters trading blows on a night street.',
+      'Fighter select, with item slots and the fighter’s health, defence and attack.',
+      'A turn in a fight: the rolled dice form a Pair beneath the two fighters.',
+      'The versus screen comparing the player’s stats with the opponent’s.',
+      'An item tooltip: multiplies attack by 1.25 when the hand is a Full House.',
+    ]),
+  },
+  {
+    id: 'saving-private-teddy',
+    title: 'Saving Private Teddy',
+    years: { start: 2021, end: 2021 },
+    color: '#C9C9D2',
+    role: 'Level design and tech support',
+    status: 'jam',
+    platforms: ['PC'],
+    stack: ['Unity', 'C#', 'Level design'],
+    hook: 'Light is the only thing keeping a scared kid safe.',
+    description:
+      'A puzzle game made at a game jam (theme: “Delightful and Safe”). A scared child crosses dark rooms to find his teddy, and light is the only safe path. I designed the levels, bending and splitting the beam with mirrors, and handled tech support.',
+    links: [{ label: 'itch.io', url: 'https://theparsius.itch.io/saving-private-teddy' }],
+    orientation: 'landscape',
+    ...art('saving-private-teddy'),
+    screenshots: shots('saving-private-teddy', [
+      'A dark bedroom seen from above, lit only by a beam of light from the door.',
+      'The path of light bends around a corner towards the teddy bear.',
+      'A puzzle room where mirrors split the beam of light.',
+      'The title screen: toy blocks spell Play, Credits and Exit beside a moonlit window and the teddy.',
+      'A level where the light has to snake through the room to reach the teddy.',
+    ]),
+  },
+  {
     id: 'line-up',
     title: 'Line-Up',
     years: { start: 2021, end: 2021 },
     color: '#58C23A',
-    role: 'Unity client and Golang server',
+    role: 'Game design, Unity client and Golang server',
     status: 'released',
     platforms: ['Android'],
     stack: ['Unity', 'C#', 'Golang', 'Real-time'],
     hook: 'Draft real footballers, then play them in real time.',
     description:
-      'Line-Up is a real-time online football game where players draft real footballers to form teams for virtual matches. I built the frontend in Unity and C# and the backend in Golang, blending sports-management strategy with fast head-to-head play.',
+      'A real-time online football game: draft real footballers, then play them head-to-head. I designed the whole game from scratch and built the Unity client and Golang server.',
     links: [{ label: 'Cafe Bazaar', url: 'https://cafebazaar.ir/app/com.LuLuGames.LineUp?l=en' }],
     orientation: 'portrait',
     ...art('line-up'),
@@ -159,17 +149,50 @@ export const projects: Project[] = [
     ]),
   },
   {
+    id: 'wordfly',
+    title: 'WordFly',
+    years: { start: 2025, end: 2025 },
+    color: '#3B8EF5',
+    // SPEC open decision 5: avoid implying sole ownership.
+    role: 'Unity client and Golang server (contributor)',
+    status: 'live',
+    platforms: ['iOS', 'Android'],
+    stack: ['Unity', 'C#', 'Golang'],
+    hook: 'Hidden-word puzzles that work online and offline.',
+    description:
+      'WordFly is a mobile word puzzle game set across city maps, playable online or offline. I worked on the Unity client and Golang server alongside the project lead, implementing social features and a roguelike mini-game.',
+    links: [
+      {
+        label: 'Google Play',
+        url: 'https://play.google.com/store/apps/details?id=com.pioneer.wordflyen',
+      },
+      {
+        label: 'App Store',
+        url: 'https://apps.apple.com/us/app/word-fly-find-the-words/id6749900883',
+      },
+    ],
+    orientation: 'portrait',
+    ...art('wordfly'),
+    screenshots: shots('wordfly', [
+      'The home screen: a pelican mascot and a pilot flying over a map, with a big Play button.',
+      'The Bangkok city map, with levels pinned to landmarks.',
+      'A daily level listing secret-word lengths above a cluster of letter bubbles.',
+      'Level 2: two clues and letter-group bubbles to combine into words.',
+      'The album of collected city landmarks, including Wat Arun.',
+    ]),
+  },
+  {
     id: 'funtomime',
     title: 'Funtomime',
     years: { start: 2022, end: 2022 },
     color: '#CC85E3',
-    role: 'Unity client and Golang server',
+    role: 'Unity client and Golang server (contributor)',
     status: 'released',
     platforms: ['Android'],
     stack: ['Unity', 'C#', 'Golang', 'UGC'],
     hook: 'Charades with video clues uploaded by players.',
     description:
-      'Funtomime is a digital twist on charades, where players watch video clues to guess actions. We used Unity and C# for the client and Golang on the server. Its standout feature is user-generated content: players upload their own videos, so the game keeps growing.',
+      'Funtomime is charades with video: players upload clips acting out a word, and others guess. I was one of the developers on the Unity client and Golang server, working on social features and core game mechanics.',
     links: [
       { label: 'Cafe Bazaar', url: 'https://cafebazaar.ir/app/com.RobinGames.Funtomime?l=en' },
     ],
@@ -184,29 +207,6 @@ export const projects: Project[] = [
     ]),
   },
   {
-    id: 'saving-private-teddy',
-    title: 'Saving Private Teddy',
-    years: { start: 2021, end: 2021 },
-    color: '#C9C9D2',
-    role: 'Level design and tech support',
-    status: 'jam',
-    platforms: ['PC'],
-    stack: ['Unity', 'C#', 'Level design'],
-    hook: 'Light is the only thing keeping a scared kid safe.',
-    description:
-      'Made during a game jam with the theme “Delightful and Safe”, players guide a child through dark, eerie rooms to find his lost teddy bear. Our team built a puzzle game around the contrast between light and darkness. I designed the levels and provided technical support.',
-    links: [{ label: 'itch.io', url: 'https://theparsius.itch.io/saving-private-teddy' }],
-    orientation: 'landscape',
-    ...art('saving-private-teddy'),
-    screenshots: shots('saving-private-teddy', [
-      'A dark bedroom seen from above, lit only by a beam of light from the door.',
-      'The path of light bends around a corner towards the teddy bear.',
-      'A puzzle room where mirrors split the beam of light.',
-      'The title screen: toy blocks spell Play, Credits and Exit beside a moonlit window and the teddy.',
-      'A level where the light has to snake through the room to reach the teddy.',
-    ]),
-  },
-  {
     id: 'agha-khan',
     title: 'Agha Khan',
     years: { start: 2020, end: 2020 },
@@ -217,7 +217,7 @@ export const projects: Project[] = [
     stack: ['Unity', 'C#', 'Golang', 'Multiplayer'],
     hook: 'Online strategy where every hero carries two spells.',
     description:
-      'An online multiplayer project designed to put a new spin on familiar strategy games. Its standout feature was dual spells for each hero, controlled by players, adding a new layer of strategy. I built the Unity frontend and Golang backend, focusing on these mechanics in real-time play.',
+      'An online multiplayer strategy game where every hero carries two player-controlled spells. I built the Unity client and the Golang server for real-time matches. It was shelved before release.',
     links: [],
     orientation: 'landscape',
     ...art('agha-khan'),

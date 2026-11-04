@@ -18,7 +18,7 @@ async function load(
     sendBeacon: (url: string) => (sent.push(url), true),
   });
   vi.stubGlobal('document', {
-    title: 'Parsa Tashakkori, game developer',
+    title: 'Parsa Tashakkori, game designer and developer',
     referrer: 'https://www.linkedin.com/',
   });
   vi.stubGlobal('screen', { width: 1440, height: 900 });

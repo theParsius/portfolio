@@ -26,7 +26,7 @@ import { startShotHover } from './engine/hover';
 import { placeClouds } from './views/sky';
 import { trackEvent, trackView } from './lib/analytics';
 
-const TITLE_MAIN = `${site.name}, game developer`;
+const TITLE_MAIN = `${site.name}, ${site.title}`;
 
 const app = document.querySelector<HTMLDivElement>('#app');
 if (!app) throw new Error('#app missing');
@@ -65,7 +65,7 @@ const game = new Game(
       trackLink(el);
       if (!window.open(el.href, '_blank'))
         toast(
-          `Your browser blocked the new tab. Click "${el.textContent ?? 'the link'}" to open it.`,
+          `Your browser blocked the new tab. Click “${el.textContent ?? 'the link'}” to open it.`,
         );
     },
     onFlag: () => document.getElementById('contact')?.classList.add('cleared'),

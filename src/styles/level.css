@@ -552,9 +552,6 @@ button.qblock {
   margin: 0 0 14px;
   max-width: 52ch;
 }
-.about .stack {
-  color: var(--dim);
-}
 
 /* Contact */
 .contact {

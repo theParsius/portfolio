@@ -11,12 +11,12 @@ describe('content', () => {
   it('keeps the spec level order', () => {
     expect(projects.map((p) => p.id)).toEqual([
       'honeyland',
-      'wordfly',
-      'dice-fight',
       'the-last-ember',
-      'line-up',
-      'funtomime',
+      'dice-fight',
       'saving-private-teddy',
+      'line-up',
+      'wordfly',
+      'funtomime',
       'agha-khan',
     ]);
   });

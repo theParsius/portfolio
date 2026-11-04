@@ -37,9 +37,10 @@ export interface Project {
 export interface Site {
   name: string;
   handle: string;
+  /** Short title after the name in the page title, lower case: "<name>, <title>". */
+  title: string;
   role: string;
   bio: string[];
-  stackLine: string;
   /** Public origin + base, used for canonical and Open Graph URLs. */
   url: string;
   /** Vite base path; the site is served from GitHub Pages at /portfolio/. */

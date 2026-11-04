@@ -2,7 +2,7 @@ import { projects } from '../content/projects';
 import { site } from '../content/site';
 import type { Project } from '../content/types';
 import { asset } from '../lib/asset';
-import { countWord, esc, STATUS_LABEL, yearsLabel } from '../lib/format';
+import { esc, STATUS_LABEL, yearsLabel } from '../lib/format';
 import { linkAttrs } from '../lib/links';
 import { shotVariants } from '../lib/shots';
 import { spriteImg } from '../lib/sprites';
@@ -73,14 +73,13 @@ export function renderMainLevel(): Level {
           </div>
           <div class="text">
             ${site.bio.map((b) => `<p data-solid="text">${esc(b)}</p>`).join('')}
-            <p class="stack" data-solid="text">${esc(site.stackLine)}</p>
           </div>
         </div>
       </section>
 
       <section class="panel sign" id="projects" aria-labelledby="projects-title">
         <h2 id="projects-title" data-solid="text" tabindex="-1">Projects</h2>
-        <p class="sub" data-solid="text">${countWord(projects.length)} games from ${Math.min(...projects.map((p) => p.years.start))} to now. Pick one, or keep walking right.</p>
+        <p class="sub" data-solid="text">${projects.length} games from ${Math.min(...projects.map((p) => p.years.start))} to now. Pick one, or keep walking right.</p>
         <ul class="index" data-solid="kids">
           ${projects
             .map(

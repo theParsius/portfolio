@@ -64,8 +64,8 @@ function ogImage(p: Project): Meta['image'] {
 }
 
 const mainMeta: Meta = {
-  title: `${site.name}, game developer`,
-  description: `${site.name} (${site.handle}): ${site.role} ${projects.length} games, in a side-scrolling level you can play.`,
+  title: `${site.name}, ${site.title}`,
+  description: `${site.name} (${site.handle}): ${site.role.charAt(0).toLowerCase()}${site.role.slice(1)} ${projects.length} games, in a side-scrolling level you can play.`,
   url: site.url,
 };
 const main = shell(mainMeta);
