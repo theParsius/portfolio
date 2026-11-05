@@ -1,0 +1,1587 @@
+{
+  ".prettierrc.json": {
+    "mtime": 1793739103.6010761,
+    "ast_hash": "823500d9c6af1f78df49d23cd29dc7b6",
+    "semantic_hash": ""
+  },
+  "eslint.config.js": {
+    "mtime": 1793739103.68439,
+    "ast_hash": "f6e163459c10bb6004e2caaaf4678ed6",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1793745552.6151252,
+    "ast_hash": "097cfc5e685c9fcd1690ef0a07932a03",
+    "semantic_hash": ""
+  },
+  "playwright.config.ts": {
+    "mtime": 1793739103.6849852,
+    "ast_hash": "77ccce2159e691e72f9c5f5a8a9f002f",
+    "semantic_hash": ""
+  },
+  "scripts/game-sprites.ts": {
+    "mtime": 1793739103.7090888,
+    "ast_hash": "9e0f0daede4f2778b3833a09eb54e606",
+    "semantic_hash": ""
+  },
+  "scripts/images.ts": {
+    "mtime": 1793739103.709191,
+    "ast_hash": "3abc50a7c0c64bed1902fbd491a3caca",
+    "semantic_hash": ""
+  },
+  "scripts/pixelate.ts": {
+    "mtime": 1793801624.2335854,
+    "ast_hash": "71f45d054c1eb8d7bb33f21abc3d96ca",
+    "semantic_hash": ""
+  },
+  "scripts/prerender.ts": {
+    "mtime": 1793739103.7093885,
+    "ast_hash": "4d4c8d3ff64c37ddc2cf633cf706759c",
+    "semantic_hash": ""
+  },
+  "scripts/validate-content.ts": {
+    "mtime": 1793801666.9373798,
+    "ast_hash": "59e1973208b031b51456dc925bf5b06b",
+    "semantic_hash": ""
+  },
+  "src/content/player.json": {
+    "mtime": 1793739103.7096493,
+    "ast_hash": "f5b3491928b7a87e60155dc2463cdc40",
+    "semantic_hash": ""
+  },
+  "src/content/projects.ts": {
+    "mtime": 1793801613.0232632,
+    "ast_hash": "d2d2d56f4ccad1e681f8e83823c8a0f6",
+    "semantic_hash": ""
+  },
+  "src/content/shots.json": {
+    "mtime": 1793801631.4204366,
+    "ast_hash": "1617854b1a414339d84c564f2e4d300b",
+    "semantic_hash": ""
+  },
+  "src/content/site.ts": {
+    "mtime": 1793743383.0825746,
+    "ast_hash": "87f73f9ef2e29b97558503dfd4b04e07",
+    "semantic_hash": ""
+  },
+  "src/content/sprites.json": {
+    "mtime": 1793801613.0236142,
+    "ast_hash": "bf401aae272311f227ed487ac529dc65",
+    "semantic_hash": ""
+  },
+  "src/content/types.ts": {
+    "mtime": 1793801613.0223415,
+    "ast_hash": "4527b675d43fdd9762e4b41373391e71",
+    "semantic_hash": ""
+  },
+  "src/engine/actor.ts": {
+    "mtime": 1793739103.710187,
+    "ast_hash": "35d7aa74d4089ca4167eedea71c46085",
+    "semantic_hash": ""
+  },
+  "src/engine/camera.ts": {
+    "mtime": 1793739103.7102704,
+    "ast_hash": "a2519a34c19e01be66f75caee1b6c452",
+    "semantic_hash": ""
+  },
+  "src/engine/colliders.ts": {
+    "mtime": 1793800690.01679,
+    "ast_hash": "57daa3504efd2da5a1e4e189c046b7da",
+    "semantic_hash": ""
+  },
+  "src/engine/constants.ts": {
+    "mtime": 1793800673.3851154,
+    "ast_hash": "97a565ffdf9a99bd29bfad97377b5086",
+    "semantic_hash": ""
+  },
+  "src/engine/fx.ts": {
+    "mtime": 1793739103.71054,
+    "ast_hash": "ed33d97ac4bb6490ca5752ea51e25267",
+    "semantic_hash": ""
+  },
+  "src/engine/game.ts": {
+    "mtime": 1793801251.840359,
+    "ast_hash": "3dbb5bd2389b09af505c250a62379cc2",
+    "semantic_hash": ""
+  },
+  "src/engine/input.ts": {
+    "mtime": 1793739103.7108195,
+    "ast_hash": "7806da4d711ca84dfd01c9fdc0d15cf1",
+    "semantic_hash": ""
+  },
+  "src/engine/physics.ts": {
+    "mtime": 1793739103.711072,
+    "ast_hash": "7365820c642f777100252737da6fdd4d",
+    "semantic_hash": ""
+  },
+  "src/engine/reach.ts": {
+    "mtime": 1793739103.711166,
+    "ast_hash": "2a4e459825abccd65760de442cca0478",
+    "semantic_hash": ""
+  },
+  "src/engine/sfx.ts": {
+    "mtime": 1793800710.5928648,
+    "ast_hash": "478050a623c5092de4614f5fc6ceeb7e",
+    "semantic_hash": ""
+  },
+  "src/engine/sound.ts": {
+    "mtime": 1793800710.5926447,
+    "ast_hash": "afdb9a1564881ec56ede34b4a94a9a95",
+    "semantic_hash": ""
+  },
+  "src/lib/asset.ts": {
+    "mtime": 1793739103.7114413,
+    "ast_hash": "3e1963c5354dffccd4612896723d4256",
+    "semantic_hash": ""
+  },
+  "src/lib/format.ts": {
+    "mtime": 1793801613.0225,
+    "ast_hash": "1ebd55a13807bd8a3a2aff6eea0b2798",
+    "semantic_hash": ""
+  },
+  "src/lib/links.ts": {
+    "mtime": 1793739103.7116065,
+    "ast_hash": "0f10ea9961b83a2b48d8575677fc5b37",
+    "semantic_hash": ""
+  },
+  "src/lib/motion.ts": {
+    "mtime": 1793739103.7116792,
+    "ast_hash": "ce8e185e99c29c881a7c6d91e3d35f34",
+    "semantic_hash": ""
+  },
+  "src/lib/shots.ts": {
+    "mtime": 1793739103.711757,
+    "ast_hash": "371fb22c669113d52baaa6019a2151d8",
+    "semantic_hash": ""
+  },
+  "src/lib/sprites.ts": {
+    "mtime": 1793739103.7118392,
+    "ast_hash": "5e333fa45bb8330e7e8ede24e792ae2d",
+    "semantic_hash": ""
+  },
+  "src/main.ts": {
+    "mtime": 1793801251.341405,
+    "ast_hash": "aba9a2d93ce55fa4e5efe2dc23c34aed",
+    "semantic_hash": ""
+  },
+  "src/router.ts": {
+    "mtime": 1793739103.712034,
+    "ast_hash": "0774c9ab157fd5cf6da36db03898d0be",
+    "semantic_hash": ""
+  },
+  "src/ui/sideways.ts": {
+    "mtime": 1793739103.7129588,
+    "ast_hash": "7719d6a738965fcc095915ed70c73a0d",
+    "semantic_hash": ""
+  },
+  "src/ui/toast.ts": {
+    "mtime": 1793739103.7130384,
+    "ast_hash": "2fc99102fb3edfe62235d8dbd6661a8d",
+    "semantic_hash": ""
+  },
+  "src/ui/touchPad.ts": {
+    "mtime": 1793739103.7131228,
+    "ast_hash": "881c47d691a18ce299b56bc894d7be26",
+    "semantic_hash": ""
+  },
+  "src/ui/transition.ts": {
+    "mtime": 1793739103.7132053,
+    "ast_hash": "804b4f91d14615e428b602351fe2fb36",
+    "semantic_hash": ""
+  },
+  "src/ui/tunePanel.ts": {
+    "mtime": 1793739103.7134302,
+    "ast_hash": "470887f726f6349bb5439a3a4fc9bd70",
+    "semantic_hash": ""
+  },
+  "src/views/header.ts": {
+    "mtime": 1793800719.971822,
+    "ast_hash": "c80377170655cce81511ed86fceab4e7",
+    "semantic_hash": ""
+  },
+  "src/views/heroSprite.ts": {
+    "mtime": 1793739103.7136571,
+    "ast_hash": "f208e24099d9e03adb3b95576e7358c8",
+    "semantic_hash": ""
+  },
+  "src/views/lightbox.ts": {
+    "mtime": 1793739103.713756,
+    "ast_hash": "f9cf16ce919432ccc038c3b7e5caf481",
+    "semantic_hash": ""
+  },
+  "src/views/mainLevel.ts": {
+    "mtime": 1793748222.4894176,
+    "ast_hash": "cf3fcbcb10c34e298ca2c7956610c7ed",
+    "semantic_hash": ""
+  },
+  "src/views/room.ts": {
+    "mtime": 1793800690.0163112,
+    "ast_hash": "92d1980b252f226d0a211377cdd99786",
+    "semantic_hash": ""
+  },
+  "src/views/shotPlan.ts": {
+    "mtime": 1793801656.9684293,
+    "ast_hash": "b97161cc072e596969f331f3a32f706c",
+    "semantic_hash": ""
+  },
+  "tests/content.spec.ts": {
+    "mtime": 1793801656.9679813,
+    "ast_hash": "20f14e3c52a5acf38a93afcc32bd7ed4",
+    "semantic_hash": ""
+  },
+  "tests/e2e/helpers.ts": {
+    "mtime": 1793739103.7144063,
+    "ast_hash": "9c6f6d8cc6c0c3491edf8ee7befcb4a9",
+    "semantic_hash": ""
+  },
+  "tests/e2e/main-level.spec.ts": {
+    "mtime": 1793748222.4896512,
+    "ast_hash": "b6e1720966376b5bbcdac95d23f07575",
+    "semantic_hash": ""
+  },
+  "tests/e2e/play.spec.ts": {
+    "mtime": 1793801269.1420841,
+    "ast_hash": "fc5dd1e17edb6f343dc3c163d6d03a53",
+    "semantic_hash": ""
+  },
+  "tests/e2e/polish.spec.ts": {
+    "mtime": 1793739103.7147448,
+    "ast_hash": "b1fcba359cca00ddcbf1c17b73baf27c",
+    "semantic_hash": ""
+  },
+  "tests/e2e/rooms.spec.ts": {
+    "mtime": 1793801269.1568885,
+    "ast_hash": "66190215660700edf2701fa5723e99a9",
+    "semantic_hash": ""
+  },
+  "tests/engine.spec.ts": {
+    "mtime": 1793739103.7149699,
+    "ast_hash": "2da55a47bea9f4dffce517c020ffe8ed",
+    "semantic_hash": ""
+  },
+  "tests/reach.spec.ts": {
+    "mtime": 1793739103.7150693,
+    "ast_hash": "2bcc265718be392bdfc00ae72855882d",
+    "semantic_hash": ""
+  },
+  "tests/shotPlan.spec.ts": {
+    "mtime": 1793800833.179831,
+    "ast_hash": "29b6b89fb4129917501320aa16c0a14b",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1793739103.7152777,
+    "ast_hash": "87ed651ff3fe31360369583f6459f51d",
+    "semantic_hash": ""
+  },
+  "vite.config.ts": {
+    "mtime": 1793739103.7153664,
+    "ast_hash": "09e509e353c08193b4a3b8e9dce7a2be",
+    "semantic_hash": ""
+  },
+  ".github/workflows/deploy.yml": {
+    "mtime": 1793739103.6008165,
+    "ast_hash": "682388aeb4a6f9079e4027b21bc37f61",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1793739103.6011558,
+    "ast_hash": "92052b112a5dff2b3224f0a42a2427a0",
+    "semantic_hash": ""
+  },
+  "docs/IMPLEMENTATION_PLAN.md": {
+    "mtime": 1793739103.6804256,
+    "ast_hash": "a3541cb67573fbf541b83c59ca74a802",
+    "semantic_hash": ""
+  },
+  "docs/SPEC.md": {
+    "mtime": 1793801820.1298065,
+    "ast_hash": "bcafaed91d887023a9c2636ac5668d8f",
+    "semantic_hash": ""
+  },
+  "docs/prototype.html": {
+    "mtime": 1793739103.6842763,
+    "ast_hash": "0d5448455bccd6c76c17556930275f88",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1793801613.023373,
+    "ast_hash": "e67322accb3e246656ab67e13bb8752f",
+    "semantic_hash": ""
+  },
+  "assets-src/brand/theParsiusLogo.png": {
+    "mtime": 1793739103.661113,
+    "ast_hash": "cd55cb80c692f47019fb113908ac5584",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/ashou.jpg": {
+    "mtime": 1793739103.6614485,
+    "ast_hash": "891b09c2d406ca3aba9487c259c224c2",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/concept_character.jpg": {
+    "mtime": 1793739103.661689,
+    "ast_hash": "f3ba68b5618297db5e2cc54bafa73e5f",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/djinn.jpg": {
+    "mtime": 1793739103.6619294,
+    "ast_hash": "8a56ce3ff3b44ef8dadabafa544fb850",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/game.jpg": {
+    "mtime": 1793739103.6621356,
+    "ast_hash": "dd6a9816877213e4cc106d0ed0530e50",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/icon.png": {
+    "mtime": 1793739103.6623406,
+    "ast_hash": "8915af5729b01ee9d3e3370da5b9fb4a",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/loading.jpg": {
+    "mtime": 1793739103.6628108,
+    "ast_hash": "26e0d4ea5f71fa89c7f87d987ac73dc5",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/originals/menu.png": {
+    "mtime": 1793739103.6631842,
+    "ast_hash": "b9ce969e29f04cc97f7be76e8c7c362c",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/starter/shot-1.webp": {
+    "mtime": 1793739103.6634214,
+    "ast_hash": "49823eb1822b270944103fcd627d959c",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/starter/shot-2.webp": {
+    "mtime": 1793739103.663609,
+    "ast_hash": "c7ba84671f867a204dfa07beab6f8e7e",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/starter/shot-3.webp": {
+    "mtime": 1793739103.6638024,
+    "ast_hash": "e9a22f099257e36818e1f2eaea5f7f86",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/starter/shot-4.webp": {
+    "mtime": 1793739103.6639683,
+    "ast_hash": "fb183a7aaaf475d8be4cf9404bfabcf6",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/agha-khan/starter/shot-5.webp": {
+    "mtime": 1793739103.6641154,
+    "ast_hash": "e36d5e0dee25425a6a8cce39741a20a6",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/dice-fight/starter/shot-1.webp": {
+    "mtime": 1793739103.6643693,
+    "ast_hash": "efde7578087f97f13045c6039a716aaf",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/dice-fight/starter/shot-2.webp": {
+    "mtime": 1793739103.6645308,
+    "ast_hash": "a8e6f25a90c81820b385ebab2a69101d",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/dice-fight/starter/shot-3.webp": {
+    "mtime": 1793739103.6646674,
+    "ast_hash": "0917c94efedbbd887a126af6674c1f62",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/dice-fight/starter/shot-4.webp": {
+    "mtime": 1793739103.664831,
+    "ast_hash": "6bc378a818828eba1bb8564e58ce2478",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/dice-fight/starter/shot-5.webp": {
+    "mtime": 1793739103.665039,
+    "ast_hash": "c70178b601fd9ad11b2e00ee7cfa28a0",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/avatars.png": {
+    "mtime": 1793739103.6653597,
+    "ast_hash": "a877f7fe316dee98e1075518e024ace5",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/icon.png": {
+    "mtime": 1793739103.6655962,
+    "ast_hash": "12d539c54ce0461b3ddadb1afa9b434c",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/match.jpg": {
+    "mtime": 1793739103.6659646,
+    "ast_hash": "d0215c6c6a1b83351a3384787a79b4f2",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/match_info.png": {
+    "mtime": 1793739103.6662989,
+    "ast_hash": "9b42bb43f033ddf928adea93fea1c4b8",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/menu.png": {
+    "mtime": 1793739103.6665406,
+    "ast_hash": "8ee67dd3477439632c4c17c517e4302f",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/pick_topic.png": {
+    "mtime": 1793739103.666777,
+    "ast_hash": "2c950ce7aca4af6fbc61b7f209492ac1",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/originals/shop.png": {
+    "mtime": 1793739103.6671653,
+    "ast_hash": "b5c16c5b907999bc034b0188b8ad5583",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/starter/shot-1.webp": {
+    "mtime": 1793739103.6674554,
+    "ast_hash": "cf0b9ecdbb3b7a99a95d23eba82366f9",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/starter/shot-2.webp": {
+    "mtime": 1793739103.66763,
+    "ast_hash": "7a9bc8bbb4431542cbc97d3661108a4d",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/starter/shot-3.webp": {
+    "mtime": 1793739103.6677878,
+    "ast_hash": "90e2476c20ca362a16b68c836e6a8ddf",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/starter/shot-4.webp": {
+    "mtime": 1793739103.667945,
+    "ast_hash": "2ee82a813e4f080927c43665c73393cf",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/funtomime/starter/shot-5.webp": {
+    "mtime": 1793739103.6681406,
+    "ast_hash": "cf465af6d4e7a2822b85f5eeb972fdf4",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/hive.jpg": {
+    "mtime": 1793739103.6684241,
+    "ast_hash": "bb935d003b4b794e661b5c705f536b79",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/icon.png": {
+    "mtime": 1793739103.668675,
+    "ast_hash": "e5691ba0964ae1889f407cc348d232bc",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/land.jpg": {
+    "mtime": 1793739103.6688645,
+    "ast_hash": "d042716d7032cc7d3983e70161d7beb1",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/marketplace.jpg": {
+    "mtime": 1793739103.669251,
+    "ast_hash": "48ed531175d2f92e2606b233a7175f13",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/npc.jpg": {
+    "mtime": 1793739103.6694894,
+    "ast_hash": "313240acacb14cf87040d5f83ee3292a",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/universe.jpg": {
+    "mtime": 1793739103.6696966,
+    "ast_hash": "d6966bb64eaab247494314e2b61f47c2",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/originals/upgrade.jpg": {
+    "mtime": 1793739103.6698906,
+    "ast_hash": "ece39c5ae5fe7255f9831a8d9904d76f",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/starter/shot-1.webp": {
+    "mtime": 1793739103.6700847,
+    "ast_hash": "7700f45f9e1d12e0163acb18553d091c",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/starter/shot-2.webp": {
+    "mtime": 1793739103.6702304,
+    "ast_hash": "755711202a1cce1baa4d639183bd4944",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/starter/shot-3.webp": {
+    "mtime": 1793739103.670481,
+    "ast_hash": "28d375f6db759e5d888927c893385f24",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/starter/shot-4.webp": {
+    "mtime": 1793739103.6706889,
+    "ast_hash": "7a76fa3961cf3d079c85172a381cb413",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/honeyland/starter/shot-5.webp": {
+    "mtime": 1793739103.6708698,
+    "ast_hash": "a521d7d2b95fa8d59a311211d2066743",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/formation.jpg": {
+    "mtime": 1793739103.671148,
+    "ast_hash": "86b52e7be7f561a49c05ec32eb3fa0c5",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/icon.jpg": {
+    "mtime": 1793739103.6712956,
+    "ast_hash": "f93197b9f5150168320509f755f84125",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/loading.jpg": {
+    "mtime": 1793739103.6714497,
+    "ast_hash": "4e3e3585cee573351619a5b01860ed85",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/match.jpg": {
+    "mtime": 1793739103.6717007,
+    "ast_hash": "e819d60f8d673ff9c2ae167a08f7a17f",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/match_goal.jpg": {
+    "mtime": 1793739103.6718817,
+    "ast_hash": "1c82f9094c17f5611e0cf7cb1576271a",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/match_result.jpg": {
+    "mtime": 1793739103.6720533,
+    "ast_hash": "bafccb676c36920f1d07aa27615289cb",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/menu.jpg": {
+    "mtime": 1793739103.672217,
+    "ast_hash": "5f57e9e41d7354705d272b3e29eee6ac",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/originals/pick.jpg": {
+    "mtime": 1793739103.6723762,
+    "ast_hash": "ab820e98e1af2aef0e840c0252b5b402",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/starter/shot-1.webp": {
+    "mtime": 1793739103.6726024,
+    "ast_hash": "445a274462776a334645b8e0f738792b",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/starter/shot-2.webp": {
+    "mtime": 1793739103.6727414,
+    "ast_hash": "701272e49cb8bd4dc56508eea05abf4a",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/starter/shot-3.webp": {
+    "mtime": 1793739103.6728683,
+    "ast_hash": "2de523782b1aa24e2d749b713f8e69eb",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/starter/shot-4.webp": {
+    "mtime": 1793739103.6730254,
+    "ast_hash": "256999566523ac63ce1a8147b5f25eb6",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/line-up/starter/shot-5.webp": {
+    "mtime": 1793739103.673162,
+    "ast_hash": "86061cb3211daf3fe94cf92a9e1e64d4",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/icon.png": {
+    "mtime": 1793739103.6733062,
+    "ast_hash": "3cc4d7a2ae25f573d76252c3bd2b29cf",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/level1.png": {
+    "mtime": 1793739103.6734922,
+    "ast_hash": "de3be6e8c3e52a06f86e1138247d4d25",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/level2.png": {
+    "mtime": 1793739103.673858,
+    "ast_hash": "47550e7aa9f0e10828cd93c5b63f2548",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/level3.png": {
+    "mtime": 1793739103.674153,
+    "ast_hash": "0b1924a96e8e4704ca64b0e3cf751bf5",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/level6.png": {
+    "mtime": 1793739103.674382,
+    "ast_hash": "f02fa0419e144d039b1258cd6b490829",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/originals/menu.png": {
+    "mtime": 1793739103.6747043,
+    "ast_hash": "4e2ba54f8d85c2c9a765da819366cfb9",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/starter/shot-1.webp": {
+    "mtime": 1793739103.6749506,
+    "ast_hash": "a787e9792c37a138e7c38511ef11847a",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/starter/shot-2.webp": {
+    "mtime": 1793739103.6751642,
+    "ast_hash": "109960a21392469490a20250c3daa3d0",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/starter/shot-3.webp": {
+    "mtime": 1793739103.6753714,
+    "ast_hash": "06628e5cd2823d53ded9949a5077c75e",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/starter/shot-4.webp": {
+    "mtime": 1793739103.675588,
+    "ast_hash": "97023debfffa1191b2768f326d029a90",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/saving-private-teddy/starter/shot-5.webp": {
+    "mtime": 1793739103.6758723,
+    "ast_hash": "c543f5923468a7473fc9fce344316c5c",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/wordfly/starter/shot-1.webp": {
+    "mtime": 1793739103.6761966,
+    "ast_hash": "5c59f4680d44765a67ff22db7a490897",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/wordfly/starter/shot-2.webp": {
+    "mtime": 1793739103.676406,
+    "ast_hash": "fc8657dc68450bab0faf517e1bea0287",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/wordfly/starter/shot-3.webp": {
+    "mtime": 1793739103.6765807,
+    "ast_hash": "4dff78f6d73a16e88ece76a1ff3af466",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/wordfly/starter/shot-4.webp": {
+    "mtime": 1793739103.676798,
+    "ast_hash": "6402073826b8e54a800949b04ecbddce",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/wordfly/starter/shot-5.webp": {
+    "mtime": 1793739103.6770124,
+    "ast_hash": "ec46a3d3a46b43d32c0aa11e697384b1",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/agha-khan/mascot.png": {
+    "mtime": 1793739103.6774023,
+    "ast_hash": "e3acae13c8ddc5348baa54245680221c",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/dice-fight/mascot.png": {
+    "mtime": 1793739103.6776683,
+    "ast_hash": "4496df5cc202357b677f5368e51ecd97",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/funtomime/mascot.png": {
+    "mtime": 1793739103.6779203,
+    "ast_hash": "63dc32c191568dcee43123f29e242c11",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/honeyland/mascot.png": {
+    "mtime": 1793739103.6782193,
+    "ast_hash": "d8b1910be483903338621fc759dd9c3e",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/line-up/mascot.png": {
+    "mtime": 1793739103.6784847,
+    "ast_hash": "6ee3c7601a739765997d3222fc5b2d1a",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/saving-private-teddy/mascot.png": {
+    "mtime": 1793739103.6787515,
+    "ast_hash": "6891c41d78667f837a784151feb113b6",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/projects/wordfly/mascot.png": {
+    "mtime": 1793739103.6790102,
+    "ast_hash": "527fad5d60d69aa834550445184217ad",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/avatar.png": {
+    "mtime": 1793739103.6792617,
+    "ast_hash": "57807ec152388b9d3829ecf31ffdb7de",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/clouds.png": {
+    "mtime": 1793739103.6795027,
+    "ast_hash": "dfec121a5e809464ef8b2dd8f468c6df",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/flag.png": {
+    "mtime": 1793739103.679743,
+    "ast_hash": "f5d66c1653a7ca430690f6c79b853b9c",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/grass.png": {
+    "mtime": 1793739103.679926,
+    "ast_hash": "6699cf4f5a71afa5024c7c89569c0d04",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/tower.png": {
+    "mtime": 1793739103.6800802,
+    "ast_hash": "a109cfd7c87e9b06c3d6f038ce7cd20c",
+    "semantic_hash": ""
+  },
+  "assets-src/sprites-upscaled/sprites/trees.png": {
+    "mtime": 1793739103.6802363,
+    "ast_hash": "5278cd0fef01b43cba8cefee9b4244f7",
+    "semantic_hash": ""
+  },
+  "public/favicon.png": {
+    "mtime": 1793743383.081902,
+    "ast_hash": "8303e8cdbfd4e4042689731f7b7daa37",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/icon.webp": {
+    "mtime": 1793739103.6940672,
+    "ast_hash": "869c27d13fb2ee07b7347f99d6ba44ba",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/mascot.png": {
+    "mtime": 1793746191.9638643,
+    "ast_hash": "e3acae13c8ddc5348baa54245680221c",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-1-room.webp": {
+    "mtime": 1793801626.7444515,
+    "ast_hash": "6f3b0aec23a8773217d630de08b4c4ce",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-1-thumb.webp": {
+    "mtime": 1793801626.7814844,
+    "ast_hash": "8b71e873915cfd81f4939b410e6a2190",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-1.webp": {
+    "mtime": 1793801626.6778145,
+    "ast_hash": "42f716f6f352b738d4f393f2be77807c",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-2-room.webp": {
+    "mtime": 1793801626.91843,
+    "ast_hash": "190e9182f89f609fc70ab7d4af3316cf",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-2-thumb.webp": {
+    "mtime": 1793801626.95534,
+    "ast_hash": "2a8947a1d0f36b6dbbbbd7c21162aa4f",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-2.webp": {
+    "mtime": 1793801626.8571882,
+    "ast_hash": "f8fd4989addd44af3f34cb322ddff940",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-3-room.webp": {
+    "mtime": 1793801627.0696414,
+    "ast_hash": "0aa89a9360c6cb92d671b22bcbbdd390",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-3-thumb.webp": {
+    "mtime": 1793801627.0906305,
+    "ast_hash": "1a109e89afcaa0b0eda5a3b06761a256",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-3.webp": {
+    "mtime": 1793801627.0194228,
+    "ast_hash": "0aecd809f8878db87b6aeef280c18e74",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-4-room.webp": {
+    "mtime": 1793801627.2183867,
+    "ast_hash": "4573afb0ff8b7099fe8eb911d6be85a8",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-4-thumb.webp": {
+    "mtime": 1793801627.2421126,
+    "ast_hash": "5d13f42c1314bc4aec731a5f206c9352",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-4.webp": {
+    "mtime": 1793801627.160979,
+    "ast_hash": "5eb16de42be2e07307fef49b6b7ab9f7",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-5-room.webp": {
+    "mtime": 1793801627.3619928,
+    "ast_hash": "603a383bc1e5a7943009074f317720e4",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-5-thumb.webp": {
+    "mtime": 1793801627.3859606,
+    "ast_hash": "aef083b12573799320d9bfe47626acd0",
+    "semantic_hash": ""
+  },
+  "public/projects/agha-khan/shot-5.webp": {
+    "mtime": 1793801627.3078527,
+    "ast_hash": "c5f32bd3861e6f655c1aaff17f772a96",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/icon.webp": {
+    "mtime": 1793739103.6958504,
+    "ast_hash": "68697b4558acfdc06086e08a7e43c437",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/mascot.png": {
+    "mtime": 1793746191.9629645,
+    "ast_hash": "94d88c8cc82a10b1a1c506d63576d696",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-1-room.webp": {
+    "mtime": 1793801627.4201865,
+    "ast_hash": "13dc152ea3fa61f8c2e7c18c61bf8678",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-1-thumb.webp": {
+    "mtime": 1793801627.4267159,
+    "ast_hash": "df0c6d9c311c7c1bdce53b0c47d5c6f9",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-1.webp": {
+    "mtime": 1793801627.4072814,
+    "ast_hash": "13dc152ea3fa61f8c2e7c18c61bf8678",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-2-room.webp": {
+    "mtime": 1793801627.4665232,
+    "ast_hash": "c5e78e1ee8cea117446edd5c4a01805d",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-2-thumb.webp": {
+    "mtime": 1793801627.4744081,
+    "ast_hash": "0de245934e188eb11a9eb12a1f2a97b6",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-2.webp": {
+    "mtime": 1793801627.4507947,
+    "ast_hash": "c5e78e1ee8cea117446edd5c4a01805d",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-3-room.webp": {
+    "mtime": 1793801627.5218263,
+    "ast_hash": "230685036dbd080f058e797a4ddeda35",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-3-thumb.webp": {
+    "mtime": 1793801627.5314617,
+    "ast_hash": "2dae764a61a08dfcf06521a8f326862c",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-3.webp": {
+    "mtime": 1793801627.5027208,
+    "ast_hash": "230685036dbd080f058e797a4ddeda35",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-4-room.webp": {
+    "mtime": 1793801627.5656314,
+    "ast_hash": "8a2f4d9ee7a089e60c54acbef3217273",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-4-thumb.webp": {
+    "mtime": 1793801627.5732188,
+    "ast_hash": "2dea2cacf5c6c6a95b8f66da57d3a430",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-4.webp": {
+    "mtime": 1793801627.551515,
+    "ast_hash": "8a2f4d9ee7a089e60c54acbef3217273",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-5-room.webp": {
+    "mtime": 1793801627.610881,
+    "ast_hash": "4848dbf8f0d37586ea1bd41ab309e4ba",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-5-thumb.webp": {
+    "mtime": 1793801627.6181326,
+    "ast_hash": "b77bf8ee2e7cacd18679012f71ff5d58",
+    "semantic_hash": ""
+  },
+  "public/projects/dice-fight/shot-5.webp": {
+    "mtime": 1793801627.5961554,
+    "ast_hash": "4848dbf8f0d37586ea1bd41ab309e4ba",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/icon.webp": {
+    "mtime": 1793739103.6985543,
+    "ast_hash": "745cc7421b20e8b6850df817e12f2737",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/mascot.png": {
+    "mtime": 1793746191.9634397,
+    "ast_hash": "63dc32c191568dcee43123f29e242c11",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-1-room.webp": {
+    "mtime": 1793801627.7950048,
+    "ast_hash": "92645e56c7c1a43175b454c152259b4c",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-1-thumb.webp": {
+    "mtime": 1793801627.8065963,
+    "ast_hash": "ad7a114146c62aade008b3d82bf53c5c",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-1.webp": {
+    "mtime": 1793801627.7518654,
+    "ast_hash": "64918395634bb7f9e4c9ec3024251008",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-2-room.webp": {
+    "mtime": 1793801627.9362993,
+    "ast_hash": "c9a6fcc18b99a7d0855bfd13bfb61226",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-2-thumb.webp": {
+    "mtime": 1793801627.9545364,
+    "ast_hash": "d13a8124e69704923690d784293f87ac",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-2.webp": {
+    "mtime": 1793801627.8955166,
+    "ast_hash": "ecc19a0c29964edcf1294cff76466c08",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-3-room.webp": {
+    "mtime": 1793801628.082924,
+    "ast_hash": "322df01fdd9202f1195bd90c7bdd27a5",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-3-thumb.webp": {
+    "mtime": 1793801628.1012623,
+    "ast_hash": "583d0091fd788c90bf6d44f21c5c12f9",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-3.webp": {
+    "mtime": 1793801628.0414016,
+    "ast_hash": "c8b9ebc5452999f9a5d21e2fcdf63b8b",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-4-room.webp": {
+    "mtime": 1793801628.2320724,
+    "ast_hash": "4db0d64a7569684968ae91593e50e447",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-4-thumb.webp": {
+    "mtime": 1793801628.250314,
+    "ast_hash": "220c8c7e40e0bbaf7fde3b05d1e1e50d",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-4.webp": {
+    "mtime": 1793801628.1895428,
+    "ast_hash": "dbc405601c046689d31251c8f3c1b807",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-5-room.webp": {
+    "mtime": 1793801628.3680184,
+    "ast_hash": "f4ae0addc607b5ea982ea022177aed6e",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-5-thumb.webp": {
+    "mtime": 1793801628.3843498,
+    "ast_hash": "385d38533db6740b4604f829f822a177",
+    "semantic_hash": ""
+  },
+  "public/projects/funtomime/shot-5.webp": {
+    "mtime": 1793801628.3295844,
+    "ast_hash": "b4036f59134f144e5b85f6fdd6fe5b54",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/icon.webp": {
+    "mtime": 1793739103.7004697,
+    "ast_hash": "40979a38b56b2f45f79c0e3b4f768380",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/mascot.png": {
+    "mtime": 1793746191.955071,
+    "ast_hash": "d8b1910be483903338621fc759dd9c3e",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-1-room.webp": {
+    "mtime": 1793801628.5279152,
+    "ast_hash": "7a2afd54180ff178314112661ede8b07",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-1-thumb.webp": {
+    "mtime": 1793801628.5523827,
+    "ast_hash": "98190f111b2e253511fdc46c052877bf",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-1.webp": {
+    "mtime": 1793801628.468438,
+    "ast_hash": "4507531a47aebf3b5ab5402c5e363c4c",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-2-room.webp": {
+    "mtime": 1793801628.67084,
+    "ast_hash": "9d64dad4ea7ca82f0694507a46a7474c",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-2-thumb.webp": {
+    "mtime": 1793801628.6912177,
+    "ast_hash": "add8682234c0c30c4e379c1b7f21f145",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-2.webp": {
+    "mtime": 1793801628.622013,
+    "ast_hash": "c90148dff90d0aff4a89efd3f5cc749e",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-3-room.webp": {
+    "mtime": 1793801628.8071673,
+    "ast_hash": "099682a749ab70b950532cb17f329596",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-3-thumb.webp": {
+    "mtime": 1793801628.8281736,
+    "ast_hash": "b1952de71243b7dde415c8416c8b3481",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-3.webp": {
+    "mtime": 1793801628.7557552,
+    "ast_hash": "d64893f349bafde83263af460b726aa5",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-4-room.webp": {
+    "mtime": 1793801628.9928317,
+    "ast_hash": "aba4430cff6d264515657c5510927995",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-4-thumb.webp": {
+    "mtime": 1793801629.0197597,
+    "ast_hash": "7ba1c0dde190302426e1bd1ff6435567",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-4.webp": {
+    "mtime": 1793801628.9192407,
+    "ast_hash": "89b23d01222764b3fc5d4eb0d58fdb0a",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-5-room.webp": {
+    "mtime": 1793801629.1381953,
+    "ast_hash": "9646d1387b894870dc93efd683b9ce24",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-5-thumb.webp": {
+    "mtime": 1793801629.1587954,
+    "ast_hash": "576106c92e452b8585c084cd7ba55169",
+    "semantic_hash": ""
+  },
+  "public/projects/honeyland/shot-5.webp": {
+    "mtime": 1793801629.084762,
+    "ast_hash": "1c0556cf769e7e9bc75748f415ac72c0",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/icon.webp": {
+    "mtime": 1793739103.7021725,
+    "ast_hash": "3a8b125b1c0447e9681330956541ff29",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/mascot.png": {
+    "mtime": 1793746191.963215,
+    "ast_hash": "6ee3c7601a739765997d3222fc5b2d1a",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-1-room.webp": {
+    "mtime": 1793801629.309855,
+    "ast_hash": "e7bbb8a201c3aec309880eb791069cb1",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-1-thumb.webp": {
+    "mtime": 1793801629.320686,
+    "ast_hash": "f8389f747d3180499b4cb8747dda1e78",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-1.webp": {
+    "mtime": 1793801629.2571957,
+    "ast_hash": "909c032a1f406bc8923421f960e1189d",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-2-room.webp": {
+    "mtime": 1793801629.4570136,
+    "ast_hash": "d2d2a419969ac8c64698c4c549e356d9",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-2-thumb.webp": {
+    "mtime": 1793801629.4677567,
+    "ast_hash": "5b08fa18d2be327c45002b5554b2b8c0",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-2.webp": {
+    "mtime": 1793801629.4049993,
+    "ast_hash": "9175d9eb33f4a9dedc4930251f875001",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-3-room.webp": {
+    "mtime": 1793801629.6110494,
+    "ast_hash": "c5d088f589982d83adb7dc41b3ed1162",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-3-thumb.webp": {
+    "mtime": 1793801629.6224186,
+    "ast_hash": "d168b651e03b1b4320f220159626fe30",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-3.webp": {
+    "mtime": 1793801629.5540388,
+    "ast_hash": "fe0e6df79fba49963e101c7e1e6067ec",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-4-room.webp": {
+    "mtime": 1793801629.755928,
+    "ast_hash": "53a8880cd580b38a40b1f74220a8c8b5",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-4-thumb.webp": {
+    "mtime": 1793801629.7668478,
+    "ast_hash": "4c38d70239dc35a6d6d1744fff795104",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-4.webp": {
+    "mtime": 1793801629.7038212,
+    "ast_hash": "dbcc22208f14214c46ca59c18a792fae",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-5-room.webp": {
+    "mtime": 1793801629.8977697,
+    "ast_hash": "1ce71896485695fc5e31d83957e8ced9",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-5-thumb.webp": {
+    "mtime": 1793801629.9083433,
+    "ast_hash": "de6dc2f0de51dbbb8146f10922e9f3ce",
+    "semantic_hash": ""
+  },
+  "public/projects/line-up/shot-5.webp": {
+    "mtime": 1793801629.8456826,
+    "ast_hash": "0bf34abf85c5d4a44ca064a1cb7dcd21",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/icon.webp": {
+    "mtime": 1793739103.7052655,
+    "ast_hash": "9fef46da06f36ad263a491c16de98858",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/mascot.png": {
+    "mtime": 1793746191.9636555,
+    "ast_hash": "6891c41d78667f837a784151feb113b6",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-1-room.webp": {
+    "mtime": 1793801630.0371633,
+    "ast_hash": "678dafd8394be5f9d279f644cf27f09d",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-1-thumb.webp": {
+    "mtime": 1793801630.0564196,
+    "ast_hash": "971b513a2ab8a3e1eee8c66022021d68",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-1.webp": {
+    "mtime": 1793801629.991762,
+    "ast_hash": "80b9d6391a7da253c43e31cb96523bc6",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-2-room.webp": {
+    "mtime": 1793801630.157991,
+    "ast_hash": "a4818f589444b97ce46d50dd0595e774",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-2-thumb.webp": {
+    "mtime": 1793801630.1769018,
+    "ast_hash": "d4b98f613c827239c7e26a47d91fe2c0",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-2.webp": {
+    "mtime": 1793801630.1129098,
+    "ast_hash": "34967632c47969686be4a771a6c5eb62",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-3-room.webp": {
+    "mtime": 1793801630.2853367,
+    "ast_hash": "776b98f96b4125a13c702b4bc3a33c97",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-3-thumb.webp": {
+    "mtime": 1793801630.3062694,
+    "ast_hash": "80b19eac4e1ecdeec271c4473f0e8a95",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-3.webp": {
+    "mtime": 1793801630.2357771,
+    "ast_hash": "c318ff0da8a60ee9cb3b08ee0826af4d",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-4-room.webp": {
+    "mtime": 1793801630.4164321,
+    "ast_hash": "3e22f036ab867e2a36c12b8f84028af5",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-4-thumb.webp": {
+    "mtime": 1793801630.4378352,
+    "ast_hash": "ef8a880da8b4360c1caafe56b1f4b1f2",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-4.webp": {
+    "mtime": 1793801630.3675997,
+    "ast_hash": "cd70f6fe32c52617917b748dd858281f",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-5-room.webp": {
+    "mtime": 1793801630.5406299,
+    "ast_hash": "89f755dd43e6a5caa39b6dbdaf39a8a2",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-5-thumb.webp": {
+    "mtime": 1793801630.5600326,
+    "ast_hash": "1c95ec67f114cdd59c04f08e2043be30",
+    "semantic_hash": ""
+  },
+  "public/projects/saving-private-teddy/shot-5.webp": {
+    "mtime": 1793801630.4953163,
+    "ast_hash": "0ccc5e31f0c3a89e23db75ec304a85bf",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/icon.webp": {
+    "mtime": 1793739103.7068384,
+    "ast_hash": "ce20d2762f7f6feb274a37c9c47646fb",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/mascot.png": {
+    "mtime": 1793746191.9553635,
+    "ast_hash": "527fad5d60d69aa834550445184217ad",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-1-room.webp": {
+    "mtime": 1793801631.1943827,
+    "ast_hash": "f26c1c97327745cd7f6d4597f61f6f8e",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-1-thumb.webp": {
+    "mtime": 1793801631.2041523,
+    "ast_hash": "b162465fde0c03a3506f92ee1ce563db",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-1.webp": {
+    "mtime": 1793801631.172852,
+    "ast_hash": "f26c1c97327745cd7f6d4597f61f6f8e",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-2-room.webp": {
+    "mtime": 1793801631.2554371,
+    "ast_hash": "3f745180ece032019a7e502b3b3c9296",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-2-thumb.webp": {
+    "mtime": 1793801631.265346,
+    "ast_hash": "05be4faa1a6a00445585f380e19ee728",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-2.webp": {
+    "mtime": 1793801631.2347426,
+    "ast_hash": "3f745180ece032019a7e502b3b3c9296",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-3-room.webp": {
+    "mtime": 1793801631.311248,
+    "ast_hash": "9d08981bbf3775d3b188d31f841bf5de",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-3-thumb.webp": {
+    "mtime": 1793801631.3199775,
+    "ast_hash": "21f356cad749d085699b99e3ef58db36",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-3.webp": {
+    "mtime": 1793801631.293346,
+    "ast_hash": "9d08981bbf3775d3b188d31f841bf5de",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-4-room.webp": {
+    "mtime": 1793801631.3596282,
+    "ast_hash": "31e2f448140c4cb1e6ec65757c157d1f",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-4-thumb.webp": {
+    "mtime": 1793801631.3667462,
+    "ast_hash": "74d64fd6f93da225ae951da862b35ccc",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-4.webp": {
+    "mtime": 1793801631.343827,
+    "ast_hash": "31e2f448140c4cb1e6ec65757c157d1f",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-5-room.webp": {
+    "mtime": 1793801631.4117415,
+    "ast_hash": "7d47feb0d51026f9634a91b4d3bcbcd1",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-5-thumb.webp": {
+    "mtime": 1793801631.420032,
+    "ast_hash": "34110c0d285da1dea55b063604158e52",
+    "semantic_hash": ""
+  },
+  "public/projects/wordfly/shot-5.webp": {
+    "mtime": 1793801631.3934433,
+    "ast_hash": "7d47feb0d51026f9634a91b4d3bcbcd1",
+    "semantic_hash": ""
+  },
+  "public/sprites/avatar.png": {
+    "mtime": 1793746191.9542887,
+    "ast_hash": "4196fc0e0a8183e4aac0a564c56deab1",
+    "semantic_hash": ""
+  },
+  "public/sprites/clouds.png": {
+    "mtime": 1793746191.9404511,
+    "ast_hash": "f22b71d326e44141f273727d74232633",
+    "semantic_hash": ""
+  },
+  "public/sprites/coin.png": {
+    "mtime": 1793739103.7084289,
+    "ast_hash": "b4373e013865cbf57cb9bb85a2b71e79",
+    "semantic_hash": ""
+  },
+  "public/sprites/flag.png": {
+    "mtime": 1793746191.9314003,
+    "ast_hash": "0707a8749e43631dea62079019cf39a6",
+    "semantic_hash": ""
+  },
+  "public/sprites/grass-tile.png": {
+    "mtime": 1793746191.9654129,
+    "ast_hash": "31841e321c5753f4bb6c350d170ca4eb",
+    "semantic_hash": ""
+  },
+  "public/sprites/grass.png": {
+    "mtime": 1793746191.9332938,
+    "ast_hash": "f8656023b9bf9927c5d1cde245349681",
+    "semantic_hash": ""
+  },
+  "public/sprites/player.png": {
+    "mtime": 1793739103.7087176,
+    "ast_hash": "4337370b0b60298e46b551c6e60c6830",
+    "semantic_hash": ""
+  },
+  "public/sprites/qblock.png": {
+    "mtime": 1793739103.7087865,
+    "ast_hash": "0438456f6a3333b3d5d56e113e57e898",
+    "semantic_hash": ""
+  },
+  "public/sprites/tower.png": {
+    "mtime": 1793746191.9299383,
+    "ast_hash": "7b5232a06b2715a6512b111c9a8d9cfc",
+    "semantic_hash": ""
+  },
+  "public/sprites/trees.png": {
+    "mtime": 1793746191.9258149,
+    "ast_hash": "86fe16847e89809eb2b400c19cc5057d",
+    "semantic_hash": ""
+  },
+  "src/engine/hover.ts": {
+    "mtime": 1793739103.7107453,
+    "ast_hash": "f75ff08a4d61677dae21bea629881592",
+    "semantic_hash": ""
+  },
+  "public/cv.pdf": {
+    "mtime": 1793739103.6852496,
+    "ast_hash": "5b47b61b1e37003b68b79a04ca23813e",
+    "semantic_hash": ""
+  },
+  "public/portfolio.pdf": {
+    "mtime": 1793739103.6937683,
+    "ast_hash": "d3a60c34daa5f2edbd2107bb57975bf0",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics.ts": {
+    "mtime": 1793743383.0830576,
+    "ast_hash": "ccfbb9d056abea6daf32e435f05bcc34",
+    "semantic_hash": ""
+  },
+  "tests/analytics.spec.ts": {
+    "mtime": 1793743383.0841908,
+    "ast_hash": "33fb9dac02ea400ec7472a383faef2fb",
+    "semantic_hash": ""
+  },
+  "assets-src/brand/logo-1x.png": {
+    "mtime": 1793743383.0805042,
+    "ast_hash": "023a706ec4cf52d8a5f190f0418d5eab",
+    "semantic_hash": ""
+  },
+  "public/apple-touch-icon.png": {
+    "mtime": 1793743383.081531,
+    "ast_hash": "33f21a67dac03912937d7e8f0434e76e",
+    "semantic_hash": ""
+  },
+  "public/favicon.svg": {
+    "mtime": 1793743383.0821137,
+    "ast_hash": "d2cdf5a95a42412c4b43e227892b8d19",
+    "semantic_hash": ""
+  },
+  "public/sprites/logo.png": {
+    "mtime": 1793743383.0823,
+    "ast_hash": "a6b378992e38a49a99ad6f6f2b6b4c7d",
+    "semantic_hash": ""
+  },
+  "src/views/sky.ts": {
+    "mtime": 1793748222.4895096,
+    "ast_hash": "8aa47f6ab6de4563ede0f3a82af2eac1",
+    "semantic_hash": ""
+  },
+  "public/sprites/tree-1.png": {
+    "mtime": 1793748222.4882812,
+    "ast_hash": "c36d60cff9f8cbc0a0d28528acd08ab3",
+    "semantic_hash": ""
+  },
+  "public/sprites/tree-2.png": {
+    "mtime": 1793748222.4883695,
+    "ast_hash": "6a775125a9da36a775d0c0bace25fa02",
+    "semantic_hash": ""
+  },
+  "docs/SITE-TEXT.md": {
+    "mtime": 1793801830.5584059,
+    "ast_hash": "abbb14e6044f9b58e42e92581c705cb9",
+    "semantic_hash": ""
+  },
+  "public/sprites/star.svg": {
+    "mtime": 1793800719.9556084,
+    "ast_hash": "645f7fb6f4a3ac5e5757f39a81a35524",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/DeckViewer.png": {
+    "mtime": 1783437165.07869,
+    "ast_hash": "0b8c51e764edd0bc1cd6134f20d5076b",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/EmberMemoryPage.png": {
+    "mtime": 1783437927.687618,
+    "ast_hash": "e17043682cca2de8ba006ed78fd7113d",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/GamePage with Tooltip.png": {
+    "mtime": 1783436786.986803,
+    "ast_hash": "f7eba144f32a666b63a2f10b911b334f",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/GamePage.png": {
+    "mtime": 1783436778.994609,
+    "ast_hash": "bc0b785a8238d45582edd5edc405c455",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/originals/deck.png": {
+    "mtime": 1793801587.2344532,
+    "ast_hash": "3bb2631b24c1061bc470aa44fd3f23b8",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/originals/ending.png": {
+    "mtime": 1793801587.3045938,
+    "ast_hash": "5e59a706c9a5dd26a76a87ac4cea60fb",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/originals/game.png": {
+    "mtime": 1793801587.0626276,
+    "ast_hash": "9a8c6e52a0b3036dcfa71fb3ba795a39",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/originals/icon.png": {
+    "mtime": 1793801578.1641881,
+    "ast_hash": "75ca9709b7f2699e1d376c26e512f2d2",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/originals/tooltip.png": {
+    "mtime": 1793801587.1505044,
+    "ast_hash": "5f7643ed346a2c8158fe5d6bace7b0a5",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/starter/shot-1.webp": {
+    "mtime": 1793801587.110772,
+    "ast_hash": "4c50f93d3871f485d103691ebbb35b13",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/starter/shot-2.webp": {
+    "mtime": 1793801587.1975162,
+    "ast_hash": "9029adc6cb70dbaf138f0a430929bca8",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/starter/shot-3.webp": {
+    "mtime": 1793801587.2783146,
+    "ast_hash": "459511f4d69d16d4b1b10b55ae979cd1",
+    "semantic_hash": ""
+  },
+  "assets-src/projects/the-last-ember/starter/shot-4.webp": {
+    "mtime": 1793801587.3441203,
+    "ast_hash": "7138daa90299d3fff4b68f177e6ab202",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/icon.webp": {
+    "mtime": 1793801578.1682937,
+    "ast_hash": "f60fa35f49285125eef46092eec69c82",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/mascot.png": {
+    "mtime": 1793801578.1691904,
+    "ast_hash": "2baa5c1975d7edfb37a6df597744a4cf",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-1-room.webp": {
+    "mtime": 1793801630.72156,
+    "ast_hash": "413efdf7efef0db56fb7cc291c60a2d2",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-1-thumb.webp": {
+    "mtime": 1793801630.746981,
+    "ast_hash": "b47ae9c28791433bf6ea02c0342850ec",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-1.webp": {
+    "mtime": 1793801630.6660774,
+    "ast_hash": "ec2f7e3404c8af14e6877802a1b80b0d",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-2-room.webp": {
+    "mtime": 1793801630.8700967,
+    "ast_hash": "5cd594e9c34172da0b35bd7932822c0c",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-2-thumb.webp": {
+    "mtime": 1793801630.895547,
+    "ast_hash": "a3d35c0b7dfd62389bd58eedcd797464",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-2.webp": {
+    "mtime": 1793801630.814689,
+    "ast_hash": "e15a9c761d88d2de8f0d0eaf31b2dcee",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-3-room.webp": {
+    "mtime": 1793801631.006561,
+    "ast_hash": "10d294941ca89337d8e84160a4df6ce9",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-3-thumb.webp": {
+    "mtime": 1793801631.029686,
+    "ast_hash": "2143f208cb259304a2e31ebbbf8151d4",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-3.webp": {
+    "mtime": 1793801630.9562662,
+    "ast_hash": "e34c64f3e378d5e57d217bde932089f3",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-4-room.webp": {
+    "mtime": 1793801631.121923,
+    "ast_hash": "59d3f750452f8f6a7efeb260c739779d",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-4-thumb.webp": {
+    "mtime": 1793801631.141171,
+    "ast_hash": "dcae5d0e28c563a795e254e86bd2a0d6",
+    "semantic_hash": ""
+  },
+  "public/projects/the-last-ember/shot-4.webp": {
+    "mtime": 1793801631.081103,
+    "ast_hash": "adf43d4fcb7776b262aceadf4ab5b980",
+    "semantic_hash": ""
+  }
+}
