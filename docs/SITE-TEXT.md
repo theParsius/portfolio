@@ -16,6 +16,7 @@ Sources: `src/content/site.ts`, `src/content/projects.ts`, `src/views/*.ts`, `sr
 - Descriptions rewritten: Honeyland, WordFly, Dice Fight, Line-Up, Funtomime, Saving Private Teddy, Agha Khan
 - Honeyland bubble changed
 - "Eight games" → "8 games"; curly quotes in the popup toast; email added to the no-JS message
+- 2026-11-18 consistency pass with the CVs and PDF portfolio
 
 ---
 
@@ -24,7 +25,7 @@ Sources: `src/content/site.ts`, `src/content/projects.ts`, `src/views/*.ts`, `sr
 _src/views/header.ts_
 
 - Logo: **theParsius**
-- Nav: **About** · **Projects** · **Contact** · **CV**
+- Nav: **About** · **Projects** · **Contact** · **CV** (downloads the designer CV)
 - Play button: **Play**
 - During play (HUD): **Projects found 0/8** · **★ 0/24** · **Score 0** · **♪ Sound** · **Stop**
   - Under 480px wide, "Projects found" becomes a ? block icon (still read by screen readers)
@@ -39,7 +40,7 @@ _src/views/mainLevel.ts, text from src/content/site.ts_
 
 # Parsa Tashakkori
 
-Game designer and developer. Six years building games in Unity and Go, now focused on systems and level design.
+Game designer and developer. Six years building games in Unity and Go, focused on systems and level design, with a passion for narrative and storytelling.
 
 Buttons: **See projects** · **Play this page** · or press **P**
 
@@ -49,9 +50,9 @@ Buttons: **See projects** · **Play this page** · or press **P**
 
 [Avatar image, alt: "Pixel portrait of Parsa waving"]
 
-I’m Parsa Tashakkori, also known as theParsius. I started as an intern at a small Tehran studio, went from junior to senior developer in nine months at Hexagon Studios, and spent four years on Honeyland, a mobile game that peaked at ~125k players.
+I’m Parsa Tashakkori, also known as theParsius. I started as an intern at a small Tehran studio, went from junior to senior developer in nine months at Hexagon Studios, and spent four years on Honeyland, a Web3 mobile game that peaked at ~125k players. After its 2025 sale to Bravo Ready, I was its lead developer and game designer.
 
-Engineering got me in; design is where I’m going. I want to build games that are technically solid and make players feel something. Based in the UK.
+Engineering got me in; design is where I’m going: systems and level design, with a passion for narrative and storytelling. I want to build games that are technically solid and make players feel something. I’m studying for an MFA in Game Design at Kingston University in London.
 
 ### Projects sign
 
@@ -77,14 +78,14 @@ The speech bubble above the mascot shows the hook.
 
 | Title | Years | Role | Status | Metric | Tags | Bubble (hook) |
 |---|---|---|---|---|---|---|
-| Honeyland | 2022–2026 | Senior Unity developer, game designer across the IP | Live | ~125k players at peak | Unity, C#, Solana, Web3 | Bee squads, missions, and a player marketplace. |
-| The Last Ember | 2025–Now | Sole developer and designer | In development | | Unity, C#, Game design | Tarot cards, a burning candle, and hope running out. |
-| Dice Fight | 2025 | Prototype and combat design | Prototype | | Unity, C#, Combat design | A fighting game where your dice hand is your moveset. |
+| Honeyland | 2022–2026 | Developer and designer across the IP; lead after the 2025 sale | Released | ~125k players at peak | Unity, C#, Solana, Web3 | Bee squads, missions, and a player marketplace. |
+| The Last Ember | 2025–Now | Sole designer and developer | In development | | Unity, C#, Game design, Roguelite | Tarot cards, a burning candle, and hope running out. |
+| Dice Fight | 2025 | Combat design and prototype (Hexagon Studios) | Prototype | | Unity, C#, Combat design, Roguelite | A fighting game where your dice hand is your moveset. |
 | Saving Private Teddy | 2021 | Level design and tech support | Game jam | | Unity, C#, Level design | Light is the only thing keeping a scared kid safe. |
 | Line-Up | 2021 | Game design, Unity client and Golang server | Released | | Unity, C#, Golang, Real-time | Draft real footballers, then play them in real time. |
 | WordFly | 2025 | Unity client and Golang server (contributor) | Live | | Unity, C#, Golang | Hidden-word puzzles that work online and offline. |
 | Funtomime | 2022 | Unity client and Golang server (contributor) | Released | | Unity, C#, Golang, UGC | Charades with video clues uploaded by players. |
-| Agha Khan | 2020 | Unity client and Golang server | Unreleased | | Unity, C#, Golang, Multiplayer | Online strategy where every hero carries two spells. |
+| Agha Khan | 2020 | Game design, Unity client and Golang server | Unreleased | | Unity, C#, Golang, Game design, Multiplayer | Online strategy where every hero carries two spells. |
 
 ### Contact
 
@@ -92,7 +93,9 @@ The speech bubble above the mascot shows the hook.
 
 Reach the flag, or just send an email.
 
-Buttons: **Email** · **LinkedIn** · **itch.io** · **Download CV** · **Portfolio PDF**
+Buttons: **Email** · **LinkedIn** · **itch.io**
+
+Downloads (second row): **Designer CV** · **Developer CV** · **Portfolio PDF**
 
 Parsa Tashakkori
 
@@ -114,16 +117,16 @@ Every room has the same frame:
 
 ### Honeyland
 
-**2022–2026 · Live**
+**2022–2026 · Released**
 
-Honeyland is a mobile strategy game on Solana where players send teams of bees on missions to gather resources. I worked on it from 2022 to 2026 as a senior Unity developer, through its sale from Hexagon Studios to BRAVO READY. I also designed several other games in the Honeyland IP and, before the acquisition, helped design its live in-game events.
+Honeyland is a Web3 mobile game on Solana where players send NFT bee squads on missions to collect items and HXD, and trade them on a player marketplace. I joined as a junior developer and was promoted to senior within nine months. I built the gameplay, UI and Solana transaction flow, and designed for the game itself, its live events and spin-off games in the IP. After the 2025 sale to Bravo Ready, I became its lead developer and game designer.
 
 ~125k players at peak
 
 Links: **Google Play** · **App Store**
 
-- Role: Senior Unity developer, game designer across the IP
-- Status: Live
+- Role: Developer and designer across the IP; lead after the 2025 sale
+- Status: Released
 - Platform: iOS, Android
 - Stack: Unity, C#, Solana, Web3
 
@@ -140,14 +143,14 @@ More projects: ◀ Agha Khan · The Last Ember ▶
 
 **2025–Now · In development**
 
-The Last Ember is a tarot card game about holding on to hope while a candle burns down. Each turn offers cards from a 22-card Major Arcana deck, and every card costs or restores Hope, pushes four spirals (Avoidance, Ambition, Control and Optimism) and can leave scars. It is a personal project, still in development: I am its sole developer and designer, building it in Unity and C#.
+The Last Ember is a roguelite psychological horror card game about holding on to hope while a candle burns down. On every turn of a run you choose a tarot card from a 22-card Major Arcana deck and face the consequences: every card costs or restores Hope, pushes four spirals (Avoidance, Ambition, Control and Optimism) and can leave scars. It is a personal project, still in development: I am its sole designer and developer, building it in Unity and C#.
 
 Links: none
 
-- Role: Sole developer and designer
+- Role: Sole designer and developer
 - Status: In development
 - Platform: PC
-- Stack: Unity, C#, Game design
+- Stack: Unity, C#, Game design, Roguelite
 
 Screenshot captions:
 1. A burning candle at 70 Hope beside three tarot cards, The Emperor, The Moon and The Tower, under four spiral sliders.
@@ -163,14 +166,14 @@ More projects: ◀ Honeyland · Dice Fight ▶
 
 **2025 · Prototype**
 
-A mobile fighting prototype where your rolled hand (pairs, full houses) decides your moves, with roguelike item builds on top. I built it in Unity and designed the combat. The core problem was making fights feel like more than luck. Rerolls, freezing a die and power-ups turned each roll into a decision. I then iterated on visuals and hit effects, including several versions in 3D.
+A mobile fighting prototype made at Hexagon Studios: your rolled dice hand (pairs, full houses) is your moveset, with roguelite item builds and Web3 features on top. I designed the combat and built the prototype in Unity. The core problem was making fights feel like more than luck. Rerolls, freezing a die and power-ups turned each roll into a decision. I then iterated on visuals and hit effects, including several versions in 3D.
 
 Links: none
 
-- Role: Prototype and combat design
+- Role: Combat design and prototype (Hexagon Studios)
 - Status: Prototype
 - Platform: Mobile
-- Stack: Unity, C#, Combat design
+- Stack: Unity, C#, Combat design, Roguelite
 
 Screenshot captions:
 1. Two pixel-art fighters trading blows on a night street.
@@ -229,7 +232,7 @@ More projects: ◀ Saving Private Teddy · WordFly ▶
 
 **2025 · Live**
 
-WordFly is a mobile word puzzle game set across city maps, playable online or offline. I worked on the Unity client and Golang server alongside the project lead, implementing social features and a roguelike mini-game.
+WordFly is a mobile word puzzle game set across city maps, playable online or offline. I worked on the Unity client and Golang server alongside the project lead: I designed and developed a roguelite mini-game, built social features and worked on client–server state sync.
 
 Links: **Google Play** · **App Store**
 
@@ -273,14 +276,14 @@ More projects: ◀ WordFly · Agha Khan ▶
 
 **2020 · Unreleased**
 
-An online multiplayer strategy game where every hero carries two player-controlled spells. I built the Unity client and the Golang server for real-time matches. It was shelved before release.
+An online multiplayer strategy game where every hero carries two player-controlled spells. I worked on its game design and built the Unity client and the Golang server for real-time matches. It was shelved before release.
 
 Links: none
 
-- Role: Unity client and Golang server
+- Role: Game design, Unity client and Golang server
 - Status: Unreleased
 - Platform: Mobile
-- Stack: Unity, C#, Golang, Multiplayer
+- Stack: Unity, C#, Golang, Game design, Multiplayer
 
 Screenshot captions:
 1. Concept sketches of an old sorcerer holding fire in his hand.
@@ -337,7 +340,7 @@ _index.html, src/main.ts, scripts/prerender.ts_
 
 - Main page title: **Parsa Tashakkori, game designer and developer**
 - Project page title: **<Project>, Parsa Tashakkori** (e.g. "Honeyland, Parsa Tashakkori")
-- Main page description (same in `index.html` and the built site): "Parsa Tashakkori (theParsius): game designer and developer. Six years building games in Unity and Go, now focused on systems and level design. 8 games, in a side-scrolling level you can play."
+- Main page description (same in `index.html` and the built site): "Parsa Tashakkori (theParsius): game designer and developer. Six years building games in Unity and Go, focused on systems and level design, with a passion for narrative and storytelling. 8 games, in a side-scrolling level you can play."
 - Project page description: the first sentence of the project's description.
 - Share image alt: the first landscape screenshot's caption, or "<Project> app icon".
 

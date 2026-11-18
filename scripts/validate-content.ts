@@ -77,11 +77,11 @@ export async function validateContent(): Promise<Report> {
   if (!site.base.startsWith('/') || !site.base.endsWith('/'))
     r.errors.push('site.base must start and end with /');
   if (!site.url.endsWith(site.base)) r.errors.push('site.url must end with site.base');
-  for (const k of ['cv', 'portfolioPdf'] as const) {
+  for (const k of ['cvDesigner', 'cvDeveloper', 'portfolioPdf'] as const) {
     const f = site[k];
     if (f && !existsSync(pub(f))) r.errors.push(`site.${k} missing: ${f}`);
   }
-  for (const k of ['email', 'cv', 'portfolioPdf'] as const)
+  for (const k of ['email', 'cvDesigner', 'cvDeveloper', 'portfolioPdf'] as const)
     if (!site[k]) r.warnings.push(`site.${k} not set yet`);
   for (const p of projects) {
     if (p.links.length === 0 && (p.status === 'live' || p.status === 'released')) {

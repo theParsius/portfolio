@@ -18,5 +18,7 @@
   "16": ".prettierrc.json",
   "17": "eslint.config.js",
   "18": "playwright.config.ts",
-  "20": "Fx"
+  "19": "Replacements",
+  "20": "Fx",
+  "21": "shotPlan.ts"
 }

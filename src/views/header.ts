@@ -29,7 +29,7 @@ export function renderHeader(): Header {
         <a class="opt" href="${base}?at=about" data-nav="about">About</a>
         <a href="${base}?at=projects" data-nav="projects">Projects</a>
         <a class="opt" href="${base}?at=contact" data-nav="contact">Contact</a>
-        <a ${linkAttrs(site.cv, 'CV', { download: true })}>CV</a>
+        <a ${linkAttrs(site.cvDesigner, 'CV', { download: true })}>CV</a>
       </nav>
       <div class="hud" aria-live="polite">
         <span><span class="hud-long">Projects found </span><span class="q-icon" aria-hidden="true"></span><b data-found>0</b>/${projects.length}</span>

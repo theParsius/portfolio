@@ -84,7 +84,7 @@ test('vertical wheel scrolls sideways', async ({ page, isMobile }) => {
   await expect.poll(() => scrollLeft(page)).toBeGreaterThanOrEqual(450);
 });
 
-test('contact links are real: email, CV and portfolio PDF', async ({ page, request }) => {
+test('contact links are real: email, CVs and portfolio PDF', async ({ page, request }) => {
   await page.goto('./?at=contact');
   const contact = page.locator('#contact');
   await expect(contact.getByRole('link', { name: 'Email' })).toHaveAttribute(
@@ -92,7 +92,8 @@ test('contact links are real: email, CV and portfolio PDF', async ({ page, reque
     'mailto:theparsius@gmail.com',
   );
   for (const [name, file] of [
-    ['Download CV', 'cv.pdf'],
+    ['Designer CV', 'cv-game-designer.pdf'],
+    ['Developer CV', 'cv-game-developer.pdf'],
     ['Portfolio PDF', 'portfolio.pdf'],
   ] as const) {
     const link = contact.getByRole('link', { name });

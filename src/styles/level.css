@@ -565,6 +565,9 @@ button.qblock {
   gap: 14px;
   margin-top: 24px;
 }
+.contact .row.downloads {
+  margin-top: 14px; /* the download buttons sit on their own row, one button gap below */
+}
 .contact.cleared .btn {
   animation: cheer 0.5s steps(2) 3;
 }
@@ -636,6 +639,18 @@ button.qblock {
   .contact .flag {
     right: 24px;
   }
+  /* Smaller buttons, so the two rows (links, then downloads) stay short enough to fit under the
+     header on short phone screens. */
+  .contact .row {
+    gap: 10px;
+  }
+  .contact .row.downloads {
+    margin-top: 10px;
+  }
+  .contact .btn {
+    font-size: 17px;
+    padding: 10px 12px;
+  }
 }
 @media (pointer: coarse) {
   .cta .hint {
@@ -689,5 +704,23 @@ button.qblock {
   }
   .go {
     margin-top: 12px;
+  }
+}
+
+/* Short phone screens: tighter cards, so four stack tags fit on one line and the tallest card
+   (a two-line role, wrapped tags) stays below the top of the level. */
+@media (max-width: 760px) and (max-height: 700px) {
+  .card .body {
+    padding: 30px 16px 14px;
+  }
+  .role {
+    margin: 4px 0 8px;
+  }
+  .tags {
+    gap: 4px;
+  }
+  .tags li {
+    font-size: 14px;
+    padding: 2px 6px;
   }
 }

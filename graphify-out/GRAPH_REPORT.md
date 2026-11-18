@@ -1,16 +1,16 @@
-# Graph Report - portfolio  (2026-11-04)
+# Graph Report - portfolio  (2026-11-18)
 
 ## Corpus Check
-- 64 files · ~776,634 words
+- 65 files · ~778,171 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 483 nodes · 975 edges · 20 communities (18 shown, 2 thin omitted)
+- 502 nodes · 993 edges · 22 communities (20 shown, 2 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 12 edges (avg confidence: 0.73)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `23c615f8`
+- Built from commit: `e217608d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -32,19 +32,21 @@
 - images.ts
 - theParsius portfolio
 - .prettierrc.json
+- Replacements
 - Fx
+- shotPlan.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `Game` - 30 edges
 2. `compilerOptions` - 18 edges
 3. `asset()` - 17 edges
-4. `theParsius Portfolio: Build Spec` - 14 edges
-5. `scripts` - 13 edges
-6. `projects` - 13 edges
-7. `showRoom()` - 13 edges
-8. `Rect` - 12 edges
-9. `esc()` - 12 edges
-10. `renderRoom()` - 12 edges
+4. `Replacements` - 16 edges
+5. `theParsius Portfolio: Build Spec` - 14 edges
+6. `scripts` - 13 edges
+7. `projects` - 13 edges
+8. `showRoom()` - 13 edges
+9. `Rect` - 12 edges
+10. `esc()` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `run()` --indirect_call--> `s()`  [INFERRED]
@@ -61,27 +63,27 @@
 ## Import Cycles
 - None detected.
 
-## Communities (20 total, 2 thin omitted)
+## Communities (22 total, 2 thin omitted)
 
 ### Community 0 - "game.ts"
-Cohesion: 0.06
-Nodes (57): Actor, Anim, follow(), BlockInfo, collect(), Colliders, Npc, Star (+49 more)
+Cohesion: 0.07
+Nodes (44): Actor, Anim, follow(), BlockInfo, collect(), Colliders, Npc, Star (+36 more)
 
 ### Community 1 - "main.ts"
-Cohesion: 0.06
-Nodes (61): projectById(), hoverClock(), hoverOffset(), startShotHover(), focusGame(), soundOn(), hit(), trackEvent() (+53 more)
+Cohesion: 0.05
+Nodes (62): projectById(), hoverClock(), hoverOffset(), startShotHover(), focusGame(), soundOn(), hit(), on (+54 more)
 
 ### Community 2 - "projects.ts"
-Cohesion: 0.08
-Nodes (22): attr(), DIST, main, mainMeta, Meta, shell(), template, checkProject() (+14 more)
+Cohesion: 0.11
+Nodes (18): attr(), DIST, main, mainMeta, Meta, shell(), template, checkProject() (+10 more)
 
 ### Community 3 - "mainLevel.ts"
 Cohesion: 0.13
-Nodes (28): Orientation, Project, ProjectLink, Screenshot, Status, asset(), ENTITIES, esc() (+20 more)
+Nodes (30): site, Orientation, Project, ProjectLink, Screenshot, Site, Status, asset() (+22 more)
 
 ### Community 4 - "Game"
-Cohesion: 0.10
-Nodes (12): coarse(), Game, GameHost, play(), tone(), setSound(), sfx, warmSound() (+4 more)
+Cohesion: 0.11
+Nodes (10): coarse(), Game, GameHost, play(), tone(), setSound(), sfx, warmSound() (+2 more)
 
 ### Community 5 - "devDependencies"
 Cohesion: 0.06
@@ -109,7 +111,7 @@ Nodes (14): Assets, Build plan, Claude Code setup, Content model, Known gaps and
 
 ### Community 11 - "input.ts"
 Cohesion: 0.27
-Nodes (8): BY_CODE, BY_KEY, clearKeys(), Key, keyOf(), press(), release(), mountTouchPad()
+Nodes (9): BY_CODE, BY_KEY, clearKeys(), Key, keyOf(), press(), release(), Input (+1 more)
 
 ### Community 12 - "tunePanel.ts"
 Cohesion: 0.25
@@ -127,8 +129,16 @@ Nodes (9): distance(), exportShot(), MANIFEST, OUT, ROOT, run(), ShotEntry, sign
 Cohesion: 0.50
 Nodes (3): Commands, Rules, theParsius portfolio
 
+### Community 19 - "Replacements"
+Cohesion: 0.11
+Nodes (18): 10. `src/content/projects.ts`, 11. `src/content/projects.ts`, 12. `src/content/projects.ts`, 13. `src/content/projects.ts`, 14. `src/content/site.ts`, 15. `src/content/site.ts`, 1. `index.html`, 2. `src/content/projects.ts` (+10 more)
+
+### Community 21 - "shotPlan.ts"
+Cohesion: 0.15
+Nodes (15): relayout(), layoutRoom(), at(), clamp(), PLAN, PlanOptions, planShots(), planStars() (+7 more)
+
 ## Knowledge Gaps
-- **178 isolated node(s):** `singleQuote`, `printWidth`, `name`, `private`, `version` (+173 more)
+- **194 isolated node(s):** `singleQuote`, `printWidth`, `name`, `private`, `version` (+189 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -136,16 +146,16 @@ Nodes (3): Commands, Rules, theParsius portfolio
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Game` connect `Game` to `game.ts`, `main.ts`, `input.ts`, `Fx`?**
-  _High betweenness centrality (0.052) - this node is a cross-community bridge._
-- **Why does `s()` connect `mainLevel.ts` to `game.ts`, `Game`, `tunePanel.ts`, `images.ts`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+- **Why does `s()` connect `mainLevel.ts` to `shotPlan.ts`, `Game`, `tunePanel.ts`, `images.ts`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `projects` connect `projects.ts` to `game.ts`, `main.ts`, `mainLevel.ts`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **What connects `singleQuote`, `printWidth`, `name` to the rest of the system?**
-  _178 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `game.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.056962025316455694 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07272727272727272 - nodes in this community are weakly interconnected._
 - **Should `main.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.0579476861167002 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05333333333333334 - nodes in this community are weakly interconnected._
 - **Should `projects.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.08392603129445235 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10887096774193548 - nodes in this community are weakly interconnected._

@@ -50,7 +50,9 @@ export interface Site {
   linkedin: string | null;
   itch: string | null;
   github: string | null;
-  cv: string | null;
+  /** CVs, base-relative (public/). The header CV link uses the designer one. */
+  cvDesigner: string | null;
+  cvDeveloper: string | null;
   /** The printable portfolio, base-relative (public/). */
   portfolioPdf: string | null;
   /** GoatCounter site code (dashboard at https://<code>.goatcounter.com); null = no analytics. */

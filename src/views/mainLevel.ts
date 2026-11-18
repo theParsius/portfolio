@@ -102,7 +102,10 @@ export function renderMainLevel(): Level {
           <a class="btn" ${linkAttrs(site.email ? `mailto:${site.email}` : null, 'Email')}>Email</a>
           <a class="btn ghost" ${linkAttrs(site.linkedin, 'LinkedIn')}>LinkedIn</a>
           <a class="btn ghost" ${linkAttrs(site.itch, 'itch.io')}>itch.io</a>
-          <a class="btn ghost" ${linkAttrs(site.cv, 'CV', { download: true })}>Download CV</a>
+        </div>
+        <div class="row downloads" data-solid="kids">
+          <a class="btn ghost" ${linkAttrs(site.cvDesigner, 'Designer CV', { download: true })}>Designer CV</a>
+          <a class="btn ghost" ${linkAttrs(site.cvDeveloper, 'Developer CV', { download: true })}>Developer CV</a>
           <a class="btn ghost" ${linkAttrs(site.portfolioPdf, 'Portfolio PDF', { download: true })}>Portfolio PDF</a>
         </div>
         <p class="credit" data-solid="text">${esc(site.name)}</p>

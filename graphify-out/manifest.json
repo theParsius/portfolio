@@ -40,8 +40,8 @@
     "semantic_hash": ""
   },
   "scripts/validate-content.ts": {
-    "mtime": 1793801666.9373798,
-    "ast_hash": "59e1973208b031b51456dc925bf5b06b",
+    "mtime": 1795015192.1455524,
+    "ast_hash": "74a5392b500d37a4aa822b98f0c89ddf",
     "semantic_hash": ""
   },
   "src/content/player.json": {
@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "src/content/projects.ts": {
-    "mtime": 1793808323.397881,
-    "ast_hash": "3ea6a52cbeef6de043a7b521aa749303",
+    "mtime": 1795015197.1001399,
+    "ast_hash": "86e00e319371337c7da40a7b467f58b1",
     "semantic_hash": ""
   },
   "src/content/shots.json": {
@@ -60,8 +60,8 @@
     "semantic_hash": ""
   },
   "src/content/site.ts": {
-    "mtime": 1793808012.4258103,
-    "ast_hash": "46d420bff9d9a82db12aee6b4d3659fb",
+    "mtime": 1795015197.1003044,
+    "ast_hash": "d0af1d2465c9f11232abdf2d9254d425",
     "semantic_hash": ""
   },
   "src/content/sprites.json": {
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "src/content/types.ts": {
-    "mtime": 1793808012.4262075,
-    "ast_hash": "c1665dce3d49b625ac6bc57ca5b39415",
+    "mtime": 1795015192.1444495,
+    "ast_hash": "d4cecafa5c10b378e057cc0be7233f75",
     "semantic_hash": ""
   },
   "src/engine/actor.ts": {
@@ -195,8 +195,8 @@
     "semantic_hash": ""
   },
   "src/views/header.ts": {
-    "mtime": 1793800719.971822,
-    "ast_hash": "c80377170655cce81511ed86fceab4e7",
+    "mtime": 1795015192.1452448,
+    "ast_hash": "92af69684406f85c16d1fa2244742cab",
     "semantic_hash": ""
   },
   "src/views/heroSprite.ts": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "src/views/mainLevel.ts": {
-    "mtime": 1793808012.4267294,
-    "ast_hash": "c3d378ee75c0ac4fca98be0ba62d0894",
+    "mtime": 1795015192.144993,
+    "ast_hash": "79d87dde863f4c6d4796d5004373eac5",
     "semantic_hash": ""
   },
   "src/views/room.ts": {
@@ -235,8 +235,8 @@
     "semantic_hash": ""
   },
   "tests/e2e/main-level.spec.ts": {
-    "mtime": 1793748222.4896512,
-    "ast_hash": "b6e1720966376b5bbcdac95d23f07575",
+    "mtime": 1795015192.1458578,
+    "ast_hash": "56ee55f2f15e7a85431f764afcc55391",
     "semantic_hash": ""
   },
   "tests/e2e/play.spec.ts": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793808012.4282348,
-    "ast_hash": "b08567d85d0a729d3d8fc9d60eaa864a",
+    "mtime": 1795015197.0998092,
+    "ast_hash": "18888dc2fe5fb960af7bbf929d0db4cf",
     "semantic_hash": ""
   },
   "assets-src/brand/theParsiusLogo.png": {
@@ -1384,14 +1384,9 @@
     "ast_hash": "f75ff08a4d61677dae21bea629881592",
     "semantic_hash": ""
   },
-  "public/cv.pdf": {
-    "mtime": 1793739103.6852496,
-    "ast_hash": "5b47b61b1e37003b68b79a04ca23813e",
-    "semantic_hash": ""
-  },
   "public/portfolio.pdf": {
-    "mtime": 1793739103.6937683,
-    "ast_hash": "d3a60c34daa5f2edbd2107bb57975bf0",
+    "mtime": 1795015185.0816991,
+    "ast_hash": "d357f0c3e74222699efbc97802baf3cc",
     "semantic_hash": ""
   },
   "src/lib/analytics.ts": {
@@ -1440,8 +1435,8 @@
     "semantic_hash": ""
   },
   "docs/SITE-TEXT.md": {
-    "mtime": 1793808323.3983598,
-    "ast_hash": "02a4fc85e0420b54432927b15a0c2f12",
+    "mtime": 1795015238.124387,
+    "ast_hash": "6d794a7b0e7d9643da8702cd3ff85e38",
     "semantic_hash": ""
   },
   "public/sprites/star.svg": {
@@ -1587,6 +1582,21 @@
   "assets-src/projects/the-last-ember/Icon.jpeg": {
     "mtime": 1793801888.3370514,
     "ast_hash": "dd92eb8b19ad013f47c86c2f4ab72fdb",
+    "semantic_hash": ""
+  },
+  "docs/COPY-UPDATE-2026-11-18.md": {
+    "mtime": 1795015107.05488,
+    "ast_hash": "00af0700cb36b10518ce29e863f2bdc0",
+    "semantic_hash": ""
+  },
+  "public/cv-game-designer.pdf": {
+    "mtime": 1795015185.0754123,
+    "ast_hash": "9e60d790da8355e85c4010f17bdac069",
+    "semantic_hash": ""
+  },
+  "public/cv-game-developer.pdf": {
+    "mtime": 1795015185.0776918,
+    "ast_hash": "1408f285db017fbd9de2c488f10ace72",
     "semantic_hash": ""
   }
 }
